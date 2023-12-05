@@ -14,6 +14,7 @@
 		1AF4EF992B1645AA00027548 /* SwiftDataTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF982B1645AA00027548 /* SwiftDataTestingTests.swift */; };
 		1AF4EFA32B1645AA00027548 /* SwiftDataTestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */; };
 		1AF4EFA52B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */; };
+		1AF4EFB22B16460900027548 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFB12B16460900027548 /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,17 +35,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1AF4EF832B1645A800027548 /* SwiftDataTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataExpensesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingApp.swift; sourceTree = "<group>"; };
 		1AF4EF882B1645A800027548 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1AF4EF8A2B1645AA00027548 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AF4EF8D2B1645AA00027548 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1AF4EF8F2B1645AA00027548 /* SwiftDataTesting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftDataTesting.entitlements; sourceTree = "<group>"; };
-		1AF4EF942B1645AA00027548 /* SwiftDataTestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataTestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AF4EF942B1645AA00027548 /* SwiftDataExpensesTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataExpensesTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EF982B1645AA00027548 /* SwiftDataTestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingTests.swift; sourceTree = "<group>"; };
-		1AF4EF9E2B1645AA00027548 /* SwiftDataTestingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataTestingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AF4EF9E2B1645AA00027548 /* SwiftDataExpensesTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataExpensesTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITests.swift; sourceTree = "<group>"; };
 		1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1AF4EFB12B16460900027548 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		1AF4EFB52B19264B00027548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +88,9 @@
 		1AF4EF842B1645A800027548 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1AF4EF832B1645A800027548 /* SwiftDataTesting.app */,
-				1AF4EF942B1645AA00027548 /* SwiftDataTestingTests.xctest */,
-				1AF4EF9E2B1645AA00027548 /* SwiftDataTestingUITests.xctest */,
+				1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */,
+				1AF4EF942B1645AA00027548 /* SwiftDataExpensesTrackerTests.xctest */,
+				1AF4EF9E2B1645AA00027548 /* SwiftDataExpensesTrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,8 +98,10 @@
 		1AF4EF852B1645A800027548 /* SwiftDataTesting */ = {
 			isa = PBXGroup;
 			children = (
+				1AF4EFB52B19264B00027548 /* Info.plist */,
 				1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */,
 				1AF4EF882B1645A800027548 /* ContentView.swift */,
+				1AF4EFB12B16460900027548 /* Expense.swift */,
 				1AF4EF8A2B1645AA00027548 /* Assets.xcassets */,
 				1AF4EF8F2B1645AA00027548 /* SwiftDataTesting.entitlements */,
 				1AF4EF8C2B1645AA00027548 /* Preview Content */,
@@ -132,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1AF4EF822B1645A800027548 /* SwiftDataTesting */ = {
+		1AF4EF822B1645A800027548 /* SwiftDataExpensesTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AF4EFA82B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTesting" */;
+			buildConfigurationList = 1AF4EFA82B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTracker" */;
 			buildPhases = (
 				1AF4EF7F2B1645A800027548 /* Sources */,
 				1AF4EF802B1645A800027548 /* Frameworks */,
@@ -144,14 +149,14 @@
 			);
 			dependencies = (
 			);
-			name = SwiftDataTesting;
+			name = SwiftDataExpensesTracker;
 			productName = SwiftDataTesting;
-			productReference = 1AF4EF832B1645A800027548 /* SwiftDataTesting.app */;
+			productReference = 1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1AF4EF932B1645AA00027548 /* SwiftDataTestingTests */ = {
+		1AF4EF932B1645AA00027548 /* SwiftDataExpensesTrackerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AF4EFAB2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTestingTests" */;
+			buildConfigurationList = 1AF4EFAB2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTrackerTests" */;
 			buildPhases = (
 				1AF4EF902B1645AA00027548 /* Sources */,
 				1AF4EF912B1645AA00027548 /* Frameworks */,
@@ -162,14 +167,14 @@
 			dependencies = (
 				1AF4EF962B1645AA00027548 /* PBXTargetDependency */,
 			);
-			name = SwiftDataTestingTests;
+			name = SwiftDataExpensesTrackerTests;
 			productName = SwiftDataTestingTests;
-			productReference = 1AF4EF942B1645AA00027548 /* SwiftDataTestingTests.xctest */;
+			productReference = 1AF4EF942B1645AA00027548 /* SwiftDataExpensesTrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1AF4EF9D2B1645AA00027548 /* SwiftDataTestingUITests */ = {
+		1AF4EF9D2B1645AA00027548 /* SwiftDataExpensesTrackerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AF4EFAE2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTestingUITests" */;
+			buildConfigurationList = 1AF4EFAE2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTrackerUITests" */;
 			buildPhases = (
 				1AF4EF9A2B1645AA00027548 /* Sources */,
 				1AF4EF9B2B1645AA00027548 /* Frameworks */,
@@ -180,9 +185,9 @@
 			dependencies = (
 				1AF4EFA02B1645AA00027548 /* PBXTargetDependency */,
 			);
-			name = SwiftDataTestingUITests;
+			name = SwiftDataExpensesTrackerUITests;
 			productName = SwiftDataTestingUITests;
-			productReference = 1AF4EF9E2B1645AA00027548 /* SwiftDataTestingUITests.xctest */;
+			productReference = 1AF4EF9E2B1645AA00027548 /* SwiftDataExpensesTrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +213,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1AF4EF7E2B1645A800027548 /* Build configuration list for PBXProject "SwiftDataTesting" */;
+			buildConfigurationList = 1AF4EF7E2B1645A800027548 /* Build configuration list for PBXProject "SwiftDataExpensesTracker" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,9 +226,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1AF4EF822B1645A800027548 /* SwiftDataTesting */,
-				1AF4EF932B1645AA00027548 /* SwiftDataTestingTests */,
-				1AF4EF9D2B1645AA00027548 /* SwiftDataTestingUITests */,
+				1AF4EF822B1645A800027548 /* SwiftDataExpensesTracker */,
+				1AF4EF932B1645AA00027548 /* SwiftDataExpensesTrackerTests */,
+				1AF4EF9D2B1645AA00027548 /* SwiftDataExpensesTrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AF4EFB22B16460900027548 /* Expense.swift in Sources */,
 				1AF4EF892B1645A800027548 /* ContentView.swift in Sources */,
 				1AF4EF872B1645A800027548 /* SwiftDataTestingApp.swift in Sources */,
 			);
@@ -286,12 +292,12 @@
 /* Begin PBXTargetDependency section */
 		1AF4EF962B1645AA00027548 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1AF4EF822B1645A800027548 /* SwiftDataTesting */;
+			target = 1AF4EF822B1645A800027548 /* SwiftDataExpensesTracker */;
 			targetProxy = 1AF4EF952B1645AA00027548 /* PBXContainerItemProxy */;
 		};
 		1AF4EFA02B1645AA00027548 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1AF4EF822B1645A800027548 /* SwiftDataTesting */;
+			target = 1AF4EF822B1645A800027548 /* SwiftDataExpensesTracker */;
 			targetProxy = 1AF4EF9F2B1645AA00027548 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -429,6 +435,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,8 +444,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,6 +466,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,8 +475,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -484,7 +498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataTesting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataTesting";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataExpensesTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataExpensesTracker";
 			};
 			name = Debug;
 		};
@@ -503,7 +517,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataTesting.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataTesting";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftDataExpensesTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftDataExpensesTracker";
 			};
 			name = Release;
 		};
@@ -544,7 +558,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1AF4EF7E2B1645A800027548 /* Build configuration list for PBXProject "SwiftDataTesting" */ = {
+		1AF4EF7E2B1645A800027548 /* Build configuration list for PBXProject "SwiftDataExpensesTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AF4EFA62B1645AA00027548 /* Debug */,
@@ -553,7 +567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AF4EFA82B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTesting" */ = {
+		1AF4EFA82B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AF4EFA92B1645AA00027548 /* Debug */,
@@ -562,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AF4EFAB2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTestingTests" */ = {
+		1AF4EFAB2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTrackerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AF4EFAC2B1645AA00027548 /* Debug */,
@@ -571,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AF4EFAE2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataTestingUITests" */ = {
+		1AF4EFAE2B1645AA00027548 /* Build configuration list for PBXNativeTarget "SwiftDataExpensesTrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AF4EFAF2B1645AA00027548 /* Debug */,
