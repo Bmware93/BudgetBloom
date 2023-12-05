@@ -16,14 +16,18 @@ struct ContentView: View {
     @Environment(\.modelContext) var context
     
     //fetches the saved data from the context in the add expense sheet
-    @Query(sort: \Expense.date) 
-    var expenses: [Expense]
+    @Query(sort: \Expense.date) var expenses: [Expense]
+    @State private var expenseToEdit: Expense?
+    
     
     var body: some View {
             NavigationStack {
                 List {
                     ForEach(expenses) { expense in
                         ExpenseCell(expense: expense)
+                            .onTapGesture {
+                                expenseToEdit = expense
+                            }
                     }
                     //code that allows us to delete an expense item
                     //Swipe to delete comes with on delete method
@@ -36,6 +40,9 @@ struct ContentView: View {
                 .navigationTitle("Expenses")
                 .navigationBarTitleDisplayMode(.large)
                 .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
+                .sheet(item: $expenseToEdit) { expense in
+                    EditExpenseSheet(expense: expense)
+                }
                 .toolbar {
                     if !expenses.isEmpty {
                         Button("Add Expense", systemImage: "plus") {
@@ -113,6 +120,33 @@ struct AddExpenseSheet: View {
                     }
                 }
                 
+            }
+
+        }
+    }
+}
+
+
+struct EditExpenseSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    @Bindable var expense: Expense
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Expense Name", text: $expense.name)
+                DatePicker("Date", selection: $expense.date, displayedComponents: .date)
+                TextField("Value", value: $expense.value, format: .currency(code: "USD"))
+                    .keyboardType(.decimalPad)
+            }
+            .navigationTitle("Update Expense")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done"){ dismiss() }
+                }
+              
             }
 
         }
