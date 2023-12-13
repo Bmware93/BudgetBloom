@@ -18,6 +18,7 @@ struct ContentView: View {
     //fetches the saved data from the context in the add expense sheet
     @Query(sort: \Expense.date) var expenses: [Expense]
     @State private var expenseToEdit: Expense?
+    @State private var searchText = ""
     
     
     var body: some View {
@@ -39,6 +40,7 @@ struct ContentView: View {
                 }
                 .navigationTitle("Expenses")
                 .navigationBarTitleDisplayMode(.large)
+                .searchable(text: $searchText)
                 .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
                 .sheet(item: $expenseToEdit) { expense in
                     EditExpenseSheet(expense: expense)
@@ -107,10 +109,10 @@ struct AddExpenseSheet: View {
             .navigationTitle("New Expense")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
+                ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel"){ dismiss() }
                 }
-                ToolbarItemGroup(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
                         let expense = Expense(name: name, date: date, value: value)
                         //Inserts data in the context container
@@ -143,7 +145,7 @@ struct EditExpenseSheet: View {
             .navigationTitle("Update Expense")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Done"){ dismiss() }
                 }
               
