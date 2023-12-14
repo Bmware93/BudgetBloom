@@ -25,7 +25,7 @@ struct ContentView: View {
             return expenses
         } else {
            return expenses.filter { expense in
-               let nameMatch = expense.name.lowercased().contains(searchText)
+               let nameMatch = expense.name.lowercased().contains(searchText.lowercased())
                
                return nameMatch
             }
