@@ -20,11 +20,23 @@ struct ContentView: View {
     @State private var expenseToEdit: Expense?
     @State private var searchText = ""
     
+    var searchResults: [Expense] {
+        if searchText.isEmpty {
+            return expenses
+        } else {
+           return expenses.filter { expense in
+               let nameMatch = expense.name.lowercased().contains(searchText.lowercased())
+               
+               return nameMatch
+            }
+        }
+    }
+    
     
     var body: some View {
             NavigationStack {
                 List {
-                    ForEach(expenses) { expense in
+                    ForEach(searchResults) { expense in
                         ExpenseCell(expense: expense)
                             .onTapGesture {
                                 expenseToEdit = expense
