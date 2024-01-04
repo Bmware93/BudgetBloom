@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520D2B44ACBA008F9C22 /* extensions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
+		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
+		1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */; };
+		1ADD52162B471750008F9C22 /* EditExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */; };
 		1AF4EF872B1645A800027548 /* SwiftDataTestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */; };
 		1AF4EF892B1645A800027548 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF882B1645A800027548 /* ContentView.swift */; };
 		1AF4EF8B2B1645AA00027548 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AF4EF8A2B1645AA00027548 /* Assets.xcassets */; };
@@ -16,7 +19,7 @@
 		1AF4EF992B1645AA00027548 /* SwiftDataTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF982B1645AA00027548 /* SwiftDataTestingTests.swift */; };
 		1AF4EFA32B1645AA00027548 /* SwiftDataTestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */; };
 		1AF4EFA52B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */; };
-		1AF4EFB22B16460900027548 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFB12B16460900027548 /* Expense.swift */; };
+		1AF4EFB22B16460900027548 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFB12B16460900027548 /* ExpenseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,9 @@
 /* Begin PBXFileReference section */
 		1ADD520D2B44ACBA008F9C22 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
+		1ADD52112B471175008F9C22 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
+		1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseSheet.swift; sourceTree = "<group>"; };
+		1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseSheet.swift; sourceTree = "<group>"; };
 		1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataExpensesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingApp.swift; sourceTree = "<group>"; };
 		1AF4EF882B1645A800027548 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +56,7 @@
 		1AF4EF9E2B1645AA00027548 /* SwiftDataExpensesTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDataExpensesTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITests.swift; sourceTree = "<group>"; };
 		1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1AF4EFB12B16460900027548 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		1AF4EFB12B16460900027548 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		1AF4EFB52B19264B00027548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,9 +110,12 @@
 			children = (
 				1AF4EFB52B19264B00027548 /* Info.plist */,
 				1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */,
-				1AF4EF882B1645A800027548 /* ContentView.swift */,
 				1ADD520F2B44BA23008F9C22 /* previewContainer.swift */,
-				1AF4EFB12B16460900027548 /* Expense.swift */,
+				1AF4EF882B1645A800027548 /* ContentView.swift */,
+				1ADD52112B471175008F9C22 /* ExpenseCellView.swift */,
+				1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */,
+				1AF4EFB12B16460900027548 /* ExpenseModel.swift */,
+				1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */,
 				1ADD520D2B44ACBA008F9C22 /* extensions.swift */,
 				1AF4EF8A2B1645AA00027548 /* Assets.xcassets */,
 				1AF4EF8F2B1645AA00027548 /* SwiftDataTesting.entitlements */,
@@ -270,9 +279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AF4EFB22B16460900027548 /* Expense.swift in Sources */,
+				1ADD52162B471750008F9C22 /* EditExpenseSheet.swift in Sources */,
+				1AF4EFB22B16460900027548 /* ExpenseModel.swift in Sources */,
 				1AF4EF892B1645A800027548 /* ContentView.swift in Sources */,
 				1AF4EF872B1645A800027548 /* SwiftDataTestingApp.swift in Sources */,
+				1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */,
+				1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */,
 				1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */,
 				1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */,
 			);
