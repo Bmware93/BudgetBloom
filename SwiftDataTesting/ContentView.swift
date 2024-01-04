@@ -32,21 +32,27 @@ struct ContentView: View {
         }
     }
     
+    func groupExpensesByMonth() -> transactionGroup {
+        guard !searchResults.isEmpty else { return [:] }
+        let groupedExpenses = transactionGroup(grouping: searchResults) { $0.month}
+        
+        return groupedExpenses
+    }
+    
     
     var body: some View {
             NavigationStack {
                 List {
-                    ForEach(searchResults) { expense in
-                        ExpenseCell(expense: expense)
-                            .onTapGesture {
-                                expenseToEdit = expense
+                    ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
+                        Section {
+                            ForEach(expense) { expense in
+                                ExpenseCell(expense: expense)
+                                    .onTapGesture {
+                                        expenseToEdit = expense
+                                    }
                             }
-                    }
-                    //code that allows us to delete an expense item
-                    //Swipe to delete comes with on delete method
-                    .onDelete { indexSet in
-                        for index in indexSet {
-                            context.delete(expenses[index])
+                        } header: {
+                            Text(month)
                         }
                     }
                 }
@@ -82,8 +88,14 @@ struct ContentView: View {
         }
     }
 
+#Preview {
+    ContentView()
+}
 
-#Preview { ContentView()}
+//#Preview { 
+//    let preview = previewContainer([Expense.self])
+//    return ExpenseCell(expense: Expense(name: "The Red Hook", date: .now, value: 12.80)).modelContainer(preview.container)
+//}
 
 struct ExpenseCell: View {
     
@@ -106,16 +118,14 @@ struct AddExpenseSheet: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     
-    @State private var name: String = ""
-    @State private var date: Date = .now
-    @State private var value: Double = 0
+    @State private var newExpense = Expense(name: "", date: .now, value: 0.0)
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Expense Name", text: $name)
-                DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Value", value: $value, format: .currency(code: "USD"))
+                TextField("Expense Name", text: $newExpense.name)
+                DatePicker("Date", selection: $newExpense.date, displayedComponents: .date)
+                TextField("Value", value: $newExpense.value, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
             }
             .navigationTitle("New Expense")
@@ -126,7 +136,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: name, date: date, value: value)
+                        let expense = Expense(name: newExpense.name, date: newExpense.dateParsed, value: newExpense.value)
                         //Inserts data in the context container
                         context.insert(expense)
                         
