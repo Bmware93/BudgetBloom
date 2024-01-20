@@ -42,46 +42,53 @@ struct ContentView: View {
     
     var body: some View {
             NavigationStack {
-                List {
-                    ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
-                        Section {
-                            ForEach(expense) { expense in
-                                ExpenseCellView(expense: expense)
-                                    .onTapGesture {
-                                        expenseToEdit = expense
+                VStack {
+                    List {
+                        ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
+                            Section {
+                                ForEach(expense) { expense in
+                                    ExpenseCellView(expense: expense)
+                                        .onTapGesture {
+                                            expenseToEdit = expense
+                                        }
+                                }
+                                .onDelete { indexset in
+                                    for index in indexset {
+                                        context.delete(expenses[index])
                                     }
+                                }
+                            } header: {
+                                Text(month)
                             }
-                        } header: {
-                            Text(month)
                         }
                     }
-                }
-                .navigationTitle("Expenses")
-                .navigationBarTitleDisplayMode(.large)
-                .searchable(text: $searchText)
-                .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
-                .sheet(item: $expenseToEdit) { expense in
-                    EditExpenseSheet(expense: expense)
-                }
-                .toolbar {
-                    if !expenses.isEmpty {
-                        Button("Add Expense", systemImage: "plus") {
-                            isItemSheetShowing.toggle()
-                        }
+                    .navigationTitle("Expenses")
+                    .navigationBarTitleDisplayMode(.large)
+                    .searchable(text: $searchText)
+                    .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
+                    .sheet(item: $expenseToEdit) { expense in
+                        EditExpenseSheet(expense: expense)
                     }
-                }
-                .overlay {
-                    if expenses.isEmpty {
-                        ContentUnavailableView(label: {
-                            Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                        },description: {
-                            Text("Start adding expenses to see your list")
-                        }, actions: {
-                            Button("Add Expense") {
+                    .toolbar {
+                        if !expenses.isEmpty {
+                            Button("Add Expense", systemImage: "plus") {
                                 isItemSheetShowing.toggle()
                             }
-                        })
-                        .offset(y: -60)
+                        }
+                    }
+                    .overlay {
+                        if expenses.isEmpty {
+                            ContentUnavailableView(label: {
+                                Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
+                            },description: {
+                                Text("Start adding expenses to see your list")
+                            }, actions: {
+                                Button("Add Expense") {
+                                    isItemSheetShowing.toggle()
+                                }
+                            })
+                            .offset(y: -60)
+                        }
                     }
                 }
             }
