@@ -32,139 +32,71 @@ struct ContentView: View {
         }
     }
     
+    func groupExpensesByMonth() -> transactionGroup {
+        guard !searchResults.isEmpty else { return [:] }
+        let groupedExpenses = transactionGroup(grouping: searchResults) { $0.month}
+        
+        return groupedExpenses
+    }
+    
     
     var body: some View {
             NavigationStack {
-                List {
-                    ForEach(searchResults) { expense in
-                        ExpenseCell(expense: expense)
-                            .onTapGesture {
-                                expenseToEdit = expense
+                VStack {
+                    List {
+                        ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
+                            Section {
+                                ForEach(expense) { expense in
+                                    ExpenseCellView(expense: expense)
+                                        .onTapGesture {
+                                            expenseToEdit = expense
+                                        }
+                                }
+                                .onDelete { indexset in
+                                    for index in indexset {
+                                        context.delete(expenses[index])
+                                    }
+                                }
+                            } header: {
+                                Text(month)
                             }
-                    }
-                    //code that allows us to delete an expense item
-                    //Swipe to delete comes with on delete method
-                    .onDelete { indexSet in
-                        for index in indexSet {
-                            context.delete(expenses[index])
                         }
                     }
-                }
-                .navigationTitle("Expenses")
-                .navigationBarTitleDisplayMode(.large)
-                .searchable(text: $searchText)
-                .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
-                .sheet(item: $expenseToEdit) { expense in
-                    EditExpenseSheet(expense: expense)
-                }
-                .toolbar {
-                    if !expenses.isEmpty {
-                        Button("Add Expense", systemImage: "plus") {
-                            isItemSheetShowing.toggle()
-                        }
+                    .navigationTitle("Expenses")
+                    .navigationBarTitleDisplayMode(.large)
+                    .searchable(text: $searchText)
+                    .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
+                    .sheet(item: $expenseToEdit) { expense in
+                        EditExpenseSheet(expense: expense)
                     }
-                }
-                .overlay {
-                    if expenses.isEmpty {
-                        ContentUnavailableView(label: {
-                            Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                        },description: {
-                            Text("Start adding expenses to see your list")
-                        }, actions: {
-                            Button("Add Expense") {
+                    .toolbar {
+                        if !expenses.isEmpty {
+                            Button("Add Expense", systemImage: "plus") {
                                 isItemSheetShowing.toggle()
                             }
-                        })
-                        .offset(y: -60)
+                        }
+                    }
+                    .overlay {
+                        if expenses.isEmpty {
+                            ContentUnavailableView(label: {
+                                Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
+                            },description: {
+                                Text("Start adding expenses to see your list")
+                            }, actions: {
+                                Button("Add Expense") {
+                                    isItemSheetShowing.toggle()
+                                }
+                            })
+                            .offset(y: -60)
+                        }
                     }
                 }
             }
         }
     }
 
-
-#Preview { ContentView()}
-
-struct ExpenseCell: View {
-    
-    let expense: Expense
-    
-    var body: some View {
-        HStack {
-            Text(expense.date, format: .dateTime.month(.abbreviated).day())
-                .frame(width: 70, alignment: .leading)
-            Text(expense.name)
-            Spacer()
-            Text(expense.value, format: .currency(code: "USD"))
-        }
-    }
-}
-
-struct AddExpenseSheet: View {
-    
-    //Inserting the model context into the expense sheet view
-    @Environment(\.modelContext) var context
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var name: String = ""
-    @State private var date: Date = .now
-    @State private var value: Double = 0
-    
-    var body: some View {
-        NavigationStack {
-            Form {
-                TextField("Expense Name", text: $name)
-                DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Value", value: $value, format: .currency(code: "USD"))
-                    .keyboardType(.decimalPad)
-            }
-            .navigationTitle("New Expense")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel"){ dismiss() }
-                }
-                ToolbarItemGroup(placement: .confirmationAction) {
-                    Button("Save") {
-                        let expense = Expense(name: name, date: date, value: value)
-                        //Inserts data in the context container
-                        context.insert(expense)
-                        
-                        dismiss()
-                    }
-                }
-                
-            }
-
-        }
-    }
-}
-
-
-struct EditExpenseSheet: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    @Bindable var expense: Expense
-    
-    var body: some View {
-        NavigationStack {
-            Form {
-                TextField("Expense Name", text: $expense.name)
-                DatePicker("Date", selection: $expense.date, displayedComponents: .date)
-                TextField("Value", value: $expense.value, format: .currency(code: "USD"))
-                    .keyboardType(.decimalPad)
-            }
-            .navigationTitle("Update Expense")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done"){ dismiss() }
-                }
-              
-            }
-
-        }
-    }
+#Preview {
+    ContentView()
 }
 
 
