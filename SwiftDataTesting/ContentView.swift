@@ -42,7 +42,7 @@ struct ContentView: View {
     
     var body: some View {
             NavigationStack {
-                VStack {
+               // VStack {
                     List {
                         ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
                             Section {
@@ -60,8 +60,11 @@ struct ContentView: View {
                             } header: {
                                 Text(month)
                             }
+                        
                         }
                     }
+                    .listStyle(PlainListStyle())
+                    //.listSectionSeparator(.hidden)
                     .navigationTitle("Expenses")
                     .navigationBarTitleDisplayMode(.large)
                     .searchable(text: $searchText)
@@ -69,6 +72,8 @@ struct ContentView: View {
                     .sheet(item: $expenseToEdit) { expense in
                         EditExpenseSheet(expense: expense)
                     }
+                    
+                   
                     .toolbar {
                         if !expenses.isEmpty {
                             Button("Add Expense", systemImage: "plus") {
@@ -91,12 +96,13 @@ struct ContentView: View {
                         }
                     }
                 }
-            }
-        }
+           // }
+       }
     }
 
 #Preview {
-    ContentView()
+    let preview = previewContainer([Expense.self])
+    return ContentView().modelContainer(preview.container)
 }
 
 
