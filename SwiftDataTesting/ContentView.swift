@@ -35,7 +35,27 @@ struct ContentView: View {
     
     func groupExpensesByMonth() -> transactionGroup {
         guard !searchResults.isEmpty else { return [:] }
-        let groupedExpenses = transactionGroup(grouping: searchResults) { $0.month}
+        
+        var groupedExpenses = transactionGroup()
+        
+        for expense in searchResults {
+            //Getting the month from the expense
+            let month = expense.month
+            
+            // If the month is already a key in the dictionary, append the expense to the existing array
+            // and update the sum of values
+            if var existingGroup = groupedExpenses[month] {
+                existingGroup.expenses.append(expense)
+                existingGroup.sum += expense.value
+                
+                groupedExpenses[month] = existingGroup
+            } else {
+            // If the month is not a key in the dictionary, create a new entry with the expense in an array
+            // and set the sum of values to the expense value
+                groupedExpenses[month] = (expenses: [expense] , sum: expense.value)
+            }
+            
+        }
         
         return groupedExpenses
     }
@@ -45,21 +65,29 @@ struct ContentView: View {
             NavigationStack {
                // VStack {
                     List {
-                        ForEach(Array(groupExpensesByMonth()), id: \.key) { month, expense in
-                            Section {
-                                ForEach(expense) { expense in
-                                    ExpenseCellView(expense: expense)
-                                        .onTapGesture {
-                                            expenseToEdit = expense
+                        ForEach(groupExpensesByMonth().keys, id: \.self) { month in
+                            if let group = groupExpensesByMonth()[month] {
+                                Section {
+                                    ForEach(group.expenses) { expense in
+                                        ExpenseCellView(expense: expense)
+                                            .onTapGesture {
+                                                expenseToEdit = expense
+                                            }
+                                    }
+                                    .onDelete { indexset in
+                                        for index in indexset {
+                                            context.delete(expenses[index])
                                         }
-                                }
-                                .onDelete { indexset in
-                                    for index in indexset {
-                                        context.delete(expenses[index])
+                                    }
+                                } header: {
+                                    Text(month)
+                                } footer: {
+                                    HStack {
+                                        Spacer()
+                                        Text("Total Spent\(group.sum.formatted(.currency(code: "USD")))")
+                                            .font(.footnote)
                                     }
                                 }
-                            } header: {
-                                Text(month)
                             }
                         }
                     }
