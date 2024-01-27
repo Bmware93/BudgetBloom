@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0448DC2B647A0C00E19BFE /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 1A0448DB2B647A0C00E19BFE /* Collections */; };
 		1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520D2B44ACBA008F9C22 /* extensions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
 		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
@@ -65,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A0448DC2B647A0C00E19BFE /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,9 @@
 			dependencies = (
 			);
 			name = SwiftDataExpensesTracker;
+			packageProductDependencies = (
+				1A0448DB2B647A0C00E19BFE /* Collections */,
+			);
 			productName = SwiftDataTesting;
 			productReference = 1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +242,9 @@
 				Base,
 			);
 			mainGroup = 1AF4EF7A2B1645A800027548;
+			packageReferences = (
+				1A0448DA2B647A0C00E19BFE /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 1AF4EF842B1645A800027548 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -457,6 +465,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -488,6 +497,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -615,6 +625,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A0448DA2B647A0C00E19BFE /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A0448DB2B647A0C00E19BFE /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A0448DA2B647A0C00E19BFE /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1AF4EF7B2B1645A800027548 /* Project object */;
 }

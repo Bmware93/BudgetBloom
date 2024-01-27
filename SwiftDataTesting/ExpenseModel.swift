@@ -7,8 +7,11 @@
 
 import Foundation
 import SwiftData
+import Collections
 
-typealias transactionGroup = [String: [Expense]]
+/* Using an ordered dictionary from swift collections
+ so expenses grouped by the month keep consistsnt order in content view */
+typealias transactionGroup = OrderedDictionary<String, [Expense]>
 
 
 @Model

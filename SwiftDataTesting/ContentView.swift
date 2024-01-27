@@ -22,9 +22,10 @@ struct ContentView: View {
     
     var searchResults: [Expense] {
         if searchText.isEmpty {
-            return expenses
+            //expense array is reveresed so that the most recent is showing first
+            return expenses.reversed()
         } else {
-           return expenses.filter { expense in
+            return expenses.filter { expense in
                let nameMatch = expense.name.lowercased().contains(searchText.lowercased())
                
                return nameMatch
@@ -60,7 +61,6 @@ struct ContentView: View {
                             } header: {
                                 Text(month)
                             }
-                        
                         }
                     }
                     .listStyle(PlainListStyle())
