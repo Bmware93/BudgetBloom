@@ -32,7 +32,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: newExpense.name, date: newExpense.dateParsed, value: newExpense.value)
+                        let expense = Expense(name: newExpense.name, date: newExpense.date, value: newExpense.value)
                         //Inserts data in the context container
                         context.insert(expense)
                         
@@ -48,5 +48,5 @@ struct AddExpenseSheet: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return AddExpenseSheet()
+    return AddExpenseSheet().modelContainer(preview.container)
 }

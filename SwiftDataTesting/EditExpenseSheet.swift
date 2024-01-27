@@ -36,5 +36,5 @@ struct EditExpenseSheet: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-   return EditExpenseSheet(expense: Expense(name: "", date: .now, value: 0))
+    return EditExpenseSheet(expense: Expense(name: "", date: .now, value: 0)).modelContainer(preview.container)
 }
