@@ -91,7 +91,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(PlainListStyle())
-            .navigationTitle("Expenses")
+            .navigationTitle("Expense Tracker")
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $searchText)
             .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
