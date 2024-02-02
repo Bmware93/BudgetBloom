@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @Environment(\.modelContext) var context
+
     var body: some View {
         TabView {
             ContentView()
@@ -19,6 +21,7 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Summary", systemImage: "chart.bar.xaxis")
                 }
+                .modelContext(context)
             
             SettingsView()
                 .tabItem {
@@ -30,5 +33,6 @@ struct AppTabView: View {
 }
 
 #Preview {
-    AppTabView()
+    let preview = previewContainer([Expense.self])
+    return AppTabView().modelContainer(preview.container)
 }
