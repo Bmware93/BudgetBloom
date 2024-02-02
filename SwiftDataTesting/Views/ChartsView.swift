@@ -13,7 +13,6 @@ import SwiftData
 
 struct ChartsView: View {
     @Environment(\.modelContext) var context
-    
     @Query(sort: \Expense.date) var expenses: [Expense]
     
     func getMonthlyExpenseSum() -> TransactionGroup {
@@ -43,17 +42,29 @@ struct ChartsView: View {
     
     
     var body: some View {
-        VStack {
-            Chart {
-                ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
-                    if let group = getMonthlyExpenseSum()[month]  {
-                        BarMark(x: .value("Month", month),
-                                y: .value("Total Spent", group.sum))
+        NavigationStack {
+            VStack {
+                //Spacer()
+                Chart {
+                    ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
+                        if let group = getMonthlyExpenseSum()[month]  {
+                            BarMark(x: .value("Month", month),
+                                    y: .value("Total Spent", group.sum)
+                            )
+                            .foregroundStyle(Color.blue.gradient)
+                        }
                     }
-                  
-                    
+                }
+                .frame(height: 300)
+                .chartXAxis {
+                    AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+                    //AxisTick(centered: true)
+                }
+                .chartYAxis{
+                    AxisMarks(position: .leading)
                 }
             }
+            .navigationTitle("Expense Summary")
         }
     }
 }
