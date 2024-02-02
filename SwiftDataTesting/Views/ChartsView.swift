@@ -44,7 +44,6 @@ struct ChartsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                //Spacer()
                 Chart {
                     ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
                         if let group = getMonthlyExpenseSum()[month]  {
@@ -58,14 +57,28 @@ struct ChartsView: View {
                 .frame(height: 300)
                 .chartXAxis {
                     AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-                    //AxisTick(centered: true)
+
                 }
+              
+                
                 .chartYAxis{
-                    AxisMarks(position: .leading)
+                    AxisMarks(stroke: StrokeStyle(dash:[7] ))
+                }
+    
+            }
+            .navigationTitle("Summary")
+            .overlay {
+                if expenses.isEmpty {
+                    ContentUnavailableView(label: {
+                        Label("No Data", systemImage: "creditcard.trianglebadge.exclamationmark")
+                    },description: {
+                        Text("Start adding expenses to see a summary of your monthly spending")
+                    })
+                    .offset(y: -60)
                 }
             }
-            .navigationTitle("Expense Summary")
         }
+        
     }
 }
 
