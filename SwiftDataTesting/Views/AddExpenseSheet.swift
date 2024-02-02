@@ -16,6 +16,10 @@ struct AddExpenseSheet: View {
     
     @State private var newExpense = Expense(name: "", date: .now, value: 0.0)
     
+    var isFormValid: Bool {
+        return !newExpense.name.isEmpty && newExpense.value > 0
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -38,6 +42,7 @@ struct AddExpenseSheet: View {
                         
                         dismiss()
                     }
+                    .disabled(!isFormValid)
                 }
                 
             }

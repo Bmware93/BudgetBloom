@@ -10,13 +10,14 @@ import SwiftData
 
 
 struct ContentView: View {
-    @State private var isItemSheetShowing = false
-    
+
     //injecting context into the content view so it will have access to it
     @Environment(\.modelContext) var context
     
     //fetches the saved data from the context in the add expense sheet
     @Query(sort: \Expense.date) var expenses: [Expense]
+    
+    @State private var isItemSheetShowing = false
     @State private var expenseToEdit: Expense?
     @State private var searchText = ""
     
