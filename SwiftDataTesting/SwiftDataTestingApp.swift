@@ -10,11 +10,12 @@ import SwiftData
 
 @main
 struct SwiftDataTestingApp: App {
-    
+
     var body: some Scene {
         WindowGroup {
             AppTabView()
+               
         }
-        .modelContainer(for: Expense.self)
+        .modelContainer(for: [Expense.self])
     }
 }

@@ -20,7 +20,7 @@ struct ContentView: View {
     @State private var expenseToEdit: Expense?
     @State private var searchText = ""
     
-    var searchResults: [Expense] {
+   var searchResults: [Expense] {
         if searchText.isEmpty {
             //expense array is reveresed so that the most recent is showing first
             return expenses.reversed()
@@ -33,10 +33,10 @@ struct ContentView: View {
         }
     }
     
-    func groupExpensesByMonth() -> transactionGroup {
-        guard !searchResults.isEmpty else { return [:] }
+    func groupExpensesByMonth() -> TransactionGroup {
+        guard !expenses.isEmpty else { return [:] }
         
-        var groupedExpenses = transactionGroup()
+        var groupedExpenses = TransactionGroup()
         
         for expense in searchResults {
             //Getting the month from the expense
