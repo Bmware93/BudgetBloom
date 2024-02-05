@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Charts
-//import Collections
 import SwiftData
 
 
@@ -44,41 +43,66 @@ struct ChartsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Chart {
-                    ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
-                        if let group = getMonthlyExpenseSum()[month]  {
-                            BarMark(x: .value("Month", month),
-                                    y: .value("Total Spent", group.sum)
-                            )
-                            .foregroundStyle(Color.blue.gradient)
-                        }
-                    }
-                }
-                .frame(height: 300)
-                .chartXAxis {
-                    AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-
-                }
-              
-                
-                .chartYAxis{
-                    AxisMarks(stroke: StrokeStyle(dash:[7] ))
-                }
-    
-            }
-            .navigationTitle("Summary")
-            .overlay {
                 if expenses.isEmpty {
+                    
                     ContentUnavailableView(label: {
                         Label("No Data", systemImage: "creditcard.trianglebadge.exclamationmark")
                     },description: {
                         Text("Start adding expenses to see a summary of your monthly spending")
                     })
                     .offset(y: -60)
+                    
+                } else {
+                    
+                    Form {
+                        Text("Monthly Review")
+                            .padding(.bottom)
+                        Chart {
+                            ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
+                                if let group = getMonthlyExpenseSum()[month]  {
+                                    BarMark(x: .value("Month", month),
+                                            y: .value("Total Spent", group.sum)
+                                    )
+                                    .foregroundStyle(Color.blue.gradient)
+                                }
+                            }
+                        }
+                        .chartYScale(domain: 50...1000)
+                        .frame(height: 200)
+                        //.padding(.bottom)
+                        .chartXAxis {
+                            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+                            
+                        }
+                        
+                        .chartYAxis{
+                            AxisMarks(stroke: StrokeStyle(dash:[7] ))
+                        }
+                        .listRowSeparator(.hidden)
+                        
+                        GroupBox {
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("Daily Average")
+                                    Spacer()
+                                    Text("$238.85")
+                                        .bold()
+                                }
+                                Text("Great! You didn't exceed your daily average threshold of $250.")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        
+                    }
+                    
+                    
                 }
+                //.navigationTitle("Summary")
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .navigationTitle("Summary")
         }
-        
     }
 }
 
