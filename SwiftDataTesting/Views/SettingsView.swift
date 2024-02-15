@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var enablePushNotifications = false
+    
     var body: some View {
-        Text("Settings info to be added here")
+        NavigationStack {
+            VStack {
+                List {
+                    Section(header: Text("Notifications")) {
+                        Toggle("Receive Push Notifications", isOn: $enablePushNotifications)
+                            .toggleStyle(SwitchToggleStyle(tint: .blue))
+                    }
+                    
+                }
+            }
+            .navigationTitle("Settings")
+        }
     }
 }
 

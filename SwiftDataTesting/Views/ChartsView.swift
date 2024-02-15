@@ -39,6 +39,11 @@ struct ChartsView: View {
         return groupedExpenses
     }
     
+    var monthlySums: [ String: Double] {
+        Dictionary(grouping: expenses, by: { $0.month })
+            .mapValues { $0.reduce(0) { $0 + $1.value } }
+    }
+    
     
     var body: some View {
         NavigationStack {
@@ -57,14 +62,13 @@ struct ChartsView: View {
                     Form {
                         Text("Monthly Review")
                             .padding(.bottom)
-                        Chart {
-                            ForEach(getMonthlyExpenseSum().keys, id: \.self) { month in
+                        Chart(getMonthlyExpenseSum().keys, id: \.self) { month in
                                 if let group = getMonthlyExpenseSum()[month]  {
                                     BarMark(x: .value("Month", month),
                                             y: .value("Total Spent", group.sum)
                                     )
                                     .foregroundStyle(Color.blue.gradient)
-                                }
+                                
                             }
                         }
                         .chartYScale(domain: 50...1000)
@@ -76,11 +80,11 @@ struct ChartsView: View {
                         }
                         
                         .chartYAxis{
-                            AxisMarks(stroke: StrokeStyle(dash:[7] ))
+                            AxisMarks(stroke: StrokeStyle(dash:[7]))
                         }
                         .listRowSeparator(.hidden)
                         
-                        GroupBox {
+                        DisclosureGroup("Budget Insights") {
                             VStack(alignment: .leading, spacing: 10) {
                                 HStack {
                                     Text("Daily Average")

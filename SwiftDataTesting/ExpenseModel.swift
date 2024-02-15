@@ -20,10 +20,10 @@ import Collections
     var name: String
     var date: Date
     var value: Double
-//    
-//    var dateParsed: Date {
-//        date.description.dateParsed()
-//    }
+    
+    var dateParsed: Date {
+        date.description.dateParsed()
+    }
     
     var month: String {
         date.formatted(.dateTime.year().month(.wide))
