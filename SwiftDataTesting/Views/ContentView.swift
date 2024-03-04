@@ -24,12 +24,10 @@ struct ContentView: View {
    var searchResults: [Expense] {
         if searchText.isEmpty {
             //expense array is reveresed so that the most recent is showing first
-            return expenses.reversed()
+            expenses.reversed()
         } else {
-            return expenses.filter { expense in
-                let nameMatch = expense.name.lowercased().contains(searchText.lowercased())
-                
-                return nameMatch
+            expenses.filter { expense in
+                expense.name.localizedStandardContains(searchText)
             }
         }
     }
@@ -63,14 +61,17 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(groupExpensesByMonth().keys, id: \.self) { month in
-                    if let group = groupExpensesByMonth()[month] {
+                let groupedExpenses = groupExpensesByMonth()
+                
+                ForEach(groupedExpenses.keys, id: \.self) { month in
+                    if let group = groupedExpenses[month] {
                         Section {
                             ForEach(group.expenses) { expense in
                                 ExpenseCellView(expense: expense)
                                     .onTapGesture {
                                         expenseToEdit = expense
                                     }
+                                    .accessibilityAddTraits(.isButton)
                             }
                             .onDelete { indexset in
                                 for index in indexset {
@@ -91,16 +92,11 @@ struct ContentView: View {
                 }
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
-            .listStyle(PlainListStyle())
+            .listStyle(.plain)
             .navigationTitle("Expenses")
-            .navigationBarTitleDisplayMode(.large)
             .searchable(text: $searchText)
-            .sheet(isPresented: $isItemSheetShowing) { AddExpenseSheet() }
-            .sheet(item: $expenseToEdit) { expense in
-                EditExpenseSheet(expense: expense)
-            }
-            
-            
+            .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
+            .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
             .toolbar {
                 if !expenses.isEmpty {
                     Button("Add Expense", systemImage: "plus") {
@@ -110,15 +106,15 @@ struct ContentView: View {
             }
             .overlay {
                 if expenses.isEmpty {
-                    ContentUnavailableView(label: {
+                    ContentUnavailableView {
                         Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                    },description: {
+                    } description: {
                         Text("Start adding expenses to see your list")
-                    }, actions: {
+                    }  actions: {
                         Button("Add Expense") {
                             isItemSheetShowing.toggle()
                         }
-                    })
+                    }
                     .offset(y: -60)
                 }
             }
