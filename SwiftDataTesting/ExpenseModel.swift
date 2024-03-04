@@ -36,4 +36,18 @@ import Collections
     }
 }
 
-
+struct FormattedDateString {
+    let date: Date
+    
+    init(_ date: Date) {
+        self.date = date
+    }
+    
+    var fullMonth: String {
+        date.formatted(.dateTime.year().month(.wide))
+    }
+    
+    var shortMonth: String {
+        date.formatted(.dateTime.year().month(.wide))
+    }
+}

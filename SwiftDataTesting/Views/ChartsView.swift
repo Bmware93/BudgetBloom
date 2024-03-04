@@ -13,6 +13,7 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
+    @State private var isAnimating = false
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -65,15 +66,23 @@ struct ChartsView: View {
                         Chart(getMonthlyExpenseSum().keys, id: \.self) { month in
                                 if let group = getMonthlyExpenseSum()[month]  {
                                     BarMark(x: .value("Month", month),
-                                            y: .value("Total Spent", group.sum)
+                                            y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
                                     )
                                     .foregroundStyle(Color.blue.gradient)
                                 
                             }
                         }
+                        .onAppear {
+                            withAnimation {
+                                isAnimating = true
+                            }
+                        }
+                        .onDisappear {
+                            isAnimating = false
+                        }
                         .chartYScale(domain: 50...1000)
-                        .frame(height: 200)
-                        //.padding(.bottom)
+                        .frame(height: 150)
+                        .padding(.bottom)
                         .chartXAxis {
                             AxisMarks(stroke: StrokeStyle(lineWidth: 0))
                             
@@ -88,6 +97,7 @@ struct ChartsView: View {
                             VStack(alignment: .leading, spacing: 10) {
                                 HStack {
                                     Text("Daily Average")
+                                        .padding(.trailing)
                                     Spacer()
                                     Text("$238.85")
                                         .bold()
@@ -95,7 +105,9 @@ struct ChartsView: View {
                                 Text("Great! You didn't exceed your daily average threshold of $250.")
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
+                                    .padding(.trailing, 40)
                             }
+                            
                         }
                         
                     }
