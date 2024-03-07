@@ -11,11 +11,12 @@ import SwiftData
 
 struct ContentView: View {
 
-    //injecting context into the content view so it will have access to it
+    //injecting context into the content view so it will have access to the database
     @Environment(\.modelContext) var context
     
-    //fetches the saved data from the context in the add expense sheet
-    @Query(sort: \Expense.date) var expenses: [Expense]
+    //fetches the saved data from the context 
+    //expense array is reveresed so that the most recent expense is showing first
+    @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
     
     @State private var isItemSheetShowing = false
     @State private var expenseToEdit: Expense?
@@ -23,8 +24,7 @@ struct ContentView: View {
     
    var searchResults: [Expense] {
         if searchText.isEmpty {
-            //expense array is reveresed so that the most recent is showing first
-            expenses.reversed()
+            expenses
         } else {
             expenses.filter { expense in
                 expense.name.localizedStandardContains(searchText)
@@ -84,7 +84,7 @@ struct ContentView: View {
                             HStack {
                                 Spacer()
                                 Text("Total \(group.sum.formatted(.currency(code: "USD")))")
-                                    .font(.footnote)
+                                    .font(.footnote).bold()
                                     .foregroundStyle(.blue)
                             }
                         }
@@ -93,7 +93,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle("Expenses")
+            .navigationTitle("Pharaoh's Expenses")
             .searchable(text: $searchText)
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
             .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
