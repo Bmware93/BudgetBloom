@@ -93,7 +93,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle("Pharaoh's Expenses")
+            .navigationTitle("My Expenses")
             .searchable(text: $searchText)
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
             .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)

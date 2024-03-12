@@ -12,7 +12,7 @@ import Collections
 /* Using an ordered dictionary from swift collections
  so expenses grouped by the month keep consistsnt order in content view */
 //the typealias is used as another way for me to refer to my expense object but as a group of expenses
- typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum: Double)>
+typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum: Double)>
 
 
 @Model
