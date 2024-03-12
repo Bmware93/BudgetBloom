@@ -14,18 +14,21 @@ struct AddExpenseSheet: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     
-    @State private var newExpense = Expense(name: "", date: .now, value: 0.0)
+    @State private var name: String = ""
+    @State private var date: Date = .now
+    @State private var value: Double = 0.0
     
+    //Disabled add expense button until all data is entered
     var isFormValid: Bool {
-        return !newExpense.name.isEmpty && newExpense.value > 0
+        return !name.isEmpty && value > 0
     }
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Expense Name", text: $newExpense.name)
-                DatePicker("Date", selection: $newExpense.date, displayedComponents: .date)
-                TextField("Value", value: $newExpense.value, format: .currency(code: "USD"))
+                TextField("Expense Name", text: $name)
+                DatePicker("Date", selection: $date, displayedComponents: .date)
+                TextField("Value", value: $value, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
             }
             .navigationTitle("New Expense")
@@ -36,10 +39,11 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: newExpense.name, date: newExpense.date, value: newExpense.value)
+                        let expense = Expense(name: name, date: date, value: value)
                         //Inserts data in the context container
                         context.insert(expense)
                         
+                        //Close out view once all the data has been entered
                         dismiss()
                     }
                     .disabled(!isFormValid)

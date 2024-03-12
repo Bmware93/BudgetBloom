@@ -51,20 +51,40 @@ struct ChartsView: View {
             VStack {
                 if expenses.isEmpty {
                     
-                    ContentUnavailableView(label: {
+                    ContentUnavailableView {
                         Label("No Data", systemImage: "creditcard.trianglebadge.exclamationmark")
-                    },description: {
+                    } description: {
                         Text("Start adding expenses to see a summary of your monthly spending")
-                    })
+                    }
                     .offset(y: -60)
                     
                 } else {
                     
                     Form {
-                        Text("Monthly Review")
-                            .padding(.bottom)
-                        Chart(getMonthlyExpenseSum().keys, id: \.self) { month in
-                                if let group = getMonthlyExpenseSum()[month]  {
+                        let groupedExpenses = getMonthlyExpenseSum()
+                        
+                        HStack {
+                            Text("Monthly Review")
+                                .padding(.bottom)
+                            
+                            Spacer()
+                            
+                            VStack(spacing: -10) {
+                                Text(String(format: "$%.2f", groupedExpenses.values.reduce(0){ $0 + $1.sum }))
+                                    .padding(.bottom)
+                                    .font(.headline)
+                                    .bold()
+                                
+                                Text("Total Spent")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                
+                            }
+                        }
+                        
+                        
+                        Chart(groupedExpenses.keys, id: \.self) { month in
+                                if let group = groupedExpenses[month]  {
                                     BarMark(x: .value("Month", month),
                                             y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
                                     )
@@ -81,7 +101,7 @@ struct ChartsView: View {
                             isAnimating = false
                         }
                         .chartYScale(domain: 50...1000)
-                        .frame(height: 150)
+                        .frame(height: 170)
                         .padding(.bottom)
                         .chartXAxis {
                             AxisMarks(stroke: StrokeStyle(lineWidth: 0))
@@ -114,7 +134,7 @@ struct ChartsView: View {
                     
                     
                 }
-                //.navigationTitle("Summary")
+    
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Summary")
