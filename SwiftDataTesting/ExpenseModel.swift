@@ -26,9 +26,24 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     }
     
     var month: String {
-        date.formatted(.dateTime.year().month(.wide))
+     date.formatted(.dateTime.year().month(.wide))
+        
+       
     }
+     
+     var shortMonth: String {
+        let newDate = date.formatted(.dateTime.year().month(.wide))
+          
+        let newStr = newDate.prefix(3)
+        let year = newDate.suffix(4)
+          
+          
+          return String(newStr + " " + year)
+     }
     
+     
+  
+     
     init(name: String, date: Date, value: Double) {
         self.name = name
         self.date = date
@@ -36,18 +51,4 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     }
 }
 
-struct FormattedDateString {
-    let date: Date
-    
-    init(_ date: Date) {
-        self.date = date
-    }
-    
-    var fullMonth: String {
-        date.formatted(.dateTime.year().month(.wide))
-    }
-    
-    var shortMonth: String {
-        date.formatted(.dateTime.year().month(.wide))
-    }
-}
+
