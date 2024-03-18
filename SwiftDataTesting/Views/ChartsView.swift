@@ -14,7 +14,7 @@ struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
     @State private var isAnimating = false
-    @State private var barGraphView: TimePeriods = .month
+    @State private var barGraphView: TimePeriods = .year
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -45,10 +45,10 @@ struct ChartsView: View {
     //Time periods for picker in graph view
     //Will adjust based on how user wants to view their spending
     enum TimePeriods: String, CaseIterable, Identifiable {
-        case day = "Daily Review"
-        case week = "Weekly Review"
-        case month = "Monthly Review"
-        case year = "Yearly Review"
+        case day = "Today"
+        case week = "This Week"
+        case month = "This Month"
+        case year = "This Year"
         
         var id: String { rawValue }
     }
@@ -69,12 +69,20 @@ struct ChartsView: View {
                 } else {
                     
                     Form {
+                        
                         let groupedExpenses = getMonthlyExpenseSum()
                         
                         HStack {
-                            Picker("Monthly Review", selection: $barGraphView) {
+                            Picker("", selection: $barGraphView) {
+                                ForEach(TimePeriods.allCases, id: \.self) { option in
+                                    Text(option.rawValue)
+                                }
                                 
                             }
+                            //.pickerStyle(.menu)
+                            .foregroundStyle(.primary)
+                            .offset(x: -140)
+                            
                             
                             Spacer()
                             
@@ -95,9 +103,6 @@ struct ChartsView: View {
                         
                         Chart(groupedExpenses.keys, id: \.self) { month in
                                 if let group = groupedExpenses[month]  {
-                                    
-                                  
-                                    
                                     
                                     BarMark(x: .value("Month", month),
                                             y: .value("Total Spent", isAnimating == false ? 50 : group.sum)

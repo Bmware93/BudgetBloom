@@ -30,15 +30,16 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
         
        
     }
-     
+     //Short month is the month abbreviated plus the year
      var shortMonth: String {
         let newDate = date.formatted(.dateTime.year().month(.wide))
           
-        let newStr = newDate.prefix(3)
+        let abbrevMonth = newDate.prefix(3)
         let year = newDate.suffix(4)
           
-          
-          return String(newStr + " " + year)
+          //This is ghetto
+         //Find a better way at some point
+          return String(abbrevMonth + " " + year)
      }
     
      
