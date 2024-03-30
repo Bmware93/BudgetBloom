@@ -73,15 +73,24 @@ struct ChartsView: View {
                         let groupedExpenses = getMonthlyExpenseSum()
                         
                         HStack {
-                            Picker("", selection: $barGraphView) {
+                            Menu {
                                 ForEach(TimePeriods.allCases, id: \.self) { option in
-                                    Text(option.rawValue)
+                                    Button {
+                                        self.barGraphView = option
+                                    } label: {
+                                        Label(option.rawValue, systemImage: "")
+                                    }
+                                    
                                 }
                                 
+                            } label: {
+                                Text(barGraphView.rawValue)
+                                    .font(.system(size: 18))
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .font(.caption)
                             }
-                            //.pickerStyle(.menu)
                             .foregroundStyle(.primary)
-                            .offset(x: -140)
+
                             
                             
                             Spacer()

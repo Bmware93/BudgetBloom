@@ -15,7 +15,7 @@ struct AppTabView: View {
         TabView {
             ContentView()
                 .tabItem {
-                    Label("Expenses", systemImage: "creditcard")
+                    Label("Spending", systemImage: "creditcard")
                 }
                 .onAppear {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
