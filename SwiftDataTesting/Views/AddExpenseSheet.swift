@@ -24,19 +24,7 @@ struct AddExpenseSheet: View {
         return !name.isEmpty && value > 0
     }
     
-    enum SpendingCategory:String, CaseIterable,Identifiable {
-        case housing = "Housing"
-        case utilities = "Utilities"
-        case subcription = "Subsciption"
-        case clothing = "Clothing"
-        case debt = "Debt"
-        case health = "Health"
-        case food = "Food"
-        case entertainment = "Entertainment"
-        case misc = "Misc"
-        
-        var id: String { rawValue }
-    }
+    
     
     var body: some View {
         NavigationStack {
@@ -59,7 +47,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: name, date: date, value: value)
+                        let expense = Expense(name: name, date: date, value: value, category: spendingCategory)
                         //Inserts data in the context container
                         context.insert(expense)
                         

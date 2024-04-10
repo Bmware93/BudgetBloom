@@ -20,6 +20,7 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     var name: String
     var date: Date
     var value: Double
+    var category: SpendingCategory
     
     var dateParsed: Date {
         date.description.dateParsed()
@@ -45,11 +46,26 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
      
   
      
-    init(name: String, date: Date, value: Double) {
-        self.name = name
-        self.date = date
-        self.value = value
-    }
+     init(name: String, date: Date, value: Double, category: SpendingCategory) {
+         self.name = name
+         self.date = date
+         self.value = value
+         self.category = category
+     }
+}
+
+enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
+    case housing = "Housing"
+    case utilities = "Utilities"
+    case subcription = "Subsciption"
+    case clothing = "Clothing"
+    case debt = "Debt"
+    case health = "Health"
+    case food = "Food"
+    case entertainment = "Entertainment"
+    case misc = "Misc"
+    
+    var id: String { rawValue }
 }
 
 
