@@ -23,8 +23,8 @@ struct DonutChart: View {
                             .cornerRadius(5)
                     }
                 }
-                .chartLegend(position: .bottomTrailing, alignment: .centerLastTextBaseline)
-                .frame(width: 200, height: 200)
+                .chartLegend()
+                .frame(width: 300, height: 300)
             }
             .padding()
             //.navigationTitle("Spending")
