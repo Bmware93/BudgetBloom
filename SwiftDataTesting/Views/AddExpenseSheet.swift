@@ -33,11 +33,12 @@ struct AddExpenseSheet: View {
                 DatePicker("Date", selection: $date, displayedComponents: .date)
                 TextField("Value", value: $value, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
-                Picker("Category", selection: $spendingCategory){
+                Picker("Category", selection: $spendingCategory) {
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
                         Text(option.rawValue)
                     }
                 }
+                .pickerStyle(.navigationLink)
             }
             .navigationTitle("New Expense")
             .navigationBarTitleDisplayMode(.inline)

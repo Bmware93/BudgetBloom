@@ -17,10 +17,10 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
 
 @Model
  class Expense {
-    var name: String
-    var date: Date
-    var value: Double
-    var category: SpendingCategory
+    var name  : String
+    var date  : Date
+    var value : Double
+    var category : SpendingCategory
     
     var dateParsed: Date {
         date.description.dateParsed()
@@ -29,7 +29,6 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     var month: String {
      date.formatted(.dateTime.year().month(.wide))
         
-       
     }
      //Short month is the month abbreviated plus the year
      var shortMonth: String {
@@ -44,8 +43,6 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
      }
     
      
-  
-     
      init(name: String, date: Date, value: Double, category: SpendingCategory) {
          self.name = name
          self.date = date
@@ -55,7 +52,7 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
 }
 
 enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
-    case housing = "Housing"
+    case housing   = "Housing"
     case utilities = "Utilities"
     case subcription = "Subsciption"
     case clothing = "Clothing"

@@ -13,7 +13,8 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
-    @State private var isAnimating = false
+    @State private var barGraphIsAnimating = false
+    @State private var donutGraphIsAnimating = false
     @State private var barGraphView: TimePeriods = .year
     
     func getMonthlyExpenseSum() -> TransactionGroup {
@@ -110,12 +111,12 @@ struct ChartsView: View {
                             }
                             .padding(.bottom, 25)
                             
-                            
+                            //MARK: Bar Chart starts here
                             Chart(groupedExpenses.keys, id: \.self) { month in
                                     if let group = groupedExpenses[month]  {
                                         
                                         BarMark(x: .value("Month", month),
-                                                y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
+                                                y: .value("Total Spent", barGraphIsAnimating == false ? 50 : group.sum)
                                         )
                                         .foregroundStyle(Color.blue.gradient)
                                     
@@ -123,27 +124,27 @@ struct ChartsView: View {
                             }
                             .onAppear {
                                 withAnimation {
-                                    isAnimating = true
+                                    barGraphIsAnimating = true
                                 }
                             }
                             .onDisappear {
-                                isAnimating = false
+                                barGraphIsAnimating = false
                             }
                             .chartYScale(domain: 50...1000)
-                            .frame(height: 170)
-                            .padding(.bottom)
+                            .frame(height: 180)
+                            //.padding(.bottom, 30)
                             .chartXAxis {
                                 AxisMarks(stroke: StrokeStyle(lineWidth: 0))
                                 
                             }
                             
-                            .chartYAxis{
+                            .chartYAxis {
                                 AxisMarks(stroke: StrokeStyle(dash:[7]))
                             }
                             .listRowSeparator(.hidden)
                             
-                            DisclosureGroup("Budget Insights") {
-                                VStack(alignment: .leading, spacing: 10) {
+                            DisclosureGroup("Spending Insights") {
+                                VStack {
                                     HStack {
                                         Text("Daily Average")
                                             .padding(.trailing)
@@ -151,22 +152,37 @@ struct ChartsView: View {
                                         Text("$238.85")
                                             .bold()
                                     }
-                                    Text("Great! You didn't exceed your daily average threshold of $250.")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                        .padding(.trailing, 40)
+                                    //MARK: Donut Chart starts here
+                                    Chart(expenses) { expense in
+                                            SectorMark(angle: .value("Total Spent", 
+                                                                     donutGraphIsAnimating == false ? 0 : expense.value ),
+                                                       innerRadius: .ratio(0.5))
+                                                .foregroundStyle(by: .value("Category", expense.category.rawValue))
+                                                .cornerRadius(5)
+                                            
+                                    }
+                                    .frame(width: 270, height: 250)
+                                    .onAppear {
+                                        withAnimation(.smooth) {
+                                            donutGraphIsAnimating = true
+                                        }
+                                        
+                                        
+                                    }
+                                    .onDisappear {
+                                        donutGraphIsAnimating = false
+                                    }
+                                    
+                              
+//                                    Text("Great! You didn't exceed your daily average threshold of $250.")
+//                                        .font(.subheadline)
+//                                        .foregroundStyle(.secondary)
+//                                        .padding(.trailing, 40)
                                 }
                                 
                             }
                             
-                            Chart(expenses) { expense in
-                                    SectorMark(angle: .value("Total Spent", expense.value ),
-                                               innerRadius: .ratio(0.5))
-                                        .foregroundStyle(by: .value("Category", expense.category.rawValue))
-                                        .cornerRadius(5)
-                                    
-                            }
-                            .frame(width: 250, height: 250)
+                           
                             
                         }
                     }
