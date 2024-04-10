@@ -45,10 +45,10 @@ struct ChartsView: View {
     //Time periods for picker in graph view
     //Will adjust based on how user wants to view their spending
     enum TimePeriods: String, CaseIterable, Identifiable {
-        case day = "Today"
-        case week = "This Week"
+        case day   = "Today"
+        case week  = "This Week"
         case month = "This Month"
-        case year = "This Year"
+        case year  = "This Year"
         
         var id: String { rawValue }
     }
@@ -68,99 +68,111 @@ struct ChartsView: View {
                     
                 } else {
                     
-                    Form {
-                        
-                        let groupedExpenses = getMonthlyExpenseSum()
-                        
-                        HStack {
-                            Menu {
-                                ForEach(TimePeriods.allCases, id: \.self) { option in
-                                    Button {
-                                        self.barGraphView = option
-                                    } label: {
-                                        Label(option.rawValue, systemImage: "")
+                    VStack {
+                        Form {
+                            
+                            let groupedExpenses = getMonthlyExpenseSum()
+                            
+                            HStack {
+                                Menu {
+                                    ForEach(TimePeriods.allCases, id: \.self) { option in
+                                        Button {
+                                            self.barGraphView = option
+                                        } label: {
+                                            Label(option.rawValue, systemImage: "")
+                                        }
+                                        
                                     }
                                     
+                                } label: {
+                                    Text(barGraphView.rawValue)
+                                        .font(.system(size: 18))
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .font(.caption)
                                 }
-                                
-                            } label: {
-                                Text(barGraphView.rawValue)
-                                    .font(.system(size: 18))
-                                Image(systemName: "chevron.up.chevron.down")
-                                    .font(.caption)
-                            }
-                            .foregroundStyle(.primary)
+                                .foregroundStyle(.primary)
 
-                            
-                            
-                            Spacer()
-                            
-                            VStack(spacing: -10) {
-                                Text(String(format: "$%.2f", groupedExpenses.values.reduce(0){ $0 + $1.sum }))
-                                    .padding(.bottom)
-                                    .font(.headline)
-                                    .bold()
                                 
-                                Text("Total Spent")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
                                 
-                            }
-                        }
-                        .padding(.bottom, 25)
-                        
-                        
-                        Chart(groupedExpenses.keys, id: \.self) { month in
-                                if let group = groupedExpenses[month]  {
-                                    
-                                    BarMark(x: .value("Month", month),
-                                            y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
-                                    )
-                                    .foregroundStyle(Color.blue.gradient)
+                                Spacer()
                                 
-                            }
-                        }
-                        .onAppear {
-                            withAnimation {
-                                isAnimating = true
-                            }
-                        }
-                        .onDisappear {
-                            isAnimating = false
-                        }
-                        .chartYScale(domain: 50...1000)
-                        .frame(height: 170)
-                        .padding(.bottom)
-                        .chartXAxis {
-                            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-                            
-                        }
-                        
-                        .chartYAxis{
-                            AxisMarks(stroke: StrokeStyle(dash:[7]))
-                        }
-                        .listRowSeparator(.hidden)
-                        
-                        DisclosureGroup("Budget Insights") {
-                            VStack(alignment: .leading, spacing: 10) {
-                                HStack {
-                                    Text("Daily Average")
-                                        .padding(.trailing)
-                                    Spacer()
-                                    Text("$238.85")
+                                VStack(spacing: -10) {
+                                    Text(String(format: "$%.2f", groupedExpenses.values.reduce(0){ $0 + $1.sum }))
+                                        .padding(.bottom)
+                                        .font(.headline)
                                         .bold()
+                                    
+                                    Text("Total Spent")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                    
                                 }
-                                Text("Great! You didn't exceed your daily average threshold of $250.")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.trailing, 40)
+                            }
+                            .padding(.bottom, 25)
+                            
+                            
+                            Chart(groupedExpenses.keys, id: \.self) { month in
+                                    if let group = groupedExpenses[month]  {
+                                        
+                                        BarMark(x: .value("Month", month),
+                                                y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
+                                        )
+                                        .foregroundStyle(Color.blue.gradient)
+                                    
+                                }
+                            }
+                            .onAppear {
+                                withAnimation {
+                                    isAnimating = true
+                                }
+                            }
+                            .onDisappear {
+                                isAnimating = false
+                            }
+                            .chartYScale(domain: 50...1000)
+                            .frame(height: 170)
+                            .padding(.bottom)
+                            .chartXAxis {
+                                AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+                                
                             }
                             
+                            .chartYAxis{
+                                AxisMarks(stroke: StrokeStyle(dash:[7]))
+                            }
+                            .listRowSeparator(.hidden)
+                            
+                            DisclosureGroup("Budget Insights") {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    HStack {
+                                        Text("Daily Average")
+                                            .padding(.trailing)
+                                        Spacer()
+                                        Text("$238.85")
+                                            .bold()
+                                    }
+                                    Text("Great! You didn't exceed your daily average threshold of $250.")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                        .padding(.trailing, 40)
+                                }
+                                
+                            }
+                            
+                            Chart(expenses) { expense in
+                                    SectorMark(angle: .value("Total Spent", expense.value ),
+                                               innerRadius: .ratio(0.5))
+                                        .foregroundStyle(by: .value("Category", expense.category.rawValue))
+                                        .cornerRadius(5)
+                                    
+                            }
+                            .frame(width: 250, height: 250)
+                            
                         }
-                        
                     }
+                        
                     
-                    
+                
                 }
     
             }

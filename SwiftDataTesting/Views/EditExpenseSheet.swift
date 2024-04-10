@@ -20,6 +20,12 @@ struct EditExpenseSheet: View {
                 DatePicker("Date", selection: $expense.date, displayedComponents: .date)
                 TextField("Value", value: $expense.value, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
+                Picker("Category", selection: $expense.category){
+                    ForEach(SpendingCategory.allCases, id: \.self) { option in
+                        Text(option.rawValue)
+                    }
+                }
+                
             }
             .navigationTitle("Update Expense")
             .navigationBarTitleDisplayMode(.inline)
@@ -36,5 +42,5 @@ struct EditExpenseSheet: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return EditExpenseSheet(expense: Expense(name: "", date: .now, value: 0)).modelContainer(preview.container)
+    return EditExpenseSheet(expense: Expense(name: "", date: .now, value: 0, category: .clothing)).modelContainer(preview.container)
 }
