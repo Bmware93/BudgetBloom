@@ -18,7 +18,7 @@ struct EditExpenseSheet: View {
             Form {
                 TextField("Expense Name", text: $expense.name)
                 DatePicker("Date", selection: $expense.date, displayedComponents: .date)
-                TextField("Value", value: $expense.value, format: .currency(code: "USD"))
+                TextField("Value", value: $expense.amount, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
                 Picker("Category", selection: $expense.category){
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
@@ -42,5 +42,5 @@ struct EditExpenseSheet: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return EditExpenseSheet(expense: Expense(name: "", date: .now, value: 0, category: .clothing)).modelContainer(preview.container)
+    return EditExpenseSheet(expense: Expense(name: "", date: .now, amount: 0, category: .clothing)).modelContainer(preview.container)
 }

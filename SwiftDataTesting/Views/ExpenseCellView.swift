@@ -18,12 +18,12 @@ struct ExpenseCellView: View {
                 .frame(width: 70, alignment: .leading)
             Text(expense.name)
             Spacer()
-            Text(expense.value, format: .currency(code: "USD"))
+            Text(expense.amount, format: .currency(code: "USD"))
         }
     }
 }
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return ExpenseCellView(expense: Expense(name: "The Red Hook", date: .now, value: 12.80, category: .food)).modelContainer(preview.container)
+    return ExpenseCellView(expense: Expense(name: "The Red Hook", date: .now, amount: 12.80, category: .food)).modelContainer(preview.container)
 }

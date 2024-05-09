@@ -24,3 +24,11 @@ extension String {
         return parsedDate
     }
 }
+
+extension Color {
+    static let DarkBlue = Color("brandDarkBlue")
+    static let lightblue = Color.brandLightBlue
+    static let navyBlue = Color.brandNavyBlue
+    static let brandGreen = Color.brandTeaGreen
+    static let brandColorWhite = Color.brandWhite
+}

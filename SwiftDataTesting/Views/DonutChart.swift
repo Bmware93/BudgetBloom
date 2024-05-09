@@ -14,12 +14,14 @@ struct DonutChart: View {
             VStack {
                 Chart {
                     ForEach(MockData.expenses){ expense in
-                        SectorMark(angle: .value("Category", expense.value),
+                        SectorMark(angle: .value("Category", expense.amount),
                                    innerRadius: .ratio(0.5)
                                    //outerRadius: MarkDimension,
                                    //angularInset: 1.0
                         )
-                            .foregroundStyle(by: .value("Category", expense.category.rawValue))
+                        .position(by: .value("Category", expense.category.rawValue), span: .automatic)
+                            .foregroundStyle(by: .value("Category", expense.category.rawValue ))
+                            
                             .cornerRadius(5)
                     }
                 }
@@ -39,10 +41,11 @@ struct DonutChart: View {
 
 struct MockData {
     static var expenses: [Expense] = [
-        .init(name: "The Red Hook", date: .now, value: 24.80, category: .food),
-        .init(name: "Parc", date: .now, value: 50.59, category: .food),
-        .init(name: "CVS", date: .now, value: 48.60, category: .health),
-        .init(name: "Capital One", date: .now, value: 200.00, category: .debt)
+        .init(name: "The Red Hook", date: .now, amount: 24.80, category: .food),
+        .init(name: "Parc", date: .now, amount: 50.59, category: .food),
+        .init(name: "CVS", date: .now, amount: 48.60, category: .health),
+        .init(name: "Capital One", date: .now, amount: 200.00, category: .debt),
+        .init(name: "McDonalds", date: .now, amount: 70.20, category: .food)
     
     ]
 }
