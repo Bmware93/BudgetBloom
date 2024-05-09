@@ -22,7 +22,7 @@ struct ContentView: View {
     @State private var expenseToEdit: Expense?
     @State private var searchText = ""
     
-   var searchResults: [Expense] {
+    var searchResults: [Expense] {
         if searchText.isEmpty {
             expenses
         } else {
@@ -45,13 +45,13 @@ struct ContentView: View {
             // and update the sum of values
             if var existingGroup = groupedExpenses[month] {
                 existingGroup.expenses.append(expense)
-                existingGroup.sum += expense.value
+                existingGroup.sum += expense.amount
                 
                 groupedExpenses[month] = existingGroup
             } else {
                 // If the month is not a key in the dictionary, create a new entry with the expense in an array
                 // and set the sum of values to the expense value
-                groupedExpenses[month] = (expenses: [expense] , sum: expense.value)
+                groupedExpenses[month] = (expenses: [expense] , sum: expense.amount)
             }
         }
         return groupedExpenses
@@ -85,7 +85,7 @@ struct ContentView: View {
                                 Spacer()
                                 Text("Total \(group.sum.formatted(.currency(code: "USD")))")
                                     .font(.footnote).bold()
-                                    .foregroundStyle(.blue)
+                                    .foregroundStyle(.brandDarkBlue)
                             }
                         }
                     }
@@ -93,7 +93,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle("Spending Tracker")
+            .navigationTitle("Spendit")
             .searchable(text: $searchText)
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
             .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
@@ -108,15 +108,18 @@ struct ContentView: View {
                 if expenses.isEmpty {
                     ContentUnavailableView {
                         Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
+                            .symbolEffect(.bounce, value: isItemSheetShowing)
                     } description: {
                         Text("Start adding expenses to see your list")
                     }  actions: {
                         Button("Add Expense") {
                             isItemSheetShowing.toggle()
                         }
+                        
                     }
                     .offset(y: -60)
                 }
+                    
             }
         }
     }

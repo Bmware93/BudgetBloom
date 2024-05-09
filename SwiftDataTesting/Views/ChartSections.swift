@@ -12,7 +12,7 @@ struct ChartSections: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
             .fill(.gray)
-            .opacity(0.7)
+            //.opacity()
             .frame(width: 360, height: 400)
             .overlay{
                 DonutChart()

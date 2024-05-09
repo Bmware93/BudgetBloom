@@ -15,7 +15,7 @@ struct ChartsView: View {
     @Query(sort: \Expense.date) var expenses: [Expense]
     @State private var barGraphIsAnimating = false
     @State private var donutGraphIsAnimating = false
-    @State private var barGraphView: TimePeriods = .year
+    @State private var barGraphPicker: TimePeriods = .year
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -31,13 +31,13 @@ struct ChartsView: View {
             // and update the sum of values
             if var existingGroup = groupedExpenses[month] {
                 existingGroup.expenses.append(expense)
-                existingGroup.sum += expense.value
+                existingGroup.sum += expense.amount
                 
                 groupedExpenses[month] = existingGroup
             } else {
                 // If the month is not a key in the dictionary, create a new entry with the expense in an array
                 // and set the sum of values to the expense value
-                groupedExpenses[month] = (expenses: [expense] , sum: expense.value)
+                groupedExpenses[month] = (expenses: [expense] , sum: expense.amount)
             }
         }
         return groupedExpenses
@@ -53,7 +53,6 @@ struct ChartsView: View {
         
         var id: String { rawValue }
     }
-    
     
     var body: some View {
         NavigationStack {
@@ -78,7 +77,7 @@ struct ChartsView: View {
                                 Menu {
                                     ForEach(TimePeriods.allCases, id: \.self) { option in
                                         Button {
-                                            self.barGraphView = option
+                                            self.barGraphPicker = option
                                         } label: {
                                             Label(option.rawValue, systemImage: "")
                                         }
@@ -86,7 +85,7 @@ struct ChartsView: View {
                                     }
                                     
                                 } label: {
-                                    Text(barGraphView.rawValue)
+                                    Text(barGraphPicker.rawValue)
                                         .font(.system(size: 18))
                                     Image(systemName: "chevron.up.chevron.down")
                                         .font(.caption)
@@ -118,10 +117,15 @@ struct ChartsView: View {
                                         BarMark(x: .value("Month", month),
                                                 y: .value("Total Spent", barGraphIsAnimating == false ? 50 : group.sum)
                                         )
-                                        .foregroundStyle(Color.blue.gradient)
+                                        .foregroundStyle(by: .value("Month", month))
+                                        
+                                        
                                     
                                 }
+                                
                             }
+                            .chartLegend(.hidden)
+                            .chartForegroundStyleScale(range: [Color.DarkBlue, Color.brandGreen, Color.navyBlue, Color.lightblue])
                             .onAppear {
                                 withAnimation {
                                     barGraphIsAnimating = true
@@ -131,8 +135,9 @@ struct ChartsView: View {
                                 barGraphIsAnimating = false
                             }
                             .chartYScale(domain: 50...1000)
-                            .frame(height: 180)
-                            //.padding(.bottom, 30)
+                            //.padding(.bottom, 40)
+                            .frame(height: 140)
+
                             .chartXAxis {
                                 AxisMarks(stroke: StrokeStyle(lineWidth: 0))
                                 
@@ -142,26 +147,33 @@ struct ChartsView: View {
                                 AxisMarks(stroke: StrokeStyle(dash:[7]))
                             }
                             .listRowSeparator(.hidden)
+                        
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
-                                    HStack {
-                                        Text("Daily Average")
-                                            .padding(.trailing)
-                                        Spacer()
-                                        Text("$238.85")
-                                            .bold()
-                                    }
+//                                    HStack {
+//                                        Text("Daily Average")
+//                                            .padding(.trailing)
+//                                        Spacer()
+//                                        Text("$238.85")
+//                                            .bold()
+//                                    }
                                     //MARK: Donut Chart starts here
                                     Chart(expenses) { expense in
-                                            SectorMark(angle: .value("Total Spent", 
-                                                                     donutGraphIsAnimating == false ? 0 : expense.value ),
+                                            SectorMark(angle: .value("Total Spent",
+                                                                     donutGraphIsAnimating == false ? 0 : expense.amount ),
                                                        innerRadius: .ratio(0.5))
-                                                .foregroundStyle(by: .value("Category", expense.category.rawValue))
+                                            
+                                            .foregroundStyle(by: .value("Category", expense.category.rawValue))
+                                            .position(by: .value("Category", expense.category.rawValue ))
+                                            
                                                 .cornerRadius(5)
                                             
                                     }
                                     .frame(width: 270, height: 250)
+                                    .chartLegend(spacing: 20)
+                                    .chartForegroundStyleScale(
+                                        range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
                                     .onAppear {
                                         withAnimation(.smooth) {
                                             donutGraphIsAnimating = true
