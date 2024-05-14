@@ -43,6 +43,25 @@ struct ChartsView: View {
         return groupedExpenses
     }
     
+    var categoryTotals: [SpendingCategory: Double] {
+        Dictionary(grouping: expenses, by: {$0.category})
+            .mapValues{$0.reduce(0) {$0 + $1.amount }}
+    }
+    
+    var topCategoryTotals: [CategoryTotal] {
+        categoryTotals
+            .map { CategoryTotal(category: $0.key, total: $0.value) }
+            .sorted { $0.total > $1.total } // Sorting to get the highest totals
+            .prefix(4) // Taking only the top 4
+            .map { $0 } // Map to array
+    }
+    
+    
+    //Converting above dictionary to an array of CategoryTotal objects.
+    var categoryTotalData: [CategoryTotal] {
+        categoryTotals.map { CategoryTotal(category: $0.key, total: $0.value) }
+    }
+    
     //Time periods for picker in graph view
     //Will adjust based on how user wants to view their spending
     enum TimePeriods: String, CaseIterable, Identifiable {
@@ -91,7 +110,7 @@ struct ChartsView: View {
                                         .font(.caption)
                                 }
                                 .foregroundStyle(.primary)
-
+                                
                                 
                                 
                                 Spacer()
@@ -112,14 +131,14 @@ struct ChartsView: View {
                             
                             //MARK: Bar Chart starts here
                             Chart(groupedExpenses.keys, id: \.self) { month in
-                                    if let group = groupedExpenses[month]  {
-                                        
-                                        BarMark(x: .value("Month", month),
-                                                y: .value("Total Spent", barGraphIsAnimating == false ? 50 : group.sum)
-                                        )
-                                        .foregroundStyle(by: .value("Month", month))
-                                        
-                                        
+                                if let group = groupedExpenses[month]  {
+                                    
+                                    BarMark(x: .value("Month", month),
+                                            y: .value("Total Spent", barGraphIsAnimating == false ? 50 : group.sum)
+                                    )
+                                    .foregroundStyle(by: .value("Month", month))
+                                    
+                                    
                                     
                                 }
                                 
@@ -137,7 +156,7 @@ struct ChartsView: View {
                             .chartYScale(domain: 50...1000)
                             //.padding(.bottom, 40)
                             .frame(height: 140)
-
+                            
                             .chartXAxis {
                                 AxisMarks(stroke: StrokeStyle(lineWidth: 0))
                                 
@@ -147,28 +166,30 @@ struct ChartsView: View {
                                 AxisMarks(stroke: StrokeStyle(dash:[7]))
                             }
                             .listRowSeparator(.hidden)
-                        
+                            
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
-//                                    HStack {
-//                                        Text("Daily Average")
-//                                            .padding(.trailing)
-//                                        Spacer()
-//                                        Text("$238.85")
-//                                            .bold()
-//                                    }
+                                    HStack {
+                                        Text("Top Spending by Category")
+                                        //.padding(.trailing)
+                                        //                                        Spacer()
+                                        //                                        Text("$238.85")
+                                        //                                            .bold()
+                                    }
                                     //MARK: Donut Chart starts here
-                                    Chart(expenses) { expense in
-                                            SectorMark(angle: .value("Total Spent",
-                                                                     donutGraphIsAnimating == false ? 0 : expense.amount ),
-                                                       innerRadius: .ratio(0.5))
-                                            
-                                            .foregroundStyle(by: .value("Category", expense.category.rawValue))
-                                            .position(by: .value("Category", expense.category.rawValue ))
-                                            
-                                                .cornerRadius(5)
-                                            
+                                    Chart(topCategoryTotals) { item in
+                                        SectorMark(angle: .value("Total Spent",
+                                                                 donutGraphIsAnimating == false ? 0 : item.total ),
+                                                   innerRadius: .ratio(0.5))
+                                        
+                                        .position(by: .value("Category", item.category.rawValue))
+                                        .foregroundStyle(by: .value("Category", item.category.rawValue))
+                                        .position(by: .value("Value", item.total))
+                                        
+                                        
+                                        .cornerRadius(5)
+                                        
                                     }
                                     .frame(width: 270, height: 250)
                                     .chartLegend(spacing: 20)
@@ -185,24 +206,19 @@ struct ChartsView: View {
                                         donutGraphIsAnimating = false
                                     }
                                     
-                              
-//                                    Text("Great! You didn't exceed your daily average threshold of $250.")
-//                                        .font(.subheadline)
-//                                        .foregroundStyle(.secondary)
-//                                        .padding(.trailing, 40)
                                 }
                                 
                             }
                             
-                           
+                            
                             
                         }
                     }
-                        
                     
-                
+                    
+                    
                 }
-    
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Summary")

@@ -23,8 +23,10 @@ struct EditExpenseSheet: View {
                 Picker("Category", selection: $expense.category){
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
                         Text(option.rawValue)
+                        
                     }
                 }
+                .pickerStyle(.navigationLink)
                 
             }
             .navigationTitle("Update Expense")

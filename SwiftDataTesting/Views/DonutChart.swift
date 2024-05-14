@@ -19,7 +19,6 @@ struct DonutChart: View {
                                    //outerRadius: MarkDimension,
                                    //angularInset: 1.0
                         )
-                        .position(by: .value("Category", expense.category.rawValue), span: .automatic)
                             .foregroundStyle(by: .value("Category", expense.category.rawValue ))
                             
                             .cornerRadius(5)
