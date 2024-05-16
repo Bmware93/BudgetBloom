@@ -116,7 +116,7 @@ struct ChartsView: View {
                                 Spacer()
                                 
                                 VStack(spacing: -10) {
-                                    Text(String(format: "$%.2f", groupedExpenses.values.reduce(0){ $0 + $1.sum }))
+                                    Text(currencyFormat(value: groupedExpenses.values.reduce(0) { $0 + $1.sum }))
                                         .padding(.bottom)
                                         .font(.headline)
                                         .bold()

@@ -35,6 +35,7 @@ struct AddExpenseSheet: View {
                 TextField("Value", value: $amount, format: .currency(code: "USD"))
                     .keyboardType(.decimalPad)
                     
+                    
                 Picker("Category", selection: $spendingCategory) {
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
                         Text(option.rawValue)
