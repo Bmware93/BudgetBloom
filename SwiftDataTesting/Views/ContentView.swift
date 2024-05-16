@@ -83,7 +83,7 @@ struct ContentView: View {
                         } footer: {
                             HStack {
                                 Spacer()
-                                Text("Total \(group.sum.formatted(.currency(code: "USD")))")
+                                Text("Total \(currencyFormat(value: group.sum))")
                                     .font(.footnote).bold()
                                     .foregroundStyle(.brandDarkBlue)
                             }
