@@ -18,7 +18,7 @@ struct ExpenseCellView: View {
                 .frame(width: 70, alignment: .leading)
             Text(expense.name)
             Spacer()
-            Text(expense.amount, format: .currency(code: "USD"))
+            Text(currencyFormat(value:expense.amount))
         }
     }
 }

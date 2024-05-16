@@ -70,6 +70,14 @@ enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
     var id: String { rawValue }
 }
 
+func currencyFormat(value: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = .current // Adjust if you want a specific locale
+    return formatter.string(from: NSNumber(value: value)) ?? "$\(value)"
+}
+
+
 enum CurrencyCode:String, CaseIterable {
     case USD
     case CAD

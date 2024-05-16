@@ -32,8 +32,9 @@ struct AddExpenseSheet: View {
             Form {
                 TextField("Expense Name", text: $name)
                 DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Value", value: $amount, format: .currency(code: "USD"))
+                TextField("Value", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     .keyboardType(.decimalPad)
+                    
                     
                 Picker("Category", selection: $spendingCategory) {
                     ForEach(SpendingCategory.allCases, id: \.self) { option in

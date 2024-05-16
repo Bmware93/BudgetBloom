@@ -18,7 +18,7 @@ struct EditExpenseSheet: View {
             Form {
                 TextField("Expense Name", text: $expense.name)
                 DatePicker("Date", selection: $expense.date, displayedComponents: .date)
-                TextField("Value", value: $expense.amount, format: .currency(code: "USD"))
+                TextField("Value", value: $expense.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     .keyboardType(.decimalPad)
                 Picker("Category", selection: $expense.category){
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
