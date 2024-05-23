@@ -22,7 +22,8 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     var date: Date
     var amount: Double
     var category: SpendingCategory
-    
+     
+    //Computed Properties
     var dateParsed: Date {
         date.description.dateParsed()
     }

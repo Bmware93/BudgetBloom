@@ -16,6 +16,7 @@ struct ChartsView: View {
     @State private var barGraphIsAnimating = false
     @State private var donutGraphIsAnimating = false
     @State private var barGraphPicker: TimePeriods = .year
+ 
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -129,6 +130,10 @@ struct ChartsView: View {
                             }
                             .padding(.bottom, 25)
                             
+                            //Getting max amount spent in a month
+                            //Defaults to 1000 is no values exist
+                            let maxSpending = groupedExpenses.values.map {$0.sum }.max() ?? 1000
+                            
                             //MARK: Bar Chart starts here
                             Chart(groupedExpenses.keys, id: \.self) { month in
                                 if let group = groupedExpenses[month]  {
@@ -137,8 +142,6 @@ struct ChartsView: View {
                                             y: .value("Total Spent", barGraphIsAnimating == false ? 50 : group.sum)
                                     )
                                     .foregroundStyle(by: .value("Month", month))
-                                    
-                                    
                                     
                                 }
                                 
@@ -153,7 +156,7 @@ struct ChartsView: View {
                             .onDisappear {
                                 barGraphIsAnimating = false
                             }
-                            .chartYScale(domain: 50...1000)
+                            .chartYScale(domain: Double(50)...CGFloat(maxSpending))
                             //.padding(.bottom, 40)
                             .frame(height: 140)
                             
@@ -172,10 +175,7 @@ struct ChartsView: View {
                                 VStack {
                                     HStack {
                                         Text("Top Spending by Category")
-                                        //.padding(.trailing)
-                                        //                                        Spacer()
-                                        //                                        Text("$238.85")
-                                        //                                            .bold()
+                                
                                     }
                                     //MARK: Donut Chart starts here
                                     Chart(topCategoryTotals) { item in
@@ -191,8 +191,10 @@ struct ChartsView: View {
                                         .cornerRadius(5)
                                         
                                     }
-                                    .frame(width: 270, height: 250)
-                                    .chartLegend(spacing: 20)
+                                    
+                                    .frame(width: 280, height: 250)
+                                    .chartLegend(alignment:.bottomLeading,spacing: 20)
+                                    
                                     .chartForegroundStyleScale(
                                         range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
                                     .onAppear {
