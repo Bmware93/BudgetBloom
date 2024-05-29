@@ -154,7 +154,7 @@ struct ChartsView: View {
                             .onDisappear {
                                 barGraphIsAnimating = false
                             }
-                            .chartYScale(domain: 50...maxSpending)
+                            .chartYScale(domain: 50...1000)
                             //.padding(.bottom, 40)
                             .frame(height: 140)
                             
