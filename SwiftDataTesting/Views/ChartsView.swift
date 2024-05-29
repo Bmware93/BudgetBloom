@@ -130,9 +130,7 @@ struct ChartsView: View {
                             }
                             .padding(.bottom, 25)
                             
-                            //Getting max amount spent in a month
-                            //Defaults to 1000 is no values exist
-                            let maxSpending = groupedExpenses.values.map {$0.sum }.max() ?? 1000
+                            
                             
                             //MARK: Bar Chart starts here
                             Chart(groupedExpenses.keys, id: \.self) { month in
@@ -156,7 +154,7 @@ struct ChartsView: View {
                             .onDisappear {
                                 barGraphIsAnimating = false
                             }
-                            .chartYScale(domain: 50...maxSpending)
+                            .chartYScale(domain: 50...1000)
                             //.padding(.bottom, 40)
                             .frame(height: 140)
                             
@@ -201,7 +199,60 @@ struct ChartsView: View {
 }
 
 
+struct BarChartView: View {
+    @State private var isAnimating = false
+    let groupedExpenses: TransactionGroup
+    
+    //Getting max amount spent in a month
+    //Defaults to 1000 is no values exist
+    var maxSpending: Double {
+        groupedExpenses.values.map {$0.sum }.max() ?? 1000
+    }
+    var minSpending: Double {
+        groupedExpenses.values.map {$0.sum }.min() ?? 50
+    }
+    
+    var body: some View {
+        Chart(groupedExpenses.keys, id: \.self) { month in
+            if let group = groupedExpenses[month]  {
+                
+                BarMark(x: .value("Month", month),
+                        y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
+                )
+                .foregroundStyle(by: .value("Month", month))
+                
+            }
+            
+        }
+        .chartLegend(.hidden)
+        .chartForegroundStyleScale(range: [Color.DarkBlue, Color.brandGreen, Color.navyBlue, Color.lightblue])
+        .onAppear {
+            withAnimation {
+                isAnimating = true
+            }
+        }
+        .onDisappear {
+            isAnimating = false
+        }
+        .chartYScale(domain: minSpending...maxSpending)
+        //.padding(.bottom, 40)
+        .frame(height: 140)
+        
+        .chartXAxis {
+            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+            
+        }
+        
+        .chartYAxis {
+            AxisMarks(stroke: StrokeStyle(dash:[7]))
+        }
+        .listRowSeparator(.hidden)
+    }
+}
 
+#Preview {
+    BarChartView(groupedExpenses: [:])
+}
 
 
 #Preview {

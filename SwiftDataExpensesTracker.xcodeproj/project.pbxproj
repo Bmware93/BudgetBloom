@@ -15,6 +15,7 @@
 		1A9151E12BC5D9C700457153 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9151E02BC5D9C700457153 /* DonutChart.swift */; };
 		1A9151E32BC6504D00457153 /* ChartSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9151E22BC6504D00457153 /* ChartSections.swift */; };
 		1A9670632C078256007B1107 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670622C078256007B1107 /* DonutChartView.swift */; };
+		1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670642C079DD8007B1107 /* BarChartView.swift */; };
 		1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520D2B44ACBA008F9C22 /* extensions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
 		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
@@ -55,6 +56,7 @@
 		1A9151E02BC5D9C700457153 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		1A9151E22BC6504D00457153 /* ChartSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSections.swift; sourceTree = "<group>"; };
 		1A9670622C078256007B1107 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
+		1A9670642C079DD8007B1107 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		1ADD520D2B44ACBA008F9C22 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		1ADD52112B471175008F9C22 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */,
 				1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */,
 				1A0448DF2B68284200E19BFE /* ChartsView.swift */,
+				1A9670642C079DD8007B1107 /* BarChartView.swift */,
 				1A9670622C078256007B1107 /* DonutChartView.swift */,
 				1A9151E02BC5D9C700457153 /* DonutChart.swift */,
 				1A9151E22BC6504D00457153 /* ChartSections.swift */,
@@ -339,6 +342,7 @@
 				1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */,
 				1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */,
 				1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */,
+				1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
