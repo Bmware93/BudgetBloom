@@ -15,7 +15,6 @@ struct ChartsView: View {
     @Query(sort: \Expense.date) var expenses: [Expense]
     @State private var barGraphIsAnimating = false
     @State private var donutGraphIsAnimating = false
-    @State private var barGraphPicker: TimePeriods = .year
     
     
     func getMonthlyExpenseSum() -> TransactionGroup {
@@ -44,6 +43,20 @@ struct ChartsView: View {
         return groupedExpenses
     }
     
+    func totalSpentLabel(for expenses: TransactionGroup) -> some View {
+        VStack(spacing: -10) {
+            Text(currencyFormat(value: expenses.values.reduce(0) { $0 + $1.sum }))
+                .padding(.bottom)
+                .font(.headline)
+                .bold()
+            
+            Text("Total Spent")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            
+        }
+    }
+    
     var categoryTotals: [SpendingCategory: Double] {
         Dictionary(grouping: expenses, by: {$0.category})
             .mapValues{$0.reduce(0) {$0 + $1.amount }}
@@ -57,22 +70,11 @@ struct ChartsView: View {
             .map { $0 } // Map to array
     }
     
-    
     //Converting above dictionary to an array of CategoryTotal objects.
     var categoryTotalData: [CategoryTotal] {
         categoryTotals.map { CategoryTotal(category: $0.key, total: $0.value) }
     }
     
-    //Time periods for picker in graph view
-    //Will adjust based on how user wants to view their spending
-    enum TimePeriods: String, CaseIterable, Identifiable {
-        case day   = "Today"
-        case week  = "This Week"
-        case month = "This Month"
-        case year  = "This Year"
-        
-        var id: String { rawValue }
-    }
     
     var body: some View {
         NavigationStack {
@@ -94,39 +96,13 @@ struct ChartsView: View {
                             let groupedExpenses = getMonthlyExpenseSum()
                             
                             HStack {
-                                Menu {
-                                    ForEach(TimePeriods.allCases, id: \.self) { option in
-                                        Button {
-                                            self.barGraphPicker = option
-                                        } label: {
-                                            Label(option.rawValue, systemImage: "")
-                                        }
-                                        
-                                    }
-                                    
-                                } label: {
-                                    Text(barGraphPicker.rawValue)
-                                        .font(.system(size: 18))
-                                    Image(systemName: "chevron.up.chevron.down")
-                                        .font(.caption)
-                                }
-                                .foregroundStyle(.primary)
-                                
-                                
+                                //MARK: PICKER FOR CHARTS
+                                ChartsPicker()
                                 
                                 Spacer()
                                 
-                                VStack(spacing: -10) {
-                                    Text(currencyFormat(value: groupedExpenses.values.reduce(0) { $0 + $1.sum }))
-                                        .padding(.bottom)
-                                        .font(.headline)
-                                        .bold()
-                                    
-                                    Text("Total Spent")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                    
-                                }
+                                //MARK: TOTAL SPENT LABEL FOR TOP OF BAR CHART
+                               totalSpentLabel(for: groupedExpenses)
                             }
                             .padding(.bottom, 25)
                             
