@@ -156,7 +156,7 @@ struct ChartsView: View {
                             .onDisappear {
                                 barGraphIsAnimating = false
                             }
-                            .chartYScale(domain: Double(50)...CGFloat(maxSpending))
+                            .chartYScale(domain: 50...maxSpending)
                             //.padding(.bottom, 40)
                             .frame(height: 140)
                             
@@ -178,35 +178,7 @@ struct ChartsView: View {
                                 
                                     }
                                     //MARK: Donut Chart starts here
-                                    Chart(topCategoryTotals) { item in
-                                        SectorMark(angle: .value("Total Spent",
-                                                                 donutGraphIsAnimating == false ? 0 : item.total ),
-                                                   innerRadius: .ratio(0.5))
-                                        
-                                        .position(by: .value("Category", item.category.rawValue))
-                                        .foregroundStyle(by: .value("Category", item.category.rawValue))
-                                        .position(by: .value("Value", item.total))
-                                        
-                                        
-                                        .cornerRadius(5)
-                                        
-                                    }
-                                    
-                                    .frame(width: 280, height: 250)
-                                    .chartLegend(alignment:.bottomLeading,spacing: 20)
-                                    
-                                    .chartForegroundStyleScale(
-                                        range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
-                                    .onAppear {
-                                        withAnimation(.smooth) {
-                                            donutGraphIsAnimating = true
-                                        }
-                                        
-                                        
-                                    }
-                                    .onDisappear {
-                                        donutGraphIsAnimating = false
-                                    }
+                                    DonutChartView(categoryTotals: topCategoryTotals)
                                     
                                 }
                                 
@@ -226,6 +198,48 @@ struct ChartsView: View {
             .navigationTitle("Summary")
         }
     }
+}
+
+
+struct DonutChartView: View {
+    let categoryTotals: [CategoryTotal]
+    @State private var isAnimating = false
+    
+    var body: some View {
+        Chart(categoryTotals) { item in
+            SectorMark(angle: .value("Total Spent",
+                                     isAnimating == false ? 0 : item.total ),
+                       innerRadius: .ratio(0.5))
+            
+            .position(by: .value("Category", item.category.rawValue))
+            .foregroundStyle(by: .value("Category", item.category.rawValue))
+            .position(by: .value("Value", item.total))
+            
+            
+            .cornerRadius(5)
+            
+        }
+        
+        .frame(width: 280, height: 250)
+        .chartLegend(alignment:.bottomLeading,spacing: 20)
+        
+        .chartForegroundStyleScale(
+            range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
+        .onAppear {
+            withAnimation(.smooth) {
+                isAnimating = true
+            }
+            
+            
+        }
+        .onDisappear {
+            isAnimating = false
+        }
+    }
+}
+
+#Preview {
+    DonutChartView(categoryTotals: [])
 }
 
 
