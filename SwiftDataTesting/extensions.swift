@@ -32,3 +32,26 @@ extension Color {
     static let brandGreen = Color.brandTeaGreen
     static let brandColorWhite = Color.brandWhite
 }
+
+//MARK: Animation used for Charts
+struct AnimateOnAppear: ViewModifier {
+    @Binding var isAnimating: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                withAnimation {
+                    isAnimating = true
+                }
+            }
+            .onDisappear {
+                isAnimating = false
+            }
+    }
+}
+
+extension View {
+    func animateOnAppear(isAnimating: Binding<Bool>) -> some View {
+        modifier(AnimateOnAppear(isAnimating: isAnimating))
+    }
+}
