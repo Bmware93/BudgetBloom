@@ -32,16 +32,7 @@ struct DonutChartView: View {
         
         .chartForegroundStyleScale(
             range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
-        .onAppear {
-            withAnimation(.smooth) {
-                isAnimating = true
-            }
-            
-            
-        }
-        .onDisappear {
-            isAnimating = false
-        }
+        .animateOnAppear(isAnimating: $isAnimating)
     }
 }
 
