@@ -22,9 +22,8 @@ struct AddExpenseSheet: View {
     
     //Disabled add expense button until all data is entered
     var isFormValid: Bool {
-        return !name.isEmpty && amount > 0
+         !name.isEmpty && amount > 0
     }
-    
     
     
     var body: some View {
