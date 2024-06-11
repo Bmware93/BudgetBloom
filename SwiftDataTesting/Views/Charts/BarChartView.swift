@@ -34,16 +34,18 @@ struct BarChartView: View {
             }
             
         }
+        .frame(minHeight: 200)
         .chartLegend(.hidden)
-        .chartForegroundStyleScale(range: [Color.DarkBlue, Color.brandGreen, Color.navyBlue, Color.lightblue])
+        .chartForegroundStyleScale(range: [Color.DarkBlue, .brandGreen, .navyBlue, .lightblue])
         .animateOnAppear(isAnimating: $isAnimating)
-        .chartYScale(domain: minSpending...maxSpending)
-        //.padding(.bottom, 40)
-        .frame(height: 140)
+        
+        .chartYScale(domain: 0...maxSpending)
+        .padding(.bottom, 20)
+        //.offset(y: 20)
         
         .chartXAxis {
-            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-            
+            AxisMarks(values: .automatic, stroke: StrokeStyle(lineWidth: 0))
+           
         }
         
         .chartYAxis {

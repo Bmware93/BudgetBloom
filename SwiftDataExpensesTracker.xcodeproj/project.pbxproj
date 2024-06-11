@@ -113,10 +113,6 @@
 				1AF4EF882B1645A800027548 /* ContentView.swift */,
 				1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */,
 				1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */,
-				1A0448DF2B68284200E19BFE /* ChartsView.swift */,
-				1A9670662C07BEB0007B1107 /* ChartsPicker.swift */,
-				1A9670642C079DD8007B1107 /* BarChartView.swift */,
-				1A9670622C078256007B1107 /* DonutChartView.swift */,
 				1A9151E02BC5D9C700457153 /* DonutChartTester.swift */,
 				1A9151E22BC6504D00457153 /* ChartSections.swift */,
 				1ADD52112B471175008F9C22 /* ExpenseCellView.swift */,
@@ -128,6 +124,10 @@
 		1A9670612C078219007B1107 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				1A0448DF2B68284200E19BFE /* ChartsView.swift */,
+				1A9670642C079DD8007B1107 /* BarChartView.swift */,
+				1A9670622C078256007B1107 /* DonutChartView.swift */,
+				1A9670662C07BEB0007B1107 /* ChartsPicker.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";

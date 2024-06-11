@@ -112,10 +112,10 @@ struct ChartsView: View {
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
-                                    HStack {
+                              
                                         Text("Top Spending by Category")
                                         
-                                    }
+                                  
                                     //MARK: Donut Chart starts here
                                     DonutChartView(categoryTotals: topCategoryTotals)
                                     
