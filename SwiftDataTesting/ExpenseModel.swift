@@ -37,11 +37,11 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
         let newDate = date.formatted(.dateTime.year().month(.wide))
           
         let abbrevMonth = newDate.prefix(3)
-        let year = newDate.suffix(4)
+        //let year = newDate.suffix(4)
           
           //This is ghetto
          //Find a better way at some point
-          return String(abbrevMonth + " " + year)
+          return String(abbrevMonth)
      }
     
      
@@ -62,7 +62,7 @@ enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
     case childcare = "Child Care"
     case debt = "Debt"
     case health = "Health/Medical"
-    case food = "Food"
+    case food = "Food/Drink"
     case entertainment = "Entertainment"
     case personal = "Personal Care"
     case misc = "Misc"

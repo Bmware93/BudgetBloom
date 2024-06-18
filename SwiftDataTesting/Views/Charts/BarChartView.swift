@@ -30,19 +30,17 @@ struct BarChartView: View {
                         y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
                 )
                 .foregroundStyle(by: .value("Month", month))
+                .cornerRadius(5)
                 
             }
             
         }
         .frame(minHeight: 200)
         .chartLegend(.hidden)
-        .chartForegroundStyleScale(range: [Color.DarkBlue, .brandGreen, .navyBlue, .lightblue])
+        .chartForegroundStyleScale(range: [Color.lightblue, .brandTeaGreen])
         .animateOnAppear(isAnimating: $isAnimating)
-        
         .chartYScale(domain: 0...maxSpending)
         .padding(.bottom, 20)
-        //.offset(y: 20)
-        
         .chartXAxis {
             AxisMarks(values: .automatic, stroke: StrokeStyle(lineWidth: 0))
            

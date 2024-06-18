@@ -108,16 +108,33 @@ struct ChartsView: View {
                             
                             //MARK: Bar Chart starts here
                             BarChartView(groupedExpenses: groupedExpenses)
+                                .frame(minHeight: 230)
                             
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
                               
-                                        Text("Top Spending by Category")
-                                        
-                                  
                                     //MARK: Donut Chart starts here
                                     DonutChartView(categoryTotals: topCategoryTotals)
+                                        .frame(minWidth: 280, minHeight: 280)
+                                    
+                                    GroupBox {
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                Circle()
+                                                    .frame(width: 7, height: 7)
+                                                    .foregroundStyle(.brandDarkBlue)
+                                                Text("Housing")
+                                                
+                                                Spacer()
+                                                Text("$425.00")
+                                            }
+//                                            Text("Food/Drink")
+//                                            Text("Childcare")
+                                        }
+                                        
+                                    }
+                                    .padding(.bottom)
                                     
                                 }
                                 
