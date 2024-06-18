@@ -18,6 +18,7 @@ struct ContentView: View {
     //expense array is reveresed so that the most recent expense is showing first
     @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
     
+    @State private var animateSymbol = false
     @State private var isItemSheetShowing = false
     @State private var expenseToEdit: Expense?
     @State private var searchText = ""
@@ -108,7 +109,7 @@ struct ContentView: View {
                 if expenses.isEmpty {
                     ContentUnavailableView {
                         Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                            .symbolEffect(.bounce, value: isItemSheetShowing)
+                            .symbolEffect(.bounce, value: animateSymbol)
                     } description: {
                         Text("Start adding expenses to see your list")
                     }  actions: {
@@ -116,9 +117,12 @@ struct ContentView: View {
                             isItemSheetShowing.toggle()
                         }
                         
+                        
                     }
+                    
                     .offset(y: -60)
                 }
+                    
                     
             }
         }

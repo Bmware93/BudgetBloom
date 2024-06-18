@@ -13,23 +13,31 @@ struct DonutChartView: View {
     @State private var isAnimating = false
     
     var body: some View {
-        Chart(categoryTotals) { item in
-            SectorMark(angle: .value("Total Spent",
-                                     isAnimating == false ? 0 : item.total ),
-                       innerRadius: .ratio(0.5))
+        ZStack {
+            Chart(categoryTotals) { item in
+                SectorMark(
+                    angle: .value("Total Spent", isAnimating == false ? 0 : item.total ),
+                           innerRadius: .ratio(0.618),
+                           angularInset: 1.5
+                )
+                .position(by: .value("Category", item.total))
+                .foregroundStyle(by: .value("Category", item.category.rawValue))
+                .cornerRadius(5)
+                
+            }
+            .padding(.bottom)
+            //.chartLegend(alignment:.leadingLastTextBaseline)
+            .chartForegroundStyleScale(
+                range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
+        .animateOnAppear(isAnimating: $isAnimating)
             
-            .position(by: .value("Category", item.total))
-            .foregroundStyle(by: .value("Category", item.category.rawValue))
-            .position(by: .value("Value", item.total))
-            .cornerRadius(5)
+            VStack {
+                Text("Category")
+                Text("Breakdown")
+            }
+            .padding(.bottom)
             
         }
-        
-        .frame(width: 280, height: 250)
-        //.chartLegend(alignment:.bottomLeading,spacing: 20)
-        .chartForegroundStyleScale(
-            range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
-        .animateOnAppear(isAnimating: $isAnimating)
     }
 }
 
