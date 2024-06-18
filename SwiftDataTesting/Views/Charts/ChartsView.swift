@@ -122,15 +122,41 @@ struct ChartsView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
                                                 Circle()
-                                                    .frame(width: 7, height: 7)
+                                                    .frame(width: 8, height: 8)
                                                     .foregroundStyle(.brandDarkBlue)
                                                 Text("Housing")
                                                 
                                                 Spacer()
                                                 Text("$425.00")
                                             }
-//                                            Text("Food/Drink")
-//                                            Text("Childcare")
+                                            HStack {
+                                                Circle()
+                                                    .frame(width: 8, height: 8)
+                                                    .foregroundStyle(.brandLightBlue)
+                                                Text("Food/Drink")
+                                                
+                                                Spacer()
+                                                Text("$250.00")
+                                            }
+                                            HStack {
+                                                Circle()
+                                                    .frame(width: 8, height: 8)
+                                                    .foregroundStyle(.brandTeaGreen)
+                                                Text("Childcare")
+                                                
+                                                Spacer()
+                                                Text("$95.00")
+                                            }
+                                            
+                                            HStack {
+                                                Circle()
+                                                    .frame(width: 8, height: 8)
+                                                    .foregroundStyle(.brandNavyBlue)
+                                                Text("Clothing")
+                                                
+                                                Spacer()
+                                                Text("$95.00")
+                                            }
                                         }
                                         
                                     }
