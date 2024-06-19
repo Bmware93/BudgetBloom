@@ -102,7 +102,7 @@ struct ChartsView: View {
                                 Spacer()
                                 
                                 //MARK: TOTAL SPENT LABEL FOR TOP OF BAR CHART
-                               totalSpentLabel(for: groupedExpenses)
+                                totalSpentLabel(for: groupedExpenses)
                             }
                             .padding(.bottom, 25)
                             
@@ -113,55 +113,26 @@ struct ChartsView: View {
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
-                              
                                     //MARK: Donut Chart starts here
                                     DonutChartView(categoryTotals: topCategoryTotals)
                                         .frame(minWidth: 280, minHeight: 280)
                                     
                                     GroupBox {
                                         VStack(alignment: .leading) {
-                                            HStack {
-                                                Circle()
-                                                    .frame(width: 8, height: 8)
-                                                    .foregroundStyle(.brandDarkBlue)
-                                                Text("Housing")
-                                                
-                                                Spacer()
-                                                Text("$425.00")
-                                            }
-                                            HStack {
-                                                Circle()
-                                                    .frame(width: 8, height: 8)
-                                                    .foregroundStyle(.brandLightBlue)
-                                                Text("Food/Drink")
-                                                
-                                                Spacer()
-                                                Text("$250.00")
-                                            }
-                                            HStack {
-                                                Circle()
-                                                    .frame(width: 8, height: 8)
-                                                    .foregroundStyle(.brandTeaGreen)
-                                                Text("Childcare")
-                                                
-                                                Spacer()
-                                                Text("$95.00")
-                                            }
-                                            
-                                            HStack {
-                                                Circle()
-                                                    .frame(width: 8, height: 8)
-                                                    .foregroundStyle(.brandNavyBlue)
-                                                Text("Clothing")
-                                                
-                                                Spacer()
-                                                Text("$95.00")
+                                            ForEach(topCategoryTotals) { category in
+                                                HStack {
+                                                    Label(category.category.rawValue, systemImage: "circle.fill")
+                                                        .foregroundStyle(Color.DarkBlue)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    Text(currencyFormat(value:category.total))
+                                                }
                                             }
                                         }
                                         
                                     }
                                     .padding(.bottom)
-                                    
                                 }
                                 
                             }
