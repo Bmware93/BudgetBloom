@@ -1,7 +1,7 @@
 ## Spendit
 
 ## Introduction
-Spendit: Expense Tracker is a minimalist app designed to help users monitor their spending without the complexity often found in traditional finance apps. Built using Swift and SwiftUI, this app offers a user-friendly interface and efficient performance, leveraging SwiftData for data management.
+Spendit: Expense Tracker is a minimalist app designed to help users monitor their spending without the complexity often found in traditional finance apps. Built using Swift and SwiftUI, this app offers a user-friendly interface and efficient performance, leveraging SwiftData for data management as well as SwiftCharts for data visualization.
 
 ## Features
 - **Simple User Interface**: Clean, distraction-free interface designed for ease of use.
