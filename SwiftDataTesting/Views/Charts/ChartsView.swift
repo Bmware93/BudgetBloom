@@ -15,6 +15,7 @@ struct ChartsView: View {
     @Query(sort: \Expense.date) var expenses: [Expense]
     @State private var barGraphIsAnimating = false
     @State private var donutGraphIsAnimating = false
+    let chartColors = [Color.brandDarkBlue, .lightblue, .navyBlue, .brandGreen]
     
     
     func getMonthlyExpenseSum() -> TransactionGroup {
@@ -55,6 +56,14 @@ struct ChartsView: View {
                 .foregroundStyle(.secondary)
             
         }
+    }
+    
+    func color(for category: SpendingCategory) -> Color {
+        let sortedCategories = topCategoryTotals.map { $0.category }.sorted(by: { $0.rawValue < $1.rawValue })
+        if let index = sortedCategories.firstIndex(of: category) {
+            return chartColors[index % chartColors.count]
+        }
+        return .gray
     }
     
     var categoryTotals: [SpendingCategory: Double] {
@@ -119,14 +128,16 @@ struct ChartsView: View {
                                     
                                     GroupBox {
                                         VStack(alignment: .leading) {
-                                            ForEach(topCategoryTotals) { category in
+                                            ForEach(topCategoryTotals) { categorySelected in
                                                 HStack {
-                                                    Label(category.category.rawValue, systemImage: "circle.fill")
-                                                        .foregroundStyle(Color.DarkBlue)
+                                                    Circle()
+                                                        .frame(width: 10, height: 10)
+                                                        .foregroundStyle(color(for: categorySelected.category))
+                                                    Text(categorySelected.category.rawValue)
                                                     
                                                     Spacer()
                                                     
-                                                    Text(currencyFormat(value:category.total))
+                                                    Text(currencyFormat(value:categorySelected.total))
                                                 }
                                             }
                                         }
@@ -134,8 +145,10 @@ struct ChartsView: View {
                                     }
                                     .padding(.bottom)
                                 }
+                                .padding(.top, 25)
                                 
                             }
+                            .tint(.brandDarkBlue)
                             
                         }
                     }

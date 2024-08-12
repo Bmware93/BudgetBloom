@@ -38,14 +38,13 @@ struct DonutChartView: View {
             .animateOnAppear(isAnimating: $isAnimating)
             .onChange(of: selectedCount) { oldValue, newValue in
                 if let newValue {
-                    withAnimation {
+                    withAnimation(.bouncy) {
                         getSelectedCategory(value: newValue)
                     }
                 }
             }
             
         
-            
             VStack {
                 Text(selectedCategory?.category.rawValue ?? "Select a section")
                     .bold()
@@ -61,7 +60,7 @@ struct DonutChartView: View {
     }
     private func getSelectedCategory(value: Double) {
         var cumulativeTotal = 0.0
-        let categoryName = categoryTotals.first { category in
+        _ = categoryTotals.first { category in
             cumulativeTotal += category.total
             if value <= cumulativeTotal {
                 selectedCategory = category
