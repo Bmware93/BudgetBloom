@@ -16,7 +16,7 @@ struct DonutChart: View {
                     ForEach(MockData.expenses){ expense in
                         SectorMark(angle: .value("Category", expense.amount),
                                    innerRadius: .ratio(0.5),
-                                   //outerRadius: MarkDimension,
+                                  // outerRadius: ,
                                    angularInset: 1.0
                         )
                         .foregroundStyle(by: .value("Category", expense.category.rawValue ))

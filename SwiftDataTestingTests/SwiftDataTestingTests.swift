@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SwiftDataTesting
+
 
 final class SwiftDataTestingTests: XCTestCase {
 
