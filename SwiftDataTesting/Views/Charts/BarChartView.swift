@@ -14,7 +14,7 @@ struct BarChartView: View {
     let groupedExpenses: TransactionGroup
     
     //Getting max amount spent in a month
-    //Defaults to 1000 is no values exist
+    //Defaults to 1000 if no values exist
     var maxSpending: Double {
         groupedExpenses.values.map {$0.sum }.max() ?? 1000
     }

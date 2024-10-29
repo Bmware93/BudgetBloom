@@ -13,10 +13,8 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
-    @State private var barGraphIsAnimating = false
-    @State private var donutGraphIsAnimating = false
     let chartColors = [Color.brandDarkBlue, .lightblue, .navyBlue, .brandGreen]
-    
+    @State private var selectedCount: Double? // Declare selectedCount here
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -54,7 +52,6 @@ struct ChartsView: View {
             Text("Total Spent")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            
         }
     }
     
@@ -123,7 +120,7 @@ struct ChartsView: View {
                             DisclosureGroup("Spending Insights") {
                                 VStack {
                                     //MARK: Donut Chart starts here
-                                    DonutChartView(categoryTotals: topCategoryTotals)
+                                    DonutChartView(categoryTotals: topCategoryTotals, selectedCount: $selectedCount)
                                         .frame(minWidth: 280, minHeight: 280)
                                     
                                     GroupBox {
@@ -137,7 +134,10 @@ struct ChartsView: View {
                                                     
                                                     Spacer()
                                                     
-                                                    Text(currencyFormat(value:categorySelected.total))
+                                                    VStack(alignment: .leading) {
+                                                        Text(currencyFormat(value:categorySelected.total))
+                                                    }
+                                                    
                                                 }
                                             }
                                         }
@@ -150,9 +150,8 @@ struct ChartsView: View {
                             }
                             .tint(.brandDarkBlue)
                             
-                        }
+                       }
                     }
-                    
                     
                 }
                 
