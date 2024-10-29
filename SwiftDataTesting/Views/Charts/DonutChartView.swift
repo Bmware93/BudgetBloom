@@ -12,7 +12,8 @@ struct DonutChartView: View {
     let categoryTotals: [CategoryTotal]
     @State private var isAnimating = false
     @State private var selectedCategory: CategoryTotal?
-    @State private var selectedCount: Double?
+    @Binding var selectedCount: Double?
+    @State private var currentCategory: CategoryTotal? = nil
 
     
     var body: some View {
@@ -21,7 +22,7 @@ struct DonutChartView: View {
                 SectorMark(
                     angle: .value("Total Spent", isAnimating == false ? 0 : item.total ),
                            innerRadius: .ratio(0.618),
-                           outerRadius: selectedCategory?.category == item.category ? 175 : 150,
+                    outerRadius: selectedCategory?.category == item.category ? 175 : 150,
                            angularInset: 1.5
                 )
                 .position(by: .value("Category", item.total))
@@ -36,11 +37,16 @@ struct DonutChartView: View {
             .chartForegroundStyleScale(
                 range: [Color.DarkBlue, .lightblue, .navyBlue, .brandGreen])
             .animateOnAppear(isAnimating: $isAnimating)
+            .onAppear {
+                print("Selected Count on Appear: \(String(describing: selectedCount))")
+            }
             .onChange(of: selectedCount) { oldValue, newValue in
+                print("Old Value: \(String(describing: oldValue)), New Value: \(String(describing: newValue))")
                 if let newValue {
-                    withAnimation(.bouncy) {
-                        getSelectedCategory(value: newValue)
-                    }
+                        withAnimation(.bouncy) {
+                            selectedCategory = getSelectedCategory(value: newValue)
+                        }
+                   
                 }
             }
             
@@ -58,9 +64,9 @@ struct DonutChartView: View {
         }
        
     }
-    private func getSelectedCategory(value: Double) {
+    private func getSelectedCategory(value: Double) -> CategoryTotal?{
         var cumulativeTotal = 0.0
-        _ = categoryTotals.first { category in
+       return categoryTotals.first { category in
             cumulativeTotal += category.total
             if value <= cumulativeTotal {
                 selectedCategory = category
@@ -75,5 +81,18 @@ struct DonutChartView: View {
 
 
 #Preview {
-    DonutChartView(categoryTotals: [])
+    @Previewable @State var selectedCount: Double? = 10.00
+    DonutChartView(categoryTotals: [
+        CategoryTotal(category: .housing, total: 1200.00),
+        CategoryTotal(category: .transportation, total: 250.50),
+        CategoryTotal(category: .utilities, total: 150.75),
+        CategoryTotal(category: .subcription, total: 50.00),
+        CategoryTotal(category: .clothing, total: 75.00),
+        CategoryTotal(category: .childcare, total: 300.00),
+        CategoryTotal(category: .debt, total: 200.00),
+        CategoryTotal(category: .health, total: 180.25),
+        CategoryTotal(category: .food, total: 400.50),
+        CategoryTotal(category: .entertainment, total: 120.00),
+        CategoryTotal(category: .personal, total: 60.00),
+        CategoryTotal(category: .misc, total: 40.00)], selectedCount: $selectedCount)
 }

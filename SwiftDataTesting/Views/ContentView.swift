@@ -107,18 +107,22 @@ struct ContentView: View {
             }
             .overlay {
                 if expenses.isEmpty {
+                    
                     ContentUnavailableView {
                         Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
                             .symbolEffect(.bounce, value: animateSymbol)
-                    } description: {
+                    }
+                    description: {
                         Text("Start adding expenses to see your list")
                     }  actions: {
+                    
                         Button("Add Expense") {
                             isItemSheetShowing.toggle()
                         }
                         
                         
                     }
+             
                     
                     .offset(y: -60)
                 }

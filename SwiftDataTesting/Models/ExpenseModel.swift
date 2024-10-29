@@ -39,8 +39,6 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
         let abbrevMonth = newDate.prefix(3)
         //let year = newDate.suffix(4)
           
-          //This is ghetto
-         //Find a better way at some point
           return String(abbrevMonth)
      }
     
