@@ -28,8 +28,7 @@ struct AppTabView: View {
                 .onAppear {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }
-            
-            
+          
             SettingsView()
                 .tabItem {
                     Label("More", systemImage: "ellipsis")

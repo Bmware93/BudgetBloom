@@ -14,7 +14,8 @@ struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
     let chartColors = [Color.brandDarkBlue, .lightblue, .navyBlue, .brandGreen]
-    @State private var selectedCount: Double? // Declare selectedCount here
+    @State private var selectedCount: Double?
+    @State var selectedCategory: CategoryTotal?
     
     func getMonthlyExpenseSum() -> TransactionGroup {
         guard !expenses.isEmpty else { return [:] }
@@ -81,6 +82,18 @@ struct ChartsView: View {
         categoryTotals.map { CategoryTotal(category: $0.key, total: $0.value) }
     }
     
+    func getSelectedCategory(value: Double) -> CategoryTotal?{
+        var cumulativeTotal = 0.0
+        return categoryTotalData.first { category in
+            cumulativeTotal += category.total
+            if value <= cumulativeTotal {
+                selectedCategory = category
+                return true
+            }
+            return false
+        }
+    }
+    
     
     var body: some View {
         NavigationStack {
@@ -120,8 +133,17 @@ struct ChartsView: View {
                             DisclosureGroup("Spending Insights") {
                                 VStack {
                                     //MARK: Donut Chart starts here
-                                    DonutChartView(categoryTotals: topCategoryTotals, selectedCount: $selectedCount)
+                                    DonutChartView(categoryTotals: topCategoryTotals, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
                                         .frame(minWidth: 280, minHeight: 280)
+                                        .onChange(of: selectedCount) { oldValue, newValue in
+                                            print("Old Value: \(String(describing: oldValue)), New Value: \(String(describing: newValue))")
+                                            guard let newValue  else { return }
+                                                    withAnimation(.bouncy) {
+                                                        selectedCategory = getSelectedCategory(value: newValue)
+                                                    }
+                                            
+                                        }
+
                                     
                                     GroupBox {
                                         VStack(alignment: .leading) {
@@ -146,11 +168,11 @@ struct ChartsView: View {
                                     .padding(.bottom)
                                 }
                                 .padding(.top, 25)
-                                
+
                             }
                             .tint(.brandDarkBlue)
                             
-                       }
+                        }
                     }
                     
                 }
@@ -164,8 +186,9 @@ struct ChartsView: View {
 
 
 #Preview {
+    @Previewable @State var selectedCategory: CategoryTotal?
     let preview = previewContainer([Expense.self])
-    return ChartsView().modelContainer(preview.container)
+    ChartsView().modelContainer(preview.container)
 }
 
 

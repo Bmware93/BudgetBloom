@@ -16,7 +16,6 @@ struct SettingsView: View {
             VStack {
                 List {
                     Section(header: Text("Preferences")) {
-                        
                         Toggle("Push Notifications", systemImage: "bell.circle.fill", isOn: $enablePushNotifications)
                             .toggleStyle(SwitchToggleStyle(tint: .DarkBlue))
                             .foregroundStyle(.primary)

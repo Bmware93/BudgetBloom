@@ -37,7 +37,7 @@ struct BarChartView: View {
         }
         .frame(minHeight: 200)
         .chartLegend(.hidden)
-        .chartForegroundStyleScale(range: [Color.lightblue, .brandTeaGreen])
+        .chartForegroundStyleScale(range: [Color.bbLGreen, .bbLPurple,.bbDarkGreen])
         .animateOnAppear(isAnimating: $isAnimating)
         .chartYScale(domain: 0...maxSpending)
         .padding(.bottom, 20)
