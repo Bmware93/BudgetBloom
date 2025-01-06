@@ -170,7 +170,7 @@ struct ChartsView: View {
                                 .padding(.top, 25)
 
                             }
-                            .tint(.brandDarkBlue)
+                            .tint(.accentColor)
                             
                         }
                     }

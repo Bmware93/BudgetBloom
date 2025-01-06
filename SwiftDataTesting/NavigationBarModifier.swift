@@ -24,7 +24,7 @@ struct NavigationBarModifier: ViewModifier {
         UINavigationBar.appearance().scrollEdgeAppearance = appear
         if let tintColor = tintColor {
                     UINavigationBar.appearance().tintColor = tintColor
-                }
+            }
      }
     func body(content: Content) -> some View {
             content
@@ -42,5 +42,4 @@ struct NavigationBarModifier: ViewModifier {
         .navigationBarTitle("Test Title")
     }
     .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .blue, tintColor: nil, withSeparator: false))
-    
 }

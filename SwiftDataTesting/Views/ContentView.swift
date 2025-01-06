@@ -85,7 +85,7 @@ struct ContentView: View {
                                 Spacer()
                                 Text("Total \(currencyFormat(value: group.sum))")
                                     .font(.footnote).bold()
-                                    .foregroundStyle(Color.bbDarkGreen)
+                                    .foregroundStyle(.accent)
                             }
                         }
                     }
@@ -94,7 +94,7 @@ struct ContentView: View {
             }
             .listStyle(.plain)
             .navigationTitle(appName)
-            .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .blue, tintColor: nil, withSeparator: false))
+            .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
             .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
