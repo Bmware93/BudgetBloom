@@ -11,27 +11,27 @@ func transactionGroupForCurrentMonth(expenses: [Expense]) -> TransactionGroup {
     var result: TransactionGroup = [:]
     
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMMM" // Format to get the full month name (e.g., "January")
+    dateFormatter.dateFormat = "MMMM"
     
     let calendar = Calendar.current
     let currentMonth = calendar.component(.month, from: Date()) // Current month as an integer
-    let currentYear = calendar.component(.year, from: Date()) // Current year as an integer
+    let currentYear = calendar.component(.year, from: Date())
 
     for expense in expenses {
-        let expenseMonth = calendar.component(.month, from: expense.date) // Extract month from expense date
-        let expenseYear = calendar.component(.year, from: expense.date) // Extract year from expense date
+        let expenseMonth = calendar.component(.month, from: expense.date) 
+        let expenseYear = calendar.component(.year, from: expense.date)
         
-        // Filter for expenses that match the current month and year
+      
         if expenseMonth == currentMonth && expenseYear == currentYear {
             let month = dateFormatter.string(from: expense.date) // Get the month name
             
             if var monthData = result[month] {
-                // Append the expense and update the sum for this month
+     
                 monthData.expenses.append(expense)
                 monthData.sum += expense.amount
                 result[month] = monthData
             } else {
-                // Initialize the month's data
+           
                 result[month] = (expenses: [expense], sum: expense.amount)
             }
         }
