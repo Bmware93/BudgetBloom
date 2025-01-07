@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ChartsPicker: View {
-    @State private var barGraphPicker: TimePeriods = .year
-    
+    @Binding var barGraphPicker: TimePeriods 
+    //var expenses: [Expense]
+
     var body: some View {
         Menu {
             ForEach(TimePeriods.allCases, id: \.self) { option in
@@ -43,5 +44,6 @@ enum TimePeriods: String, CaseIterable, Identifiable {
 }
 
 #Preview {
-    ChartsPicker()
+    @Previewable @State var timePeriod: TimePeriods = .day
+    ChartsPicker(barGraphPicker: $timePeriod)
 }

@@ -14,7 +14,7 @@ struct NavigationBarModifier: ViewModifier {
         let appear = UINavigationBarAppearance()
 
         let atters: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "Didot", size: 25)!
+            .font: UIFont(name: "Didot", size: 20)!
         ]
 
         appear.largeTitleTextAttributes = atters
