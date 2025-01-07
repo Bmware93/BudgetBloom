@@ -16,9 +16,8 @@ struct SettingsView: View {
             VStack {
                 List {
                     Section(header: Text("Preferences")) {
-                        
                         Toggle("Push Notifications", systemImage: "bell.circle.fill", isOn: $enablePushNotifications)
-                            .toggleStyle(SwitchToggleStyle(tint: .DarkBlue))
+                            .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                             .foregroundStyle(.primary)
                         
                         Picker("Currency", systemImage: "dollarsign.circle.fill", selection: $currencyCode) {

@@ -10,14 +10,13 @@ import SwiftData
 
 
 struct ContentView: View {
-
     //injecting context into the content view so it will have access to the database
     @Environment(\.modelContext) var context
     
     //fetches the saved data from the context 
     //expense array is reveresed so that the most recent expense is showing first
     @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
-    
+    var appName: String = "BudgetBloom"
     @State private var animateSymbol = false
     @State private var isItemSheetShowing = false
     @State private var expenseToEdit: Expense?
@@ -86,7 +85,7 @@ struct ContentView: View {
                                 Spacer()
                                 Text("Total \(currencyFormat(value: group.sum))")
                                     .font(.footnote).bold()
-                                    .foregroundStyle(.brandDarkBlue)
+                                    .foregroundStyle(.accent)
                             }
                         }
                     }
@@ -94,8 +93,9 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle("Spendit")
-            .searchable(text: $searchText)
+            .navigationTitle(appName)
+            .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
+            .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
             .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
             .toolbar {
@@ -105,25 +105,31 @@ struct ContentView: View {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigation) {
+                    Image("icon")
+                        .resizable()
+                        .scaledToFit()
+                        .animation(.spring)
+                }
+            }
             .overlay {
                 if expenses.isEmpty {
                     
                     ContentUnavailableView {
-                        Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
-                            .symbolEffect(.bounce, value: animateSymbol)
+                        Label("Nothing to see here — yet!", systemImage: "leaf.fill")
+                            .symbolRenderingMode(.multicolor)
                     }
                     description: {
-                        Text("Start adding expenses to see your list")
+                        Text("Start by adding your expenses, and together we’ll nurture your budget into full bloom.")
                     }  actions: {
                     
                         Button("Add Expense") {
                             isItemSheetShowing.toggle()
                         }
-                        
-                        
+
                     }
              
-                    
                     .offset(y: -60)
                 }
                     
