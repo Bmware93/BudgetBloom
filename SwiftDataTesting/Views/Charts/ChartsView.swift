@@ -23,7 +23,7 @@ struct ChartsView: View {
         case .day:
             return getDailyExpenseSum(expenses: expenses, for: Date())
         case .week:
-            return [:]
+            return getWeeklyExpenseSum(expenses: expenses, for: Date())
         case .month:
             return transactionGroupForCurrentMonth(expenses:expenses)
         case .year:

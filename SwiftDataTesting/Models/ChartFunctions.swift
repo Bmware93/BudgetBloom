@@ -86,3 +86,27 @@ func getDailyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup
     return [dateKey: (expenses: filteredExpenses, sum: totalSum)]
 }
 
+func getWeeklyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup {
+    let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    
+    // Filtering expenses within the same week as the given date
+    let weeklyExpenses = expenses.filter { expense in
+        guard let startOfWeek = calendar.dateInterval(of: .weekOfYear, for: date)?.start else { return false }
+        return calendar.compare(expense.date, to: startOfWeek, toGranularity: .weekOfYear) == .orderedSame
+    }
+    
+    // Group expenses by day within the week
+    var groupedExpenses = TransactionGroup()
+    for expense in weeklyExpenses {
+        let dayKey = dateFormatter.string(from: expense.date)
+        if groupedExpenses[dayKey] == nil {
+            groupedExpenses[dayKey] = (expenses: [], sum: 0.0)
+        }
+        groupedExpenses[dayKey]?.expenses.append(expense)
+        groupedExpenses[dayKey]?.sum += expense.amount
+    }
+    
+    return groupedExpenses
+}
