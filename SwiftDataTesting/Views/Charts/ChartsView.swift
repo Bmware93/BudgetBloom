@@ -21,7 +21,7 @@ struct ChartsView: View {
     var groupedExpenses: TransactionGroup {
         switch currentGraphTimeFrame {
         case .day:
-            return [:]
+            return getDailyExpenseSum(expenses: expenses, for: Date())
         case .week:
             return [:]
         case .month:

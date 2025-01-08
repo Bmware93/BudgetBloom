@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ChartsPicker: View {
-    @Binding var barGraphPicker: TimePeriods 
-    //var expenses: [Expense]
+    @Binding var barGraphPicker: TimePeriods
 
     var body: some View {
         Menu {
@@ -17,7 +16,7 @@ struct ChartsPicker: View {
                 Button {
                     self.barGraphPicker = option
                 } label: {
-                    Label(option.rawValue, systemImage: "")
+                    Text(option.rawValue)
                 }
                 
             }

@@ -65,3 +65,24 @@ func getMonthlyExpenseSum(expenses: [Expense]) -> TransactionGroup {
     }
     return groupedExpenses
 }
+
+func getDailyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup {
+    let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    
+    // Filter expenses for the specific day
+    let filteredExpenses = expenses.filter { expense in
+        calendar.isDate(expense.date, inSameDayAs: date)
+    }
+    
+    // Calculate the sum of the filtered expenses
+    let totalSum = filteredExpenses.reduce(0.0) { $0 + $1.amount }
+    
+    // Format the date as a string key
+    let dateKey = dateFormatter.string(from: date)
+    
+    // Return the TransactionGroup
+    return [dateKey: (expenses: filteredExpenses, sum: totalSum)]
+}
+
