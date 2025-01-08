@@ -54,7 +54,8 @@ struct BarChartView: View {
 }
 
 #Preview {
-    BarChartView(groupedExpenses: ["January": (
+    BarChartView(groupedExpenses: [
+    "January": (
         expenses: [
             Expense(name: "Apples", date: Date(), amount: 5.50, category: .food),
             Expense(name: "Movie Ticket", date: Date(), amount: 12.00, category: .entertainment),
@@ -78,4 +79,5 @@ struct BarChartView: View {
         ],
         sum: 36.75
     )])
+    //.frame(minHeight: 230)
 }

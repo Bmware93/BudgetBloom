@@ -13,34 +13,22 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
-    let chartColors = [Color.brandDarkBlue, .lightblue, .navyBlue, .brandGreen]
+    let chartColors = [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink]
     @State private var selectedCount: Double?
     @State var selectedCategory: CategoryTotal?
+    @State private var currentGraphTimeFrame: TimePeriods = .year
     
-    func getMonthlyExpenseSum() -> TransactionGroup {
-        guard !expenses.isEmpty else { return [:] }
-        
-        var groupedExpenses = TransactionGroup()
-        
-        for expense in expenses {
-            //Getting the month from the expense
-            //Short month is the abbreviated version
-            let month = expense.shortMonth
-            
-            // If the month is already a key in the dictionary, append the expense to the existingGrp array
-            // and update the sum of values
-            if var existingGroup = groupedExpenses[month] {
-                existingGroup.expenses.append(expense)
-                existingGroup.sum += expense.amount
-                
-                groupedExpenses[month] = existingGroup
-            } else {
-                // If the month is not a key in the dictionary, create a new entry with the expense in an array
-                // and set the sum of values to the expense value
-                groupedExpenses[month] = (expenses: [expense] , sum: expense.amount)
-            }
+    var groupedExpenses: TransactionGroup {
+        switch currentGraphTimeFrame {
+        case .day:
+            return getDailyExpenseSum(expenses: expenses, for: Date())
+        case .week:
+            return getWeeklyExpenseSum(expenses: expenses, for: Date())
+        case .month:
+            return transactionGroupForCurrentMonth(expenses:expenses)
+        case .year:
+            return getMonthlyExpenseSum(expenses: expenses)
         }
-        return groupedExpenses
     }
     
     func totalSpentLabel(for expenses: TransactionGroup) -> some View {
@@ -112,11 +100,11 @@ struct ChartsView: View {
                     VStack {
                         Form {
                             
-                            let groupedExpenses = getMonthlyExpenseSum()
+                            let groupedExpenses = groupedExpenses
                             
                             HStack {
                                 //MARK: PICKER FOR CHARTS
-                                ChartsPicker()
+                                ChartsPicker(barGraphPicker: $currentGraphTimeFrame)
                                 
                                 Spacer()
                                 

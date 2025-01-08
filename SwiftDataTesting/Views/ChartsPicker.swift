@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ChartsPicker: View {
-    @State private var barGraphPicker: TimePeriods = .year
-    
+    @Binding var barGraphPicker: TimePeriods
+
     var body: some View {
         Menu {
             ForEach(TimePeriods.allCases, id: \.self) { option in
                 Button {
                     self.barGraphPicker = option
                 } label: {
-                    Label(option.rawValue, systemImage: "")
+                    Text(option.rawValue)
                 }
                 
             }
@@ -43,5 +43,6 @@ enum TimePeriods: String, CaseIterable, Identifiable {
 }
 
 #Preview {
-    ChartsPicker()
+    @Previewable @State var timePeriod: TimePeriods = .day
+    ChartsPicker(barGraphPicker: $timePeriod)
 }
