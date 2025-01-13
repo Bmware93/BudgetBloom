@@ -25,5 +25,5 @@ struct ExpenseCellView: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return ExpenseCellView(expense: Expense(name: "The Red Hook", date: .now, amount: 12.80, category: .food)).modelContainer(preview.container)
+    ExpenseCellView(expense: Expense(name: "The Red Hook", date: .now, amount: 12.80, category: .food, expenseDescription: "")).modelContainer(preview.container)
 }

@@ -57,25 +57,25 @@ struct BarChartView: View {
     BarChartView(groupedExpenses: [
     "January": (
         expenses: [
-            Expense(name: "Apples", date: Date(), amount: 5.50, category: .food),
-            Expense(name: "Movie Ticket", date: Date(), amount: 12.00, category: .entertainment),
-            Expense(name: "Electricity Bill", date: Date(), amount: 50.00, category: .utilities)
+            Expense(name: "Apples", date: Date(), amount: 5.50, category: .food, expenseDescription: ""),
+            Expense(name: "Movie Ticket", date: Date(), amount: 12.00, category: .entertainment, expenseDescription: ""),
+            Expense(name: "Electricity Bill", date: Date(), amount: 50.00, category: .utilities, expenseDescription: "")
         ],
         sum: 67.50
     ),
     "February": (
         expenses: [
-            Expense(name: "Bread", date: Date(), amount: 3.75, category: .food),
-            Expense(name: "Gas", date: Date(), amount: 40.00, category: .transportation),
-            Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subcription)
+            Expense(name: "Bread", date: Date(), amount: 3.75, category: .food, expenseDescription: ""),
+            Expense(name: "Gas", date: Date(), amount: 40.00, category: .transportation, expenseDescription: ""),
+            Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subcription, expenseDescription: "")
         ],
         sum: 59.74
     ),
     "March": (
         expenses: [
-            Expense(name: "Milk", date: Date(), amount: 4.00, category: .food),
-            Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities),
-            Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .transportation)
+            Expense(name: "Milk", date: Date(), amount: 4.00, category: .food, expenseDescription: ""),
+            Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities, expenseDescription: ""),
+            Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .transportation, expenseDescription: "")
         ],
         sum: 36.75
     )])

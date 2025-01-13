@@ -21,7 +21,7 @@
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
 		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
 		1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */; };
-		1ADD52162B471750008F9C22 /* EditExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */; };
+		1ADD52162B471750008F9C22 /* EditExpenseSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52152B471750008F9C22 /* EditExpenseSheetView.swift */; };
 		1AF4EF872B1645A800027548 /* SwiftDataTestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */; };
 		1AF4EF892B1645A800027548 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EF882B1645A800027548 /* ContentView.swift */; };
 		1AF4EF8B2B1645AA00027548 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AF4EF8A2B1645AA00027548 /* Assets.xcassets */; };
@@ -63,7 +63,7 @@
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		1ADD52112B471175008F9C22 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
 		1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseSheet.swift; sourceTree = "<group>"; };
-		1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseSheet.swift; sourceTree = "<group>"; };
+		1ADD52152B471750008F9C22 /* EditExpenseSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseSheetView.swift; sourceTree = "<group>"; };
 		1AF4EF832B1645A800027548 /* SwiftDataExpensesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataExpensesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingApp.swift; sourceTree = "<group>"; };
 		1AF4EF882B1645A800027548 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,8 +111,7 @@
 				1AF4EF882B1645A800027548 /* ContentView.swift */,
 				1A0448DD2B6826DD00E19BFE /* AppTabView.swift */,
 				1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */,
-				1ADD52152B471750008F9C22 /* EditExpenseSheet.swift */,
-				1A9670662C07BEB0007B1107 /* ChartsPicker.swift */,
+				1ADD52152B471750008F9C22 /* EditExpenseSheetView.swift */,
 				1ADD52112B471175008F9C22 /* ExpenseCellView.swift */,
 				1A0448E12B682CB100E19BFE /* SettingsView.swift */,
 				1A9670612C078219007B1107 /* Charts */,
@@ -130,6 +129,14 @@
 				1AD741152D2D7D1D0060C400 /* ChartFunctions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1A7269C72D355A5900636500 /* ChartComponets */ = {
+			isa = PBXGroup;
+			children = (
+				1A9670662C07BEB0007B1107 /* ChartsPicker.swift */,
+			);
+			path = ChartComponets;
 			sourceTree = "<group>";
 		};
 		1A9670612C078219007B1107 /* Charts */ = {
@@ -170,6 +177,7 @@
 				1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */,
 				1A0C1D422C921BCA008167F6 /* Models */,
 				1A0448E32B682CEB00E19BFE /* Views */,
+				1A7269C72D355A5900636500 /* ChartComponets */,
 				1AF4EF8A2B1645AA00027548 /* Assets.xcassets */,
 				1AF4EF8F2B1645AA00027548 /* SwiftDataTesting.entitlements */,
 				1AF4EF8C2B1645AA00027548 /* Preview Content */,
@@ -338,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADD52162B471750008F9C22 /* EditExpenseSheet.swift in Sources */,
+				1ADD52162B471750008F9C22 /* EditExpenseSheetView.swift in Sources */,
 				1A65610E2BF2B578000559E0 /* CategoryData.swift in Sources */,
 				1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */,
 				1AF4EFB22B16460900027548 /* ExpenseModel.swift in Sources */,
@@ -519,7 +527,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -551,7 +559,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -97,7 +97,7 @@ struct ContentView: View {
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
-            .sheet(item: $expenseToEdit, content: EditExpenseSheet.init)
+            .sheet(item: $expenseToEdit, content: EditExpenseSheetView.init)
             .toolbar {
                 if !expenses.isEmpty {
                     Button("Add Expense", systemImage: "plus") {
