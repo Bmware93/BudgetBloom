@@ -26,12 +26,6 @@ extension String {
 }
 
 extension Color {
-    static let DarkBlue = Color.brandDarkBlue
-    static let lightblue = Color.brandLightBlue
-    static let navyBlue = Color.brandNavyBlue
-    static let brandGreen = Color.brandTeaGreen
-    static let brandColorWhite = Color.brandWhite
-    
     static let bbDarkPurple = Color.bbPurple
     static let bbLPurple = Color.bbLightPurple
     static let bbDarkGreen = Color.bbGreen
