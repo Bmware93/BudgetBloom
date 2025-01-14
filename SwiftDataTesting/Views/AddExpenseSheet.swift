@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct AddExpenseSheet: View {
-    
     //Inserting the model context into the expense sheet view
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
@@ -26,14 +25,15 @@ struct AddExpenseSheet: View {
          !name.isEmpty && amount > 0
     }
     
-    
     var body: some View {
         NavigationStack {
             Form {
                 TextField("Expense Name", text: $name)
+                    .submitLabel(.continue)
                 DatePicker("Date", selection: $date, displayedComponents: .date)
                 TextField("Value", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     .keyboardType(.decimalPad)
+                    .submitLabel(.continue)
                     
                     
                 Picker("Category", selection: $spendingCategory) {
@@ -45,6 +45,8 @@ struct AddExpenseSheet: View {
                 
                 Section("Description") {
                     TextEditor(text: $expenseDescription)
+                        .font(.custom("HelveticaNeue", size: 18))
+                    
                 }
             }
             .navigationTitle("New Expense")

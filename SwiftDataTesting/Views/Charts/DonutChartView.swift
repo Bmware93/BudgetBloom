@@ -59,7 +59,6 @@ struct DonutChartView: View {
                         }
                 
             }
-            
         
             VStack {
                 Text(selectedCategory?.category.rawValue ?? "Tap a section")
