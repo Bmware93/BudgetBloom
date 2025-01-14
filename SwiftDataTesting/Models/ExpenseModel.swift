@@ -22,6 +22,7 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     var date: Date
     var amount: Double
     var category: SpendingCategory
+    var expenseDescription: String
      
     //Computed Properties
     var dateParsed: Date {
@@ -43,11 +44,12 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
      }
     
      
-     init(name: String, date: Date, amount: Double, category: SpendingCategory = .undefined) {
+     init(name: String, date: Date, amount: Double, category: SpendingCategory = .undefined, expenseDescription: String) {
          self.name = name
          self.date = date
          self.amount = amount
          self.category = category
+         self.expenseDescription = expenseDescription
      }
 }
 

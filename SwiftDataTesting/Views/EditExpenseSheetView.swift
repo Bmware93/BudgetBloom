@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct EditExpenseSheet: View {
+struct EditExpenseSheetView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Bindable var expense: Expense
@@ -28,6 +28,9 @@ struct EditExpenseSheet: View {
                 }
                 .pickerStyle(.navigationLink)
                 
+                Section("Description") {
+                    TextEditor(text: $expense.expenseDescription)
+                }
             }
             .navigationTitle("Update Expense")
             .navigationBarTitleDisplayMode(.inline)
@@ -44,5 +47,5 @@ struct EditExpenseSheet: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return EditExpenseSheet(expense: Expense(name: "", date: .now, amount: 0, category: .clothing)).modelContainer(preview.container)
+    return EditExpenseSheetView(expense: Expense(name: "The Red Hook", date: .now, amount: 0, category: .food, expenseDescription: "Bought 2x chai lattes")).modelContainer(preview.container)
 }

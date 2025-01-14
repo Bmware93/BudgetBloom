@@ -15,7 +15,6 @@ struct SwiftDataTestingApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView()
-          
         }
         .modelContainer(for: [Expense.self])
     }

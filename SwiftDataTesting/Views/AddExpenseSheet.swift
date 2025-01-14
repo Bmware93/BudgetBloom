@@ -19,6 +19,7 @@ struct AddExpenseSheet: View {
     @State private var date: Date = .now
     @State private var amount: Double = 0.0
     @State private var spendingCategory:SpendingCategory = .undefined
+    @State private var expenseDescription: String = ""
     
     //Disabled add expense button until all data is entered
     var isFormValid: Bool {
@@ -41,6 +42,10 @@ struct AddExpenseSheet: View {
                     }
                 }
                 .pickerStyle(.navigationLink)
+                
+                Section("Description") {
+                    TextEditor(text: $expenseDescription)
+                }
             }
             .navigationTitle("New Expense")
             .navigationBarTitleDisplayMode(.inline)
@@ -50,7 +55,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: name, date: date, amount: amount, category: spendingCategory)
+                        let expense = Expense(name: name, date: date, amount: amount, category: spendingCategory, expenseDescription: expenseDescription)
                         //Inserts data in the context container
                         context.insert(expense)
                         
