@@ -528,7 +528,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -561,7 +561,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
