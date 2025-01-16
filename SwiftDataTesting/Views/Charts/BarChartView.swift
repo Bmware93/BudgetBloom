@@ -50,6 +50,7 @@ struct BarChartView: View {
             AxisMarks(stroke: StrokeStyle(dash:[7]))
         }
         .listRowSeparator(.hidden)
+        
     }
 }
 
