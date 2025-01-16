@@ -106,11 +106,12 @@ struct ContentView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Image("icon")
+                ToolbarItem(placement: .topBarLeading) {
+                    Image("BrandIcon")
                         .resizable()
                         .scaledToFit()
                         .animation(.spring)
+                        
                 }
             }
             .overlay {
@@ -129,7 +130,6 @@ struct ContentView: View {
                         }
 
                     }
-             
                     .offset(y: -60)
                 }
                     

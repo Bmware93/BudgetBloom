@@ -78,10 +78,12 @@ func getDailyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup
     
     //Calculate the sum of the filtered expenses
     let totalSum = filteredExpenses.reduce(0.0) { $0 + $1.amount }
-    
+    if totalSum == 0 {
+        return [:]
+    }
     //Format the date as a string key
     let dateKey = dateFormatter.string(from: date)
-    
+  
     //Return the TransactionGroup
     return [dateKey: (expenses: filteredExpenses, sum: totalSum)]
 }

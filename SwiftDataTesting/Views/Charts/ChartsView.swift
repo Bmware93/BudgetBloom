@@ -57,6 +57,10 @@ struct ChartsView: View {
             .mapValues{$0.reduce(0) {$0 + $1.amount }}
     }
     
+    var expensesFromTopTotal: [SpendingCategory: [Expense]] {
+        Dictionary(grouping: expenses, by: {$0.category})
+    }
+    
     var topCategoryTotals: [CategoryTotal] {
         categoryTotals
             .map { CategoryTotal(category: $0.key, total: $0.value) }
@@ -116,7 +120,11 @@ struct ChartsView: View {
                             //MARK: Bar Chart starts here
                             BarChartView(groupedExpenses: groupedExpenses)
                                 .frame(minHeight: 230)
-                            
+                                .overlay {
+                                    if groupedExpenses.isEmpty {
+                                        ContentUnavailableView("No Transactions Found", systemImage: "creditcard.trianglebadge.exclamationmark")
+                                    }
+                                }
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
@@ -140,6 +148,7 @@ struct ChartsView: View {
                                                     Circle()
                                                         .frame(width: 10, height: 10)
                                                         .foregroundStyle(color(for: categorySelected.category))
+                                                
                                                     Text(categorySelected.category.rawValue)
                                                     
                                                     Spacer()
@@ -147,8 +156,9 @@ struct ChartsView: View {
                                                     VStack(alignment: .leading) {
                                                         Text(currencyFormat(value:categorySelected.total))
                                                     }
-                                                    
                                                 }
+                                                    
+                                                
                                             }
                                         }
                                         

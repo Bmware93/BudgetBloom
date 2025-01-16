@@ -13,7 +13,7 @@ struct CategoryTotal: Identifiable {
     var id: String { category.rawValue }
     var category: SpendingCategory
     var total: Double
-    
+    var expenses: [Expense] = []
 }
 
 
