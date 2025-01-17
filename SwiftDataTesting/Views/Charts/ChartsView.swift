@@ -140,30 +140,36 @@ struct ChartsView: View {
                                             
                                         }
 
-                                    
-                                    GroupBox {
-                                        VStack(alignment: .leading) {
-                                            ForEach(topCategoryTotals) { categorySelected in
-                                                HStack {
-                                                    Circle()
-                                                        .frame(width: 10, height: 10)
-                                                        .foregroundStyle(color(for: categorySelected.category))
-                                                
-                                                    Text(categorySelected.category.rawValue)
+                                    Section {
+                                        GroupBox {
+                                            VStack(alignment: .leading) {
+                                                ForEach(topCategoryTotals) { categorySelected in
+                                                    HStack {
+                                                        Circle()
+                                                            .frame(width: 10, height: 10)
+                                                            .foregroundStyle(color(for: categorySelected.category))
                                                     
-                                                    Spacer()
-                                                    
-                                                    VStack(alignment: .leading) {
-                                                        Text(currencyFormat(value:categorySelected.total))
+                                                        Text(categorySelected.category.rawValue)
+                                                        
+                                                        Spacer()
+                                                        
+                                                        VStack(alignment: .leading) {
+                                                            Text(currencyFormat(value:categorySelected.total))
+                                                        }
                                                     }
-                                                }
+                                                        
                                                     
-                                                
+                                                }
                                             }
+                                            
                                         }
-                                        
+                                        .padding(.bottom)
+                                    } header: {
+                                        Text("Top Spending Categories")
+                                            .font(.headline)
+                                            .fontWeight(.light)
                                     }
-                                    .padding(.bottom)
+                                    
                                 }
                                 .padding(.top, 25)
 
