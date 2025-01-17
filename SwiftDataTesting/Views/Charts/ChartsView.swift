@@ -140,7 +140,7 @@ struct ChartsView: View {
                                             
                                         }
 
-                                    Section("Top Spending Categories") {
+                                    Section {
                                         GroupBox {
                                             VStack(alignment: .leading) {
                                                 ForEach(topCategoryTotals) { categorySelected in
@@ -164,6 +164,10 @@ struct ChartsView: View {
                                             
                                         }
                                         .padding(.bottom)
+                                    } header: {
+                                        Text("Top Spending Categories")
+                                            .font(.headline)
+                                            .fontWeight(.light)
                                     }
                                     
                                 }
