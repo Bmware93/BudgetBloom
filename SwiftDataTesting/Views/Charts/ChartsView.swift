@@ -36,7 +36,7 @@ struct ChartsView: View {
         case .day:
             return getTodayCategoryTotals(from: expenses)
         case .week:
-            return topCategoryTotals
+            return getWeekCategoryTotals(from: expenses)
         case .month:
             return topCategoryTotals
         case .year:
