@@ -73,8 +73,34 @@ func getMonthCategoryTotals(from expenses: [Expense]) -> [CategoryTotal] {
         .map { category, expenses in
             CategoryTotal(category: category, total: expenses.reduce(0) { $0 + $1.amount })
         }
-        .sorted { $0.total > $1.total } // Sort by total in descending order
+        .sorted { $0.total > $1.total } 
 
     return categoryTotals
 }
+
+func getYearCategoryTotals(from expenses: [Expense]) -> [CategoryTotal] {
+    let calendar = Calendar.current
+    let now = Date()
+    
+    // Get the start of the current year
+    let yearStart = calendar.date(from: calendar.dateComponents([.year], from: now))!
+    
+    // Get the end of the current year
+    let yearEnd = calendar.date(byAdding: DateComponents(year: 1, day: -1), to: yearStart)!
+    
+    // Filter expenses within the current year
+    let yearExpenses = expenses.filter { expense in
+        expense.date >= yearStart && expense.date <= yearEnd
+    }
+
+    // Group, sum, and sort expenses by category totals
+    let categoryTotals = Dictionary(grouping: yearExpenses, by: { $0.category })
+        .map { category, expenses in
+            CategoryTotal(category: category, total: expenses.reduce(0) { $0 + $1.amount })
+        }
+        .sorted { $0.total > $1.total }
+
+    return categoryTotals
+}
+
 

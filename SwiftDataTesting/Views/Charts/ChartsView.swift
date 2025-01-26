@@ -40,7 +40,7 @@ struct ChartsView: View {
         case .month:
             return getMonthCategoryTotals(from: expenses)
         case .year:
-            return topCategoryTotals
+            return getYearCategoryTotals(from: expenses)
         }
     }
     
