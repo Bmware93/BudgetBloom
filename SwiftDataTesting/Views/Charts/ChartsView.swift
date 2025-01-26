@@ -31,6 +31,19 @@ struct ChartsView: View {
         }
     }
     
+    var donutChartData: [CategoryTotal] {
+        switch currentGraphTimeFrame {
+        case .day:
+            return getTodayCategoryTotals(from: expenses)
+        case .week:
+            return topCategoryTotals
+        case .month:
+            return topCategoryTotals
+        case .year:
+            return topCategoryTotals
+        }
+    }
+    
     func contentUnavailablemessage() -> some View {
         var message: String {
             switch currentGraphTimeFrame {
@@ -74,7 +87,7 @@ struct ChartsView: View {
     }
     
     func color(for category: SpendingCategory) -> Color {
-        guard let index = topCategoryTotals.firstIndex(where: { $0.category == category }),
+        guard let index = donutChartData.firstIndex(where: { $0.category == category }),
               index < chartColors.count else {
             return .gray // Default color for categories not in the top 4
         }
@@ -158,10 +171,9 @@ struct ChartsView: View {
                             DisclosureGroup("Spending Insights") {
                                 VStack {
                                     //MARK: Donut Chart starts here
-                                    DonutChartView(categoryTotals: topCategoryTotals, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
+                                    DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
                                         .frame(minWidth: 280, minHeight: 280)
                                         .onChange(of: selectedCount) { oldValue, newValue in
-                                            print("Old Value: \(String(describing: oldValue)), New Value: \(String(describing: newValue))")
                                             guard let newValue  else { return }
                                             withAnimation(.bouncy) {
                                                 selectedCategory = getSelectedCategory(value: newValue)
@@ -172,7 +184,7 @@ struct ChartsView: View {
                                     Section {
                                         GroupBox {
                                             VStack(alignment: .leading) {
-                                                ForEach(topCategoryTotals) { categorySelected in
+                                                ForEach(donutChartData) { categorySelected in
                                                     HStack {
                                                         Circle()
                                                             .frame(width: 10, height: 10)
