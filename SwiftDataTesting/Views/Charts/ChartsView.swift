@@ -31,6 +31,35 @@ struct ChartsView: View {
         }
     }
     
+    func contentUnavailablemessage() -> some View {
+        var message: String {
+            switch currentGraphTimeFrame {
+            case .day:
+                return "🌱 Nothing spent today"
+            case .week:
+                return "🌱 A quiet week so far"
+            case .month:
+                return "🌱 A fresh start this month"
+            case .year:
+                return "🌱 Your year awaits"
+            }
+        }
+        
+        var description: Text {
+           switch currentGraphTimeFrame {
+           case .day:
+                return Text("Looks like your wallet’s enjoying a break! Add your expenses to start cultivating today’s spending insights.")
+            case .week:
+                return Text("Log some expenses to see how your spending shapes up over the days.")
+            case .month:
+                return Text("Start recording your expenses to see your monthly spending.")
+            case .year:
+                return Text("Add some expenses to track how your spending blossoms over the year.")
+            }
+        }
+        return ContentUnavailableView(message, image: "", description: description)
+    }
+    
     func totalSpentLabel(for expenses: TransactionGroup) -> some View {
         VStack(spacing: -10) {
             Text(currencyFormat(value: expenses.values.reduce(0) { $0 + $1.sum }))
@@ -118,13 +147,13 @@ struct ChartsView: View {
                             .padding(.bottom, 25)
                             
                             //MARK: Bar Chart starts here
-                            BarChartView(groupedExpenses: groupedExpenses)
-                                .frame(minHeight: 230)
-                                .overlay {
-                                    if groupedExpenses.isEmpty {
-                                        ContentUnavailableView("No Transactions Found", systemImage: "creditcard.trianglebadge.exclamationmark")
-                                    }
-                                }
+                            if groupedExpenses.isEmpty {
+                                contentUnavailablemessage()
+                                    .offset(y: -30)
+                            } else {
+                                BarChartView(groupedExpenses: groupedExpenses)
+                                    .frame(minHeight: 230)
+                            }
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
@@ -134,12 +163,12 @@ struct ChartsView: View {
                                         .onChange(of: selectedCount) { oldValue, newValue in
                                             print("Old Value: \(String(describing: oldValue)), New Value: \(String(describing: newValue))")
                                             guard let newValue  else { return }
-                                                    withAnimation(.bouncy) {
-                                                        selectedCategory = getSelectedCategory(value: newValue)
-                                                    }
+                                            withAnimation(.bouncy) {
+                                                selectedCategory = getSelectedCategory(value: newValue)
+                                            }
                                             
                                         }
-
+                                    
                                     Section {
                                         GroupBox {
                                             VStack(alignment: .leading) {
@@ -148,7 +177,7 @@ struct ChartsView: View {
                                                         Circle()
                                                             .frame(width: 10, height: 10)
                                                             .foregroundStyle(color(for: categorySelected.category))
-                                                    
+                                                        
                                                         Text(categorySelected.category.rawValue)
                                                         
                                                         Spacer()
@@ -157,7 +186,7 @@ struct ChartsView: View {
                                                             Text(currencyFormat(value:categorySelected.total))
                                                         }
                                                     }
-                                                        
+                                                    
                                                     
                                                 }
                                             }
@@ -172,7 +201,7 @@ struct ChartsView: View {
                                     
                                 }
                                 .padding(.top, 25)
-
+                                
                             }
                             .tint(.accentColor)
                             
