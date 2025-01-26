@@ -74,11 +74,11 @@ struct ChartsView: View {
     }
     
     func color(for category: SpendingCategory) -> Color {
-        let sortedCategories = topCategoryTotals.map { $0.category }.sorted(by: { $0.rawValue < $1.rawValue })
-        if let index = sortedCategories.firstIndex(of: category) {
-            return chartColors[index % chartColors.count]
+        guard let index = topCategoryTotals.firstIndex(where: { $0.category == category }),
+              index < chartColors.count else {
+            return .gray // Default color for categories not in the top 4
         }
-        return .gray
+        return chartColors[index]
     }
     
     var categoryTotals: [SpendingCategory: Double] {
