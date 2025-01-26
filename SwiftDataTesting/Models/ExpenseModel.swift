@@ -57,7 +57,7 @@ enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
     case housing = "Housing"
     case transportation = "Transportation"
     case utilities = "Utilities"
-    case subcription = "Subsciption"
+    case subscription = "Subscription"
     case clothing = "Clothing"
     case childcare = "Child Care"
     case debt = "Debt"
@@ -80,7 +80,6 @@ func currencyFormat(value: Double) -> String {
     formatter.locale = .current // Adjust if you want a specific locale
     return formatter.string(from: NSNumber(value: value)) ?? "$\(value)"
 }
-
 
 enum CurrencyCode:String, CaseIterable {
     case USD

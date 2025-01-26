@@ -68,7 +68,7 @@ struct BarChartView: View {
         expenses: [
             Expense(name: "Bread", date: Date(), amount: 3.75, category: .food, expenseDescription: ""),
             Expense(name: "Gas", date: Date(), amount: 40.00, category: .transportation, expenseDescription: ""),
-            Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subcription, expenseDescription: "")
+            Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subscription, expenseDescription: "")
         ],
         sum: 59.74
     ),

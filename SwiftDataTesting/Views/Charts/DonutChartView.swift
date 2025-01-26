@@ -86,7 +86,7 @@ struct DonutChartView: View {
         CategoryTotal(category: .housing, total: 1200.00),
         CategoryTotal(category: .transportation, total: 250.50),
         CategoryTotal(category: .utilities, total: 150.75),
-        CategoryTotal(category: .subcription, total: 50.00),
+        CategoryTotal(category: .subscription, total: 50.00),
         CategoryTotal(category: .clothing, total: 75.00),
         CategoryTotal(category: .childcare, total: 300.00),
         CategoryTotal(category: .debt, total: 200.00),
