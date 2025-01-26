@@ -16,7 +16,7 @@
 		1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670642C079DD8007B1107 /* BarChartView.swift */; };
 		1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670662C07BEB0007B1107 /* ChartsPicker.swift */; };
 		1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */; };
-		1AD741162D2D7D1D0060C400 /* ChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741152D2D7D1D0060C400 /* ChartFunctions.swift */; };
+		1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */; };
 		1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520D2B44ACBA008F9C22 /* extensions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
 		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
@@ -30,6 +30,7 @@
 		1AF4EFA32B1645AA00027548 /* SwiftDataTestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */; };
 		1AF4EFA52B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */; };
 		1AF4EFB22B16460900027548 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4EFB12B16460900027548 /* ExpenseModel.swift */; };
+		1AFB20972D46D5F90098DDE0 /* DonutChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,7 @@
 		1A9670642C079DD8007B1107 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		1A9670662C07BEB0007B1107 /* ChartsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPicker.swift; sourceTree = "<group>"; };
 		1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
-		1AD741152D2D7D1D0060C400 /* ChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartFunctions.swift; sourceTree = "<group>"; };
+		1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartFunctions.swift; sourceTree = "<group>"; };
 		1ADD520D2B44ACBA008F9C22 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		1ADD52112B471175008F9C22 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1AF4EFB12B16460900027548 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		1AF4EFB52B19264B00027548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,8 @@
 				1AF4EFB12B16460900027548 /* ExpenseModel.swift */,
 				1A65610D2BF2B578000559E0 /* CategoryData.swift */,
 				1ADD520D2B44ACBA008F9C22 /* extensions.swift */,
-				1AD741152D2D7D1D0060C400 /* ChartFunctions.swift */,
+				1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */,
+				1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,10 +354,11 @@
 				1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */,
 				1AF4EFB22B16460900027548 /* ExpenseModel.swift in Sources */,
 				1AF4EF892B1645A800027548 /* ContentView.swift in Sources */,
-				1AD741162D2D7D1D0060C400 /* ChartFunctions.swift in Sources */,
+				1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */,
 				1A9670632C078256007B1107 /* DonutChartView.swift in Sources */,
 				1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */,
 				1A0448DE2B6826DD00E19BFE /* AppTabView.swift in Sources */,
+				1AFB20972D46D5F90098DDE0 /* DonutChartFunctions.swift in Sources */,
 				1AF4EF872B1645A800027548 /* SwiftDataTestingApp.swift in Sources */,
 				1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */,
 				1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */,
