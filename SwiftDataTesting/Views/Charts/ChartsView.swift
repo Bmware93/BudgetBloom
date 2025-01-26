@@ -13,7 +13,7 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
-    let chartColors = [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink]
+    let chartColors = [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink, .bbDarkGreen]
     @State private var selectedCount: Double?
     @State var selectedCategory: CategoryTotal?
     @State private var currentGraphTimeFrame: TimePeriods = .year
@@ -38,7 +38,7 @@ struct ChartsView: View {
         case .week:
             return getWeekCategoryTotals(from: expenses)
         case .month:
-            return topCategoryTotals
+            return getMonthCategoryTotals(from: expenses)
         case .year:
             return topCategoryTotals
         }
