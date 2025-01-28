@@ -11,7 +11,7 @@ func transactionGroupForCurrentMonth(expenses: [Expense]) -> TransactionGroup {
     var result: TransactionGroup = [:]
     
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMMM"
+    dateFormatter.dateFormat = "MMMM yyyy"
     
     let calendar = Calendar.current
     let currentMonth = calendar.component(.month, from: Date()) //Current month as an integer
@@ -69,7 +69,7 @@ func getMonthlyExpenseSum(expenses: [Expense]) -> TransactionGroup {
 func getDailyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup {
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
+    dateFormatter.dateStyle = .long
     
     //Filter expenses for the specific day
     let filteredExpenses = expenses.filter { expense in

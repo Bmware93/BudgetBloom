@@ -42,7 +42,6 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
           
           return String(abbrevMonth)
      }
-    
      
      init(name: String, date: Date, amount: Double, category: SpendingCategory = .undefined, expenseDescription: String) {
          self.name = name
@@ -55,7 +54,9 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
 
 enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
     case housing = "Housing"
+    case toiletries = "Toiletries"
     case transportation = "Transportation"
+    case travel = "Travel/Vacation"
     case utilities = "Utilities"
     case subscription = "Subscription"
     case clothing = "Clothing"

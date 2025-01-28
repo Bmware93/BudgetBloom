@@ -11,6 +11,7 @@ import Charts
 
 struct BarChartView: View {
     @State private var isAnimating = false
+    @State private var rawSelectedDate: String?
     let groupedExpenses: TransactionGroup
     
     //Getting max amount spent in a month
@@ -37,6 +38,10 @@ struct BarChartView: View {
         }
         .frame(minHeight: 200)
         .chartLegend(.hidden)
+        .chartXSelection(value: $rawSelectedDate)
+        .onChange(of: rawSelectedDate) { oldValue, newValue in
+            print(newValue)
+        }
         .chartForegroundStyleScale(range: [Color.bbLGreen, .bbLPurple,.bbDarkGreen])
         .animateOnAppear(isAnimating: $isAnimating)
         .chartYScale(domain: 0...maxSpending)

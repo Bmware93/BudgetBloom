@@ -46,7 +46,7 @@ struct DonutChartView: View {
             .chartLegend(.hidden)
             .chartAngleSelection(value: $selectedCount)
             .chartForegroundStyleScale(
-                range: [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink])
+                range: [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink, .bbDarkGreen])
             .animateOnAppear(isAnimating: $isAnimating)
             .onAppear {
                 print("Selected Count on Appear: \(String(describing: selectedCount))")
