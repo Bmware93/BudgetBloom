@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var enablePushNotifications = false
-    @State private var currencyCode: CurrencyCode = .USD
+    @State var currencyCode: CurrencyCode = .USD
     
     var body: some View {
         NavigationStack {
