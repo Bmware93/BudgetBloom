@@ -165,21 +165,16 @@ struct ChartsView: View {
                                     .offset(y: -30)
                             } else {
                                 BarChartView(groupedExpenses: groupedExpenses)
-                                    .frame(minHeight: 230)
+                                    .frame(minHeight: 285)
                             }
                             
                             DisclosureGroup("Spending Insights") {
                                 VStack {
                                     //MARK: Donut Chart starts here
                                     DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
-                                        .frame(minWidth: 280, minHeight: 280)
-                                        .onChange(of: selectedCount) { oldValue, newValue in
-                                            guard let newValue  else { return }
-                                            withAnimation(.bouncy) {
-                                                selectedCategory = getSelectedCategory(value: newValue)
-                                            }
-                                            
-                                        }
+                                        .frame(minWidth: 300, minHeight: 300)
+                                        .clipped(antialiased: false)
+                                        
                                     
                                     Section {
                                         GroupBox {
@@ -223,7 +218,7 @@ struct ChartsView: View {
                 }
                 
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Summary")
         }
     }

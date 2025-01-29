@@ -30,10 +30,9 @@ struct BarChartView: View {
     var body: some View {
         
         Chart {
-           
-                ForEach(groupedExpenses.keys, id: \.self) { month in
-                    if let group = groupedExpenses[month] {
-                        
+            ForEach(groupedExpenses.keys, id: \.self) { month in
+                if let group = groupedExpenses[month] {
+                    
                     BarMark(
                         x: .value("Month", month),
                         y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
@@ -43,12 +42,17 @@ struct BarChartView: View {
                     .cornerRadius(5)
                 }
             }
-            if let selectedMonth {
-                RuleMark(x: .value("Selected Month", selectedMonth))
-                    .foregroundStyle(.secondary.opacity(0.3))
-                    .annotation(alignment: .top, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        Text("Selected Month")
+            if let selectedMonth, let selectedGroup = groupedExpenses[selectedMonth] {
+                        RuleMark(x: .value("Selected Month", selectedMonth))
+                            .foregroundStyle(.secondary.opacity(0.3))
+                            .annotation(alignment: .top, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
+                                VStack {
+                                    Text(selectedMonth)
+                                        .bold()
+                                    
+                                    Text(currencyFormat(value: selectedGroup.sum))
                     }
+                }
             }
         }
         .frame(height: 200)
@@ -61,40 +65,38 @@ struct BarChartView: View {
         .chartXAxis {
             AxisMarks(values: .automatic, stroke: StrokeStyle(lineWidth: 0))
         }
-        
         .chartYAxis {
             AxisMarks(stroke: StrokeStyle(dash:[7]))
         }
         .listRowSeparator(.hidden)
-        
     }
 }
 
 #Preview {
     BarChartView(groupedExpenses: [
-    "January": (
-        expenses: [
-            Expense(name: "Apples", date: Date(), amount: 5.50, category: .food, expenseDescription: ""),
-            Expense(name: "Movie Ticket", date: Date(), amount: 12.00, category: .entertainment, expenseDescription: ""),
-            Expense(name: "Electricity Bill", date: Date(), amount: 50.00, category: .utilities, expenseDescription: "")
-        ],
-        sum: 67.50
-    ),
-    "February": (
-        expenses: [
-            Expense(name: "Bread", date: Date(), amount: 3.75, category: .food, expenseDescription: ""),
-            Expense(name: "Gas", date: Date(), amount: 40.00, category: .transportation, expenseDescription: ""),
-            Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subscription, expenseDescription: "")
-        ],
-        sum: 59.74
-    ),
-    "March": (
-        expenses: [
-            Expense(name: "Milk", date: Date(), amount: 4.00, category: .food, expenseDescription: ""),
-            Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities, expenseDescription: ""),
-            Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .transportation, expenseDescription: "")
-        ],
-        sum: 36.75
-    )])
+        "January": (
+            expenses: [
+                Expense(name: "Apples", date: Date(), amount: 5.50, category: .food, expenseDescription: ""),
+                Expense(name: "Movie Ticket", date: Date(), amount: 12.00, category: .entertainment, expenseDescription: ""),
+                Expense(name: "Electricity Bill", date: Date(), amount: 50.00, category: .utilities, expenseDescription: "")
+            ],
+            sum: 67.50
+        ),
+        "February": (
+            expenses: [
+                Expense(name: "Bread", date: Date(), amount: 3.75, category: .food, expenseDescription: ""),
+                Expense(name: "Gas", date: Date(), amount: 40.00, category: .transportation, expenseDescription: ""),
+                Expense(name: "Streaming Subscription", date: Date(), amount: 15.99, category: .subscription, expenseDescription: "")
+            ],
+            sum: 59.74
+        ),
+        "March": (
+            expenses: [
+                Expense(name: "Milk", date: Date(), amount: 4.00, category: .food, expenseDescription: ""),
+                Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities, expenseDescription: ""),
+                Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .transportation, expenseDescription: "")
+            ],
+            sum: 36.75
+        )])
     //.frame(minHeight: 230)
 }
