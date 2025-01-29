@@ -28,29 +28,38 @@ struct BarChartView: View {
     }
     
     var body: some View {
-        Chart(groupedExpenses.keys, id: \.self) { month in
-            if let group = groupedExpenses[month]  {
-                
-                BarMark(x: .value("Month", month),
+        
+        Chart {
+           
+                ForEach(groupedExpenses.keys, id: \.self) { month in
+                    if let group = groupedExpenses[month] {
+                        
+                    BarMark(
+                        x: .value("Month", month),
                         y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
-                )
-                .foregroundStyle(by: .value("Month", month))
-                .opacity(rawSelectedDate == nil  || month == selectedMonth ? 1.0 : 0.3)
-                .cornerRadius(5)
-                
+                    )
+                    .foregroundStyle(by: .value("Month", month))
+                    .opacity(rawSelectedDate == nil  || month == selectedMonth ? 1.0 : 0.3)
+                    .cornerRadius(5)
+                }
             }
-            
+            if let selectedMonth {
+                RuleMark(x: .value("Selected Month", selectedMonth))
+                    .foregroundStyle(.secondary.opacity(0.3))
+                    .annotation(alignment: .top, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
+                        Text("Selected Month")
+                    }
+            }
         }
-        .frame(minHeight: 200)
+        .frame(height: 200)
         .chartLegend(.hidden)
-        .chartXSelection(value: $rawSelectedDate)
+        .chartXSelection(value: $rawSelectedDate.animation(.easeInOut))
         .chartForegroundStyleScale(range: [Color.bbLGreen, .bbLPurple,.bbDarkGreen])
         .animateOnAppear(isAnimating: $isAnimating)
         .chartYScale(domain: 0...maxSpending)
         .padding(.bottom, 20)
         .chartXAxis {
             AxisMarks(values: .automatic, stroke: StrokeStyle(lineWidth: 0))
-           
         }
         
         .chartYAxis {
