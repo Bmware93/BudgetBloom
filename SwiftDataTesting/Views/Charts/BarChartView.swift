@@ -51,7 +51,6 @@ struct BarChartView: View {
                                         .bold()
                                     
                                     Text(currencyFormat(value: selectedGroup.sum))
-                        
                     }
                 }
             }
@@ -66,12 +65,10 @@ struct BarChartView: View {
         .chartXAxis {
             AxisMarks(values: .automatic, stroke: StrokeStyle(lineWidth: 0))
         }
-        
         .chartYAxis {
             AxisMarks(stroke: StrokeStyle(dash:[7]))
         }
         .listRowSeparator(.hidden)
-        
     }
 }
 
