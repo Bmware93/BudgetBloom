@@ -35,7 +35,7 @@ struct BarChartView: View {
                         y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
                 )
                 .foregroundStyle(by: .value("Month", month))
-                .opacity(rawSelectedDate == nil ? 1.0 : 0.3)
+                .opacity(rawSelectedDate == nil  || month == selectedMonth ? 1.0 : 0.3)
                 .cornerRadius(5)
                 
             }
