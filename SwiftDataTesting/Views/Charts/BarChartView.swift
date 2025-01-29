@@ -13,6 +13,10 @@ struct BarChartView: View {
     @State private var isAnimating = false
     @State private var rawSelectedDate: String?
     let groupedExpenses: TransactionGroup
+    var selectedMonth: String? {
+        guard let rawSelectedDate else { return nil }
+        return groupedExpenses.keys.first(where: { $0 == rawSelectedDate })
+    }
     
     //Getting max amount spent in a month
     //Defaults to 1000 if no values exist
@@ -31,6 +35,7 @@ struct BarChartView: View {
                         y: .value("Total Spent", isAnimating == false ? 50 : group.sum)
                 )
                 .foregroundStyle(by: .value("Month", month))
+                .opacity(rawSelectedDate == nil ? 1.0 : 0.3)
                 .cornerRadius(5)
                 
             }
@@ -39,9 +44,6 @@ struct BarChartView: View {
         .frame(minHeight: 200)
         .chartLegend(.hidden)
         .chartXSelection(value: $rawSelectedDate)
-        .onChange(of: rawSelectedDate) { oldValue, newValue in
-            print(newValue)
-        }
         .chartForegroundStyleScale(range: [Color.bbLGreen, .bbLPurple,.bbDarkGreen])
         .animateOnAppear(isAnimating: $isAnimating)
         .chartYScale(domain: 0...maxSpending)
