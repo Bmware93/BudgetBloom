@@ -17,7 +17,7 @@ struct SettingsView: View {
                 List {
                     Section(header: Text("Preferences")) {
                         Toggle("Push Notifications", systemImage: "bell.circle.fill", isOn: $enablePushNotifications)
-                            .toggleStyle(SwitchToggleStyle(tint: .accentColor))
+                            .toggleStyle(SwitchToggleStyle(tint: .bbLGreen))
                             .foregroundStyle(.primary)
                         
                         Picker("Currency", systemImage: "dollarsign.circle.fill", selection: $currencyCode) {
