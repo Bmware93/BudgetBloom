@@ -51,7 +51,11 @@ struct BarChartView: View {
                                         .bold()
                                     
                                     Text(currencyFormat(value: selectedGroup.sum))
-                    }
+                                }
+                                .padding(3)
+                                .frame(width: 135)
+                                .background(RoundedRectangle(cornerRadius: 10).fill(.bbLightPurple.gradient))
+                    
                 }
             }
         }
@@ -94,7 +98,7 @@ struct BarChartView: View {
             expenses: [
                 Expense(name: "Milk", date: Date(), amount: 4.00, category: .food, expenseDescription: ""),
                 Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities, expenseDescription: ""),
-                Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .transportation, expenseDescription: "")
+                Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .travel, expenseDescription: "")
             ],
             sum: 36.75
         )])

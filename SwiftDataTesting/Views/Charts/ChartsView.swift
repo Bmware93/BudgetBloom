@@ -143,7 +143,7 @@ struct ChartsView: View {
                     
                 } else {
                     
-                    VStack {
+                    //VStack {
                         Form {
                             
                             let groupedExpenses = groupedExpenses
@@ -165,7 +165,7 @@ struct ChartsView: View {
                                     .offset(y: -30)
                             } else {
                                 BarChartView(groupedExpenses: groupedExpenses)
-                                    .frame(minHeight: 285)
+                                    .frame(minHeight: 350)
                             }
                             
                             DisclosureGroup("Spending Insights") {
@@ -213,7 +213,7 @@ struct ChartsView: View {
                             .tint(.accentColor)
                             
                         }
-                    }
+                    //}
                     
                 }
                 
