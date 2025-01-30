@@ -144,7 +144,7 @@ struct ChartsView: View {
                 } else {
                     
                     //VStack {
-                        Form {
+                        List {
                             
                             let groupedExpenses = groupedExpenses
                             
@@ -178,7 +178,6 @@ struct ChartsView: View {
                                     
                                     Section {
                                         GroupBox {
-                                            VStack(alignment: .leading) {
                                                 ForEach(donutChartData) { categorySelected in
                                                     HStack {
                                                         Circle()
@@ -196,7 +195,6 @@ struct ChartsView: View {
                                                     
                                                     
                                                 }
-                                            }
                                             
                                         }
                                         .padding(.bottom)
@@ -213,12 +211,12 @@ struct ChartsView: View {
                             .tint(.accentColor)
                             
                         }
+                        .listRowSeparator(.hidden, edges: .bottom)
                     //}
                     
                 }
                 
             }
-            //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Summary")
         }
     }

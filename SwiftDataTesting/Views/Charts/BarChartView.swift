@@ -62,7 +62,7 @@ struct BarChartView: View {
         .frame(height: 200)
         .chartLegend(.hidden)
         .chartXSelection(value: $rawSelectedDate.animation(.easeInOut))
-        .chartForegroundStyleScale(range: [Color.bbLGreen, .bbLPurple,.bbDarkGreen])
+        .chartForegroundStyleScale(range: [Color.bbLightGreen.gradient, Color.bbLightPurple.gradient,Color.bbDarkPurple.gradient])
         .animateOnAppear(isAnimating: $isAnimating)
         .chartYScale(domain: 0...maxSpending)
         .padding(.bottom, 20)
