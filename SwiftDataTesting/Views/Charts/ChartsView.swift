@@ -13,7 +13,7 @@ import SwiftData
 struct ChartsView: View {
     @Environment(\.modelContext) var context
     @Query(sort: \Expense.date) var expenses: [Expense]
-    let chartColors = [Color.bbDarkPurple, .bbLGreen, .bbLPurple, .bloomPink, .bbDarkGreen]
+    let chartColors = [Color.bbDarkGreen, .bbLGreen, .bbLPurple, .bloomPink, .bbDarkPurple]
     @State private var selectedCount: Double?
     @State var selectedCategory: CategoryTotal?
     @State private var currentGraphTimeFrame: TimePeriods = .year
@@ -143,8 +143,8 @@ struct ChartsView: View {
                     
                 } else {
                     
-                    VStack {
-                        Form {
+                    //VStack {
+                        List {
                             
                             let groupedExpenses = groupedExpenses
                             
@@ -165,7 +165,7 @@ struct ChartsView: View {
                                     .offset(y: -30)
                             } else {
                                 BarChartView(groupedExpenses: groupedExpenses)
-                                    .frame(minHeight: 285)
+                                    .frame(minHeight: 350)
                             }
                             
                             DisclosureGroup("Spending Insights") {
@@ -178,7 +178,6 @@ struct ChartsView: View {
                                     
                                     Section {
                                         GroupBox {
-                                            VStack(alignment: .leading) {
                                                 ForEach(donutChartData) { categorySelected in
                                                     HStack {
                                                         Circle()
@@ -196,7 +195,6 @@ struct ChartsView: View {
                                                     
                                                     
                                                 }
-                                            }
                                             
                                         }
                                         .padding(.bottom)
@@ -213,12 +211,12 @@ struct ChartsView: View {
                             .tint(.accentColor)
                             
                         }
-                    }
+                        .listRowSeparator(.hidden, edges: .bottom)
+                    //}
                     
                 }
                 
             }
-            //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .navigationTitle("Summary")
         }
     }
