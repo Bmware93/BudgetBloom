@@ -128,6 +128,7 @@ struct ContentView: View {
                         Button("Add Expense") {
                             isItemSheetShowing.toggle()
                         }
+                        .buttonStyle(.bordered)
 
                     }
                     .offset(y: -60)
