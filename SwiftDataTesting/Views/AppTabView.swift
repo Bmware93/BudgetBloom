@@ -29,13 +29,13 @@ struct AppTabView: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }
           
-            SettingsView()
-                .tabItem {
-                    Label("More", systemImage: "ellipsis")
-                }
-                .onAppear {
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                }
+//            SettingsView()
+//                .tabItem {
+//                    Label("More", systemImage: "ellipsis")
+//                }
+//                .onAppear {
+//                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+//                }
             }
         
         }

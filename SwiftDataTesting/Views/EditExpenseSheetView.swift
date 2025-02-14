@@ -10,8 +10,10 @@ import SwiftData
 
 struct EditExpenseSheetView: View {
     @Environment(\.dismiss) private var dismiss
-    
     @Bindable var expense: Expense
+    var isFormValid: Bool {
+        !expense.name.isEmpty && expense.amount > 0
+    }
     
     var body: some View {
         NavigationStack {
@@ -28,7 +30,7 @@ struct EditExpenseSheetView: View {
                 }
                 .pickerStyle(.navigationLink)
                 
-                Section("Description") {
+                Section("Notes") {
                     TextEditor(text: $expense.expenseDescription)
                 }
             }
@@ -36,7 +38,10 @@ struct EditExpenseSheetView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done"){ dismiss() }
+                    Button("Done") {
+                        dismiss()
+                    }
+                    .disabled(!isFormValid)
                 }
               
             }
@@ -47,5 +52,5 @@ struct EditExpenseSheetView: View {
 
 #Preview {
     let preview = previewContainer([Expense.self])
-    return EditExpenseSheetView(expense: Expense(name: "The Red Hook", date: .now, amount: 0, category: .food, expenseDescription: "Bought 2x chai lattes")).modelContainer(preview.container)
+    return EditExpenseSheetView(expense: Expense(name: "The Red Hook", date: .now, amount: 10, category: .food, expenseDescription: "Bought 2x chai lattes")).modelContainer(preview.container)
 }

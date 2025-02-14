@@ -143,7 +143,6 @@ struct ChartsView: View {
                     
                 } else {
                     
-                    //VStack {
                         List {
                             
                             let groupedExpenses = groupedExpenses
@@ -162,22 +161,23 @@ struct ChartsView: View {
                             //MARK: Bar Chart starts here
                             if groupedExpenses.isEmpty {
                                 contentUnavailablemessage()
-                                    .offset(y: -30)
+                                    .offset(y: -25)
                             } else {
                                 BarChartView(groupedExpenses: groupedExpenses)
                                     .frame(minHeight: 350)
                             }
                             
-                            DisclosureGroup("Spending Insights") {
-                                VStack {
-                                    //MARK: Donut Chart starts here
-                                    DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
-                                        .frame(minWidth: 300, minHeight: 300)
-                                        .clipped(antialiased: false)
+                            if !groupedExpenses.isEmpty {
+                                DisclosureGroup("Spending Insights") {
+                                    VStack {
+                                        //MARK: Donut Chart starts here
+                                        DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
+                                            .clipped(antialiased: false)
+                                            .frame(minWidth: 300, minHeight: 300)
                                         
-                                    
-                                    Section {
-                                        GroupBox {
+                                        
+                                        Section {
+                                            GroupBox {
                                                 ForEach(donutChartData) { categorySelected in
                                                     HStack {
                                                         Circle()
@@ -195,24 +195,23 @@ struct ChartsView: View {
                                                     
                                                     
                                                 }
-                                            
+                                                
+                                            }
+                                            .padding(.bottom)
+                                        } header: {
+                                            Text("Top Spending Categories")
+                                                .font(.headline)
+                                                .fontWeight(.light)
                                         }
-                                        .padding(.bottom)
-                                    } header: {
-                                        Text("Top Spending Categories")
-                                            .font(.headline)
-                                            .fontWeight(.light)
+                                        
                                     }
+                                    .padding(.top, 25)
                                     
                                 }
-                                .padding(.top, 25)
-                                
+                                .tint(.accentColor)
                             }
-                            .tint(.accentColor)
-                            
+                               
                         }
-                        .listRowSeparator(.hidden, edges: .bottom)
-                    //}
                     
                 }
                 

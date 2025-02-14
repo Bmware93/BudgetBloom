@@ -17,8 +17,11 @@ struct AddExpenseSheet: View {
     @State private var name: String = ""
     @State private var date: Date = .now
     @State private var amount: Double = 0.0
+    @State private var amountString: String = "0.00"
+    @State private var hasStartedEditingAmount: Bool = false
+    @FocusState private var isAmountFieldFocused: Bool
     @State private var spendingCategory:SpendingCategory = .undefined
-    @State private var expenseDescription: String = ""
+    @State private var expenseNotes: String = ""
     
     //Disabled add expense button until all data is entered
     var isFormValid: Bool {
@@ -31,10 +34,29 @@ struct AddExpenseSheet: View {
                 TextField("Expense Name", text: $name)
                     .submitLabel(.continue)
                 DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Value", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                TextField("Amount", text: $amountString, prompt: Text(currencyFormat(value: amount)))
                     .keyboardType(.decimalPad)
                     .submitLabel(.continue)
-                    
+                    .focused($isAmountFieldFocused)
+                    .onChange(of: isAmountFieldFocused) {
+                        if isAmountFieldFocused && !hasStartedEditingAmount {
+                            amountString = ""
+                            hasStartedEditingAmount = true
+                        }
+                    }
+                    .onAppear {
+                        if amount >= 0 {
+                            amountString = String(format: currencyFormat(value: amount))
+                        }
+                    }
+                    .onDisappear {
+                        // Clean the amountString by removing non-numeric characters except the decimal
+                                let cleanedAmount = amountString
+                                    .filter { "0123456789.".contains($0) }
+                                
+                                // Convert to Double after cleaning
+                                amount = Double(cleanedAmount) ?? 0
+                    }
                     
                 Picker("Category", selection: $spendingCategory) {
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
@@ -43,10 +65,9 @@ struct AddExpenseSheet: View {
                 }
                 .pickerStyle(.navigationLink)
                 
-                Section("Description") {
-                    TextEditor(text: $expenseDescription)
+                Section("Notes") {
+                    TextEditor(text: $expenseNotes)
                         .font(.custom("HelveticaNeue", size: 18))
-                    
                 }
             }
             .navigationTitle("New Expense")
@@ -57,7 +78,7 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        let expense = Expense(name: name, date: date, amount: amount, category: spendingCategory, expenseDescription: expenseDescription)
+                        let expense = Expense(name: name, date: date, amount: amount, category: spendingCategory, expenseDescription: expenseNotes)
                         //Inserts data in the context container
                         context.insert(expense)
                         
