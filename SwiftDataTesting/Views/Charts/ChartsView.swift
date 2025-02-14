@@ -161,7 +161,7 @@ struct ChartsView: View {
                             //MARK: Bar Chart starts here
                             if groupedExpenses.isEmpty {
                                 contentUnavailablemessage()
-                                    .offset(y: -30)
+                                    .offset(y: -25)
                             } else {
                                 BarChartView(groupedExpenses: groupedExpenses)
                                     .frame(minHeight: 350)
