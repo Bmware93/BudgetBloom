@@ -34,7 +34,7 @@ struct AddExpenseSheet: View {
                 TextField("Expense Name", text: $name)
                     .submitLabel(.continue)
                 DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Value", text: $amountString)
+                TextField("Amount", text: $amountString, prompt: Text(currencyFormat(value: amount)))
                     .keyboardType(.decimalPad)
                     .submitLabel(.continue)
                     .focused($isAmountFieldFocused)
@@ -44,14 +44,6 @@ struct AddExpenseSheet: View {
                             hasStartedEditingAmount = true
                         }
                     }
-                    .onChange(of: amountString) { oldvalue, newValue in
-                            // Allow only numbers and one decimal
-                            let filtered = newValue.filter { "0123456789.".contains($0) }
-                            if filtered != newValue {
-                                amountString = filtered
-                            }
-                        }
-                                      
                     .onAppear {
                         if amount >= 0 {
                             amountString = String(format: currencyFormat(value: amount))
@@ -65,7 +57,6 @@ struct AddExpenseSheet: View {
                                 // Convert to Double after cleaning
                                 amount = Double(cleanedAmount) ?? 0
                     }
-                    
                     
                 Picker("Category", selection: $spendingCategory) {
                     ForEach(SpendingCategory.allCases, id: \.self) { option in
@@ -87,7 +78,6 @@ struct AddExpenseSheet: View {
                 }
                 ToolbarItemGroup(placement: .confirmationAction) {
                     Button("Save") {
-                        amount = Double(amountString) ?? 0
                         let expense = Expense(name: name, date: date, amount: amount, category: spendingCategory, expenseDescription: expenseNotes)
                         //Inserts data in the context container
                         context.insert(expense)
