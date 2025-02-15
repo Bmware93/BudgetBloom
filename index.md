@@ -1,5 +1,3 @@
-# BudgetBloom Support
-
 Welcome to BudgetBloom Support! We’re here to help you get the most out of your minimalist spending tracker.  
 
 ---
@@ -32,45 +30,40 @@ BudgetBloom is a simple spending tracker that helps you monitor your expenses wi
 
 ## Frequently Asked Questions  
 ### Is my data secure?  
-Yes, all data is stored locally on your device. We do not collect or share your personal information.  
+Yes, all data is stored locally on your device. I do not collect or share your personal information.  
 
 ### Can I request new features?  
 Definitely! BudgetBloom is user-led. Send us your feature requests using the contact form below.  
 
 ### How do I report a bug?  
-If you encounter any issues, contact us with details about your device and app version so we can fix it promptly.  
+If you encounter any issues, contact us with details about your device and app version so I can fix it promptly.  
 
 ---
 
 ## Privacy Policy  
-Your privacy is important to us. Here’s how we protect your data:  
+Your privacy is important to us. Here’s how BudgetBloom protects your data:  
 - **Local Storage Only:** All data stays on your device. We don’t collect, store, or transmit your financial information.  
 - **No Third-Party Tracking:** BudgetBloom does not use third-party analytics tools.  
 - **User Control:** You can delete expenses or reset all data at any time.  
 - **Data Deletion:** Uninstalling the app permanently deletes all stored data.  
 - **Policy Updates:** Changes to this policy will be communicated through app updates.  
 
-For more details, contact us at **bmware.dev@gmail.com**.  
+For more details, please contact **bmware.dev@gmail.com**.  
 
 ---
 
 ## Contact Us  
 Need help or have feedback?  
-Email us at **bmware.dev@gmail.com*** Please include the following information:  
+Email me at **bmware.dev@gmail.com*** Please include the following information:  
 - **Name:**  
 - **Email:**  
 - **Issue/Feedback:**  
 - **Screenshot (optional):**  
 
-We aim to respond within 24-48 hours.  
+I aim to respond within 24-48 hours.  
 
 ---
 
 ## Feedback & Feature Requests  
 BudgetBloom is built with you in mind! Share your ideas for new features or improvements.  
- 
-
----
-
-## Screenshots  
 
