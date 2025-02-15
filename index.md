@@ -1,5 +1,3 @@
-# BudgetBloom Support
-
 Welcome to BudgetBloom Support! We’re here to help you get the most out of your minimalist spending tracker.  
 
 ---
@@ -57,10 +55,10 @@ For more details, contact us at **bmware.dev@gmail.com**.
 ## Contact Us  
 Need help or have feedback?  
 Email us at **bmware.dev@gmail.com*** Please include the following information:  
-- **Name:**  
-- **Email:**  
-- **Issue/Feedback:**  
-- **Screenshot (optional):**  
+- **Name**  
+- **Email**  
+- **Issue/Feedback**  
+- **Screenshot (optional)**  
 
 We aim to respond within 24-48 hours.  
 
@@ -68,9 +66,4 @@ We aim to respond within 24-48 hours.
 
 ## Feedback & Feature Requests  
 BudgetBloom is built with you in mind! Share your ideas for new features or improvements.  
- 
-
----
-
-## Screenshots  
 
