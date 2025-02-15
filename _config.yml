@@ -1,0 +1,8 @@
+# Site settings
+title: My New Site Title
+description: This is my personal website hosted on GitHub Pages.
+theme: jekyll-theme-minimal
+
+# Other settings
+markdown: kramdown
+permalink: pretty
