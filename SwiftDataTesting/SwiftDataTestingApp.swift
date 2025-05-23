@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import UIKit
+import AppIntents
 
 @main
 struct SwiftDataTestingApp: App {

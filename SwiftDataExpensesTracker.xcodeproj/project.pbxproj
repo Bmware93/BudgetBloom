@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,12 +12,13 @@
 		1A0448E02B68284200E19BFE /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0448DF2B68284200E19BFE /* ChartsView.swift */; };
 		1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0448E12B682CB100E19BFE /* SettingsView.swift */; };
 		1A65610E2BF2B578000559E0 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65610D2BF2B578000559E0 /* CategoryData.swift */; };
+		1A88F1472D760A4800973353 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A88F1462D760A4800973353 /* Intents.framework */; };
+		1A88F1492D760A5B00973353 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A88F1482D760A5B00973353 /* IntentsUI.framework */; };
 		1A9670632C078256007B1107 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670622C078256007B1107 /* DonutChartView.swift */; };
 		1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670642C079DD8007B1107 /* BarChartView.swift */; };
 		1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670662C07BEB0007B1107 /* ChartsPicker.swift */; };
 		1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */; };
 		1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */; };
-		1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520D2B44ACBA008F9C22 /* extensions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
 		1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52112B471175008F9C22 /* ExpenseCellView.swift */; };
 		1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */; };
@@ -50,17 +51,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1A84F6AA2D774BB700C18B19 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1A0448DD2B6826DD00E19BFE /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		1A0448DF2B68284200E19BFE /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		1A0448E12B682CB100E19BFE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1A65610D2BF2B578000559E0 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		1A88F1462D760A4800973353 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Intents.framework; sourceTree = DEVELOPER_DIR; };
+		1A88F1482D760A5B00973353 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/IntentsUI.framework; sourceTree = DEVELOPER_DIR; };
 		1A9670622C078256007B1107 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		1A9670642C079DD8007B1107 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		1A9670662C07BEB0007B1107 /* ChartsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPicker.swift; sourceTree = "<group>"; };
 		1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartFunctions.swift; sourceTree = "<group>"; };
-		1ADD520D2B44ACBA008F9C22 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		1ADD52112B471175008F9C22 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
 		1ADD52132B47126E008F9C22 /* AddExpenseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseSheet.swift; sourceTree = "<group>"; };
@@ -81,12 +96,19 @@
 		1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1A84F6AB2D77559300C18B19 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
+		1A84F6B92D775D6400C18B19 /* AppIntents */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AppIntents; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		1AF4EF802B1645A800027548 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A88F1472D760A4800973353 /* Intents.framework in Frameworks */,
 				1A0448DC2B647A0C00E19BFE /* Collections in Frameworks */,
+				1A88F1492D760A5B00973353 /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,10 +146,10 @@
 		1A0C1D422C921BCA008167F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A84F6AB2D77559300C18B19 /* Extensions */,
 				1ADD520F2B44BA23008F9C22 /* previewContainer.swift */,
 				1AF4EFB12B16460900027548 /* ExpenseModel.swift */,
 				1A65610D2BF2B578000559E0 /* CategoryData.swift */,
-				1ADD520D2B44ACBA008F9C22 /* extensions.swift */,
 				1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */,
 				1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */,
 			);
@@ -140,6 +162,15 @@
 				1A9670662C07BEB0007B1107 /* ChartsPicker.swift */,
 			);
 			path = ChartComponets;
+			sourceTree = "<group>";
+		};
+		1A88F1452D760A4700973353 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A88F1482D760A5B00973353 /* IntentsUI.framework */,
+				1A88F1462D760A4800973353 /* Intents.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1A9670612C078219007B1107 /* Charts */ = {
@@ -158,6 +189,7 @@
 				1AF4EF852B1645A800027548 /* SwiftDataTesting */,
 				1AF4EF972B1645AA00027548 /* SwiftDataTestingTests */,
 				1AF4EFA12B1645AA00027548 /* SwiftDataTestingUITests */,
+				1A88F1452D760A4700973353 /* Frameworks */,
 				1AF4EF842B1645A800027548 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -178,6 +210,7 @@
 				1AF4EFB52B19264B00027548 /* Info.plist */,
 				1AF4EF862B1645A800027548 /* SwiftDataTestingApp.swift */,
 				1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */,
+				1A84F6B92D775D6400C18B19 /* AppIntents */,
 				1A0C1D422C921BCA008167F6 /* Models */,
 				1A0448E32B682CEB00E19BFE /* Views */,
 				1A7269C72D355A5900636500 /* ChartComponets */,
@@ -223,10 +256,15 @@
 				1AF4EF7F2B1645A800027548 /* Sources */,
 				1AF4EF802B1645A800027548 /* Frameworks */,
 				1AF4EF812B1645A800027548 /* Resources */,
+				1A84F6AA2D774BB700C18B19 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1A84F6AB2D77559300C18B19 /* Extensions */,
+				1A84F6B92D775D6400C18B19 /* AppIntents */,
 			);
 			name = SwiftDataExpensesTracker;
 			packageProductDependencies = (
@@ -279,7 +317,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					1AF4EF822B1645A800027548 = {
@@ -364,7 +402,6 @@
 				1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */,
 				1A0448E02B68284200E19BFE /* ChartsView.swift in Sources */,
 				1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */,
-				1ADD520E2B44ACBA008F9C22 /* extensions.swift in Sources */,
 				1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */,
 				1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */,
 			);
@@ -532,20 +569,22 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BudgetBloom;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -565,20 +604,22 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftDataTesting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BudgetBloom;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -592,7 +633,6 @@
 		1AF4EFAC2B1645AA00027548 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -614,7 +654,6 @@
 		1AF4EFAD2B1645AA00027548 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -636,7 +675,6 @@
 		1AF4EFAF2B1645AA00027548 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
@@ -653,7 +691,6 @@
 		1AF4EFB02B1645AA00027548 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
