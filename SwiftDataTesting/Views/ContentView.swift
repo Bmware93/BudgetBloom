@@ -93,7 +93,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle(appName)
+            .navigationTitle(LocalizedStringKey(appName))
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
@@ -122,7 +122,7 @@ struct ContentView: View {
                             .symbolRenderingMode(.multicolor)
                     }
                     description: {
-                        Text("Start by adding your expenses, and together we’ll nurture your budget into full bloom.")
+                        Text(LocalizedStringResource("Start by adding your expenses, and together we’ll nurture your budget into full bloom."))
                     }  actions: {
                     
                         Button("Add Expense") {
