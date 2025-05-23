@@ -24,8 +24,8 @@ struct GetAmountSpentIntent: AppIntent {
                       return .result(dialog: "You have not spent anything today.")
                   }
 
-                  let totalSum = firstEntry.value.sum
+          let totalSum = currencyFormat(value: firstEntry.value.sum)
 
-          return .result(dialog: "You have spent $\(totalSum) today.")
+          return .result(dialog: "You have spent a total of \(totalSum) today.")
       }
 }
