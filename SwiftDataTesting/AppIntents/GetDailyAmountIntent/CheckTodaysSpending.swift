@@ -14,18 +14,24 @@ struct GetAmountSpentIntent: AppIntent {
     static var description = IntentDescription("Check how much you've spent today")
     
     @MainActor
-      func perform() async throws -> some IntentResult & ProvidesDialog {
+      func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<Double> {
           let modelContainer = try ModelContainer(for: Expense.self)
 
           let currentDate: Date = Date()
           let expenseData = getDailyExpenseSum(modelContext: modelContainer.mainContext, for: currentDate)
 
           guard let firstEntry = expenseData.elements.first else {
-                      return .result(dialog: "Looks like you haven’t made any purchases today.")
+                      return .result(
+                        value: 0.00,
+                        dialog: "Looks like you haven’t made any purchases today."
+                      )
                   }
 
           let totalSum = currencyFormat(value: firstEntry.value.sum)
 
-          return .result(dialog: "You have spent a total of \(totalSum) today.")
+          return .result(
+            value: firstEntry.value.sum,
+            dialog: "You have spent a total of \(totalSum) today."
+          )
       }
 }
