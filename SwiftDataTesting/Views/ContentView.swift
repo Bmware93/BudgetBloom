@@ -100,8 +100,10 @@ struct ContentView: View {
             .sheet(item: $expenseToEdit, content: EditExpenseSheetView.init)
             .toolbar {
                 if !expenses.isEmpty {
-                    Button("Add Expense", systemImage: "plus") {
-                        isItemSheetShowing.toggle()
+                    ToolbarItem {
+                        Button("Add Expense", systemImage: "plus") {
+                            isItemSheetShowing.toggle()
+                        }
                     }
                 }
             }

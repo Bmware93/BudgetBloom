@@ -17,10 +17,11 @@ func getDailyExpenseSum(modelContext: ModelContext, for date: Date) -> Transacti
         
     }
     do {
+        //Could pass a predicate into the fetch desc. to filter expenses instead of doing seperately.
         let fetchDescriptor = FetchDescriptor<Expense>()
         let expenses = try modelContext.fetch(fetchDescriptor)
 
-        // Filter expenses for the specific day
+      
         let filteredExpenses = expenses.filter { expense in
             calendar.isDate(expense.date, inSameDayAs: date)
         }

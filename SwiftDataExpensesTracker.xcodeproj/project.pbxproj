@@ -92,7 +92,7 @@
 		1AF4EFA22B1645AA00027548 /* SwiftDataTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITests.swift; sourceTree = "<group>"; };
 		1AF4EFA42B1645AA00027548 /* SwiftDataTestingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataTestingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1AF4EFB12B16460900027548 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
-		1AF4EFB52B19264B00027548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1AF4EFB52B19264B00027548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +138,7 @@
 				1ADD52152B471750008F9C22 /* EditExpenseSheetView.swift */,
 				1ADD52112B471175008F9C22 /* ExpenseCellView.swift */,
 				1A0448E12B682CB100E19BFE /* SettingsView.swift */,
+				1A7269C72D355A5900636500 /* ChartComponets */,
 				1A9670612C078219007B1107 /* Charts */,
 			);
 			path = Views;
@@ -213,7 +214,6 @@
 				1A84F6B92D775D6400C18B19 /* AppIntents */,
 				1A0C1D422C921BCA008167F6 /* Models */,
 				1A0448E32B682CEB00E19BFE /* Views */,
-				1A7269C72D355A5900636500 /* ChartComponets */,
 				1AF4EF8A2B1645AA00027548 /* Assets.xcassets */,
 				1AF4EF8F2B1645AA00027548 /* SwiftDataTesting.entitlements */,
 				1AF4EF8C2B1645AA00027548 /* Preview Content */,
