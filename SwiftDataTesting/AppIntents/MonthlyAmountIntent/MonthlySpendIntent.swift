@@ -17,7 +17,9 @@ struct MonthlySpendIntent: AppIntent {
     func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<Double> {
         let modelContainer = try ModelContainer(for: Expense.self)
         let currentDate: Date = Date()
-        let currentMonth = Calendar.current.component(.month, from: currentDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let currentMonth = dateFormatter.string(from: currentDate)
         
         let expenseData = getMonthlyExpenseSumIntent(modelContext: modelContainer.mainContext, for: currentDate)
         guard let firstEntry = expenseData.elements.first else {
@@ -31,7 +33,7 @@ struct MonthlySpendIntent: AppIntent {
 
         return .result(
           value: firstEntry.value.sum,
-          dialog: "For the current month of \(currentMonth), you have spent a total of \(totalSum) so far."
+          dialog: "For the current month of \(currentMonth), you've spent a total of \(totalSum) so far."
         )
         
     }

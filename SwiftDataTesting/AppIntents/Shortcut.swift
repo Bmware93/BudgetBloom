@@ -39,7 +39,7 @@ struct ExpenseAppShortcuts: AppShortcutsProvider {
                 "How much did I spend this month in \(.applicationName)?",
                 "\(.applicationName) Monthly spending report"
             ],
-            shortTitle: "Monthly Spending Report",
+            shortTitle: "Monthly Spend Report",
             systemImageName: "banknote"
         )
         
