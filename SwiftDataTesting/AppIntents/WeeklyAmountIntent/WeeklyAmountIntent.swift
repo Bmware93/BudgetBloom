@@ -15,23 +15,26 @@ struct WeeklyAmountIntent: AppIntent {
     static var description: IntentDescription = "Check how much you've spent this week"
     
     @MainActor
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    func perform() async throws -> some IntentResult & ProvidesDialog & ReturnsValue<Double> {
         let modelContainer = try ModelContainer(for: Expense.self)
         
         let currentDate:Date = Date()
         let expenseData = getWeeklyExpenseSumIntent(modelContext: modelContainer.mainContext, for: currentDate)
         
-        guard let firstEntry = expenseData.values.first else {
+        let totalSum = expenseData.values.reduce(0.0) {$0 + $1.sum }
+        
+        if totalSum == 0 {
             return .result(
-                value: "",
-                dialog: "No expenses recorded this week")
+                value: 0.00,
+                dialog: "No expenses recorded this week"
+            )
         }
-        
-        
+        let formattedSum = currencyFormat(value: totalSum)
         
         return .result(
-        value: "",
-        dialog: "")
+            value: totalSum,
+            dialog: "You have spent a total of \(formattedSum) this week."
+        )
     }
 }
 

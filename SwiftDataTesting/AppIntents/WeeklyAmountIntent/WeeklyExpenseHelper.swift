@@ -13,8 +13,7 @@ func getWeeklyExpenseSumIntent(modelContext: ModelContext, for date: Date) -> Tr
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
-    if createModelContext() != nil {
-    }
+   
         do {
             let fetchDescriptor = FetchDescriptor<Expense>()
             let expenses = try modelContext.fetch(fetchDescriptor)
