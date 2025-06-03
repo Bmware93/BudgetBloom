@@ -7,12 +7,14 @@
 
 import Foundation
 import AppIntents
+import SwiftData
 
 struct YearAmountIntent: AppIntent {
     static var title: LocalizedStringResource = "YTD Spending"
     static var description: IntentDescription = "Check your year-to-date spending"
     
     func perform() async throws -> some IntentResult {
+        let modelContainer = try ModelContainer(for: Expense.self)
         
         
         
