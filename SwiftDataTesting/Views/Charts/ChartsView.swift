@@ -25,9 +25,9 @@ struct ChartsView: View {
         case .week:
             return getWeeklyExpenseSum(expenses: expenses, for: Date())
         case .month:
-            return transactionGroupForCurrentMonth(expenses:expenses)
-        case .year://this function is currently pulling all expenses spent in the array not just those in the current year. Will update soon
-            return getTotalExpenseSum(expenses: expenses)
+            return transactionGroupForCurrentMonth(expenses:expenses, for: Date())
+        case .year:
+            return getYTDExpenseSum(expenses: expenses, for: Date())
         }
     }
     

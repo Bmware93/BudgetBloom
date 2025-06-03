@@ -54,15 +54,15 @@ func getWeeklyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGrou
     return groupedExpenses
 }
 
-func transactionGroupForCurrentMonth(expenses: [Expense]) -> TransactionGroup {
+func transactionGroupForCurrentMonth(expenses: [Expense], for date: Date) -> TransactionGroup {
     var result: TransactionGroup = [:]
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMMM yyyy"
     
     let calendar = Calendar.current
-    let currentMonth = calendar.component(.month, from: Date()) //Current month as an integer
-    let currentYear = calendar.component(.year, from: Date())
+    let currentMonth = calendar.component(.month, from: date) //Current month as an integer
+    let currentYear = calendar.component(.year, from: date)
 
     for expense in expenses {
         let expenseMonth = calendar.component(.month, from: expense.date) 
@@ -80,6 +80,35 @@ func transactionGroupForCurrentMonth(expenses: [Expense]) -> TransactionGroup {
             } else {
            
                 result[month] = (expenses: [expense], sum: expense.amount)
+            }
+        }
+    }
+    
+    return result
+}
+
+func getYTDExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup {
+    var result: TransactionGroup = [:]
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMMM yyyy"
+    
+    let calendar = Calendar.current
+    let currentYear = calendar.component(.year, from: date)
+    
+    for expense in expenses {
+        let expenseYear = calendar.component(.year, from: expense.date)
+        
+        // Only include expenses from the current year
+        if expenseYear == currentYear {
+            let monthKey = dateFormatter.string(from: expense.date)
+            
+            if var monthData = result[monthKey] {
+                monthData.expenses.append(expense)
+                monthData.sum += expense.amount
+                result[monthKey] = monthData
+            } else {
+                result[monthKey] = (expenses: [expense], sum: expense.amount)
             }
         }
     }
