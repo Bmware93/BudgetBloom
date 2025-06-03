@@ -28,14 +28,14 @@ struct YearAmountIntent: AppIntent {
         if totalSum == 0 {
             return .result(
                 value: 0.00,
-                dialog: "No expenses recorded this week"
+                dialog: "No expenses recorded yet for this year."
             )
         }
         let formattedSum = currencyFormat(value: totalSum)
         
         return .result(
             value: totalSum,
-            dialog: "Your year-to-date spending as of \(currentMonthAndYear) is currently \(formattedSum)"
+            dialog: "Your year to date spending as of \(currentMonthAndYear) is currently \(formattedSum)"
         )
 
     }

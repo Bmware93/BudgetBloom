@@ -29,8 +29,8 @@ struct ExpenseAppShortcuts: AppShortcutsProvider {
                 "How much did I spend this week in \(.applicationName)?",
                 "\(.applicationName) Weekly spending report"
             ]
-            , shortTitle: "Weekly Spend Report"
-            , systemImageName: "chart.bar.fill"
+            , shortTitle: "Week Spend Report"
+            , systemImageName: "chart.bar"
         )
         AppShortcut(
             intent: MonthlySpendIntent(),
@@ -39,8 +39,18 @@ struct ExpenseAppShortcuts: AppShortcutsProvider {
                 "How much did I spend this month in \(.applicationName)?",
                 "\(.applicationName) Monthly spending report"
             ],
-            shortTitle: "Monthly Spend Report",
-            systemImageName: "banknote"
+            shortTitle: "Month Spend Report",
+            systemImageName: "chart.pie"
+        )
+        AppShortcut(
+            intent: YearAmountIntent(),
+            phrases: [
+                "What's my year to date spending in \(.applicationName)?",
+                "How much have I spent this year in \(.applicationName)?",
+                "\(.applicationName) Year to date spending report"
+            ],
+            shortTitle: "YTD Spend Report",
+            systemImageName: "chart.line.uptrend.xyaxis"
         )
         
     }
