@@ -14,15 +14,14 @@ import Collections
 //the typealias is used as another way for me to refer to my expense object but as a group of expenses
 typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum: Double)>
 
-
 @Model
  class Expense {
     //var accountId: String
-    var name: String
-    var date: Date
-    var amount: Double
-    var category: SpendingCategory
-    var expenseDescription: String
+    var name: String = ""
+    var date: Date = Date()
+    var amount: Double = 0.00
+    var category: SpendingCategory = SpendingCategory.undefined
+    var expenseDescription: String = ""
      
     //Computed Properties
     var dateParsed: Date {
@@ -43,7 +42,7 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
           return String(abbrevMonth)
      }
      
-     init(name: String, date: Date, amount: Double, category: SpendingCategory = .undefined, expenseDescription: String) {
+     init(name: String = "", date: Date = Date(), amount: Double = 0.00, category: SpendingCategory = .undefined, expenseDescription: String = "") {
          self.name = name
          self.date = date
          self.amount = amount
