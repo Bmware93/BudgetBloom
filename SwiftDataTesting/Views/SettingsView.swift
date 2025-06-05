@@ -15,18 +15,18 @@ struct SettingsView: View {
         NavigationStack {
             VStack {
                 List {
-                    Section(header: Text("Preferences")) {
-                        Toggle("Push Notifications", systemImage: "bell.circle.fill", isOn: $enablePushNotifications)
-                            .toggleStyle(SwitchToggleStyle(tint: Color.accentColor))
-                            .foregroundStyle(.primary)
-                        
-                        Picker("Currency", systemImage: "dollarsign.circle.fill", selection: $currencyCode) {
-                            ForEach(CurrencyCode.allCases, id: \.self) { code in
-                                Text(code.rawValue)
+                    Section(header: Text("Share")) {
+                        Menu("Export Data", systemImage: "square.and.arrow.up") {
+                            Button("All Transactions") {
+                                
+                            }
+                            Button("Current Month only") {
+                                
+                            }
+                            Button("Year to date") {
+                                
                             }
                         }
-                        .foregroundColor(.primary)
-                        .pickerStyle(.navigationLink)
                     }
                     
                 }
