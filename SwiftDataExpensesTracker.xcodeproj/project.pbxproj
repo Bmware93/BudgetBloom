@@ -17,6 +17,7 @@
 		1A9670632C078256007B1107 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670622C078256007B1107 /* DonutChartView.swift */; };
 		1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670642C079DD8007B1107 /* BarChartView.swift */; };
 		1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670662C07BEB0007B1107 /* ChartsPicker.swift */; };
+		1AB20B8B2DF213C30066CB80 /* CSVGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */; };
 		1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */; };
 		1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */; };
 		1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD520F2B44BA23008F9C22 /* previewContainer.swift */; };
@@ -74,6 +75,7 @@
 		1A9670622C078256007B1107 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		1A9670642C079DD8007B1107 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		1A9670662C07BEB0007B1107 /* ChartsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPicker.swift; sourceTree = "<group>"; };
+		1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVGenerator.swift; sourceTree = "<group>"; };
 		1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartFunctions.swift; sourceTree = "<group>"; };
 		1ADD520F2B44BA23008F9C22 /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 				1ADD52152B471750008F9C22 /* EditExpenseSheetView.swift */,
 				1ADD52112B471175008F9C22 /* ExpenseCellView.swift */,
 				1A0448E12B682CB100E19BFE /* SettingsView.swift */,
-				1A7269C72D355A5900636500 /* ChartComponets */,
 				1A9670612C078219007B1107 /* Charts */,
 			);
 			path = Views;
@@ -153,6 +154,7 @@
 				1A65610D2BF2B578000559E0 /* CategoryData.swift */,
 				1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */,
 				1AFB20962D46D5F90098DDE0 /* DonutChartFunctions.swift */,
+				1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,6 +182,7 @@
 				1A0448DF2B68284200E19BFE /* ChartsView.swift */,
 				1A9670642C079DD8007B1107 /* BarChartView.swift */,
 				1A9670622C078256007B1107 /* DonutChartView.swift */,
+				1A7269C72D355A5900636500 /* ChartComponets */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				1A0448E02B68284200E19BFE /* ChartsView.swift in Sources */,
 				1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */,
 				1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */,
+				1AB20B8B2DF213C30066CB80 /* CSVGenerator.swift in Sources */,
 				1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
