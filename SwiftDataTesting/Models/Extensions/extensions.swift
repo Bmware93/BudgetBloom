@@ -15,6 +15,12 @@ extension DateFormatter {
         
         return formatter
     }()
+    
+    static let exportDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        return formatter
+    }()
 }
 
 extension String {

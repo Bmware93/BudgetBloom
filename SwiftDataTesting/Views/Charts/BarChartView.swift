@@ -8,7 +8,6 @@
 import SwiftUI
 import Charts
 
-
 struct BarChartView: View {
     @State private var isAnimating = false
     @State private var rawSelectedDate: String?
@@ -28,7 +27,6 @@ struct BarChartView: View {
     }
     
     var body: some View {
-        
         Chart {
             ForEach(groupedExpenses.keys, id: \.self) { month in
                 if let group = groupedExpenses[month] {
@@ -49,6 +47,7 @@ struct BarChartView: View {
                                 VStack {
                                     Text(selectedMonth)
                                         .bold()
+                                        .foregroundStyle(.primary)
                                     
                                     Text(currencyFormat(value: selectedGroup.sum))
                                 }
@@ -96,7 +95,7 @@ struct BarChartView: View {
         ),
         "March": (
             expenses: [
-                Expense(name: "Milk", date: Date(), amount: 4.00, category: .food, expenseDescription: ""),
+                Expense(name: "Milk", date: Date(), amount: 4.00, category: .groceries, expenseDescription: ""),
                 Expense(name: "Water Bill", date: Date(), amount: 30.25, category: .utilities, expenseDescription: ""),
                 Expense(name: "Bus Ticket", date: Date(), amount: 2.50, category: .travel, expenseDescription: "")
             ],
