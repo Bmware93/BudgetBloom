@@ -9,11 +9,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-func generateCSVFromExpenses(modelContainer: ModelContainer) throws -> String {
-    let modelContainer = try ModelContainer(for: Expense.self)
-    let fetchDescriptor = FetchDescriptor<Expense>()
-    let expenses = try modelContainer.mainContext.fetch(fetchDescriptor)
-    
+func generateCSVFromExpenses(expenses: [Expense]) throws -> String {
     let csvHeader = "Date, Name, Amount, Category, Description"
 
     let dateFormatter = DateFormatter()
