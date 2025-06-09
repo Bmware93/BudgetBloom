@@ -54,7 +54,7 @@ func getWeeklyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGrou
     return groupedExpenses
 }
 
-func transactionGroupForCurrentMonth(expenses: [Expense], for date: Date) -> TransactionGroup {
+func getMonthlyExpenseSum(expenses: [Expense], for date: Date) -> TransactionGroup {
     var result: TransactionGroup = [:]
     
     let dateFormatter = DateFormatter()

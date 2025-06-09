@@ -19,7 +19,7 @@ struct WeeklyAmountIntent: AppIntent {
         let modelContainer = try ModelContainer(for: Expense.self)
         
         let currentDate:Date = Date()
-        let expenseData = getWeeklyExpenseSumIntent(modelContext: modelContainer.mainContext, for: currentDate)
+        let expenseData = getWeeklyExpenseSum(modelContext: modelContainer.mainContext, for: currentDate)
         
         let totalSum = expenseData.values.reduce(0.0) {$0 + $1.sum }
         

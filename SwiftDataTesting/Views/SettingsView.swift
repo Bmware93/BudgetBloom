@@ -22,15 +22,17 @@ struct SettingsView: View {
                     Section(header: Text("Share")) {
                         Menu("Export Data", systemImage: "square.and.arrow.up") {
                             Button("All Transactions") {
-                                exportExpenses(expenses)
+                                CSVExportManager.exportFromSwiftUI(expenses: expenses)
                             }
+                            
                             Button("Current Month only") {
-                                let currentMonthExpenses = transactionGroupForCurrentMonth(expenses: expenses, for: Date()).elements.first
-                                exportExpenses(currentMonthExpenses?.value.expenses ?? [])
-                                
+                                let currentMonthExpenses = getMonthlyExpenseSum(expenses: expenses, for: Date()).elements.first
+                                CSVExportManager.exportFromSwiftUI(expenses: currentMonthExpenses?.value.expenses ?? [])
                             }
+                            
                             Button("Year to date") {
-                                
+                                let ytdExpenses = getYTDExpenseSum(expenses: expenses, for: Date()).elements.values
+                                CSVExportManager.exportFromSwiftUI(expenses: ytdExpenses.flatMap(\.expenses))
                             }
                         }
                     }
@@ -42,17 +44,19 @@ struct SettingsView: View {
     }
 }
 
-private func exportExpenses(_ expensesToExport: [Expense]) {
-     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let rootViewController = windowScene.windows.first?.rootViewController else {
-         print("Could not find root view controller")
-         return
-     }
-     
-     Task {
-         await CSVExportManager.exportCSV(expenses: expensesToExport, from: rootViewController)
-     }
- }
+// private func exportExpenses(_ expensesToExport: [Expense]) {
+//    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//          let rootViewController = windowScene.windows.first?.rootViewController else {
+//        print("Could not find root view controller")
+//        return
+//    }
+//    
+//    Task {
+//        await CSVExportManager.exportCSV(expenses: expensesToExport, from: rootViewController)
+//    }
+//}
+
+
 
 #Preview {
     SettingsView()

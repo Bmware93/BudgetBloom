@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct ExpenseCellView: View {
-    
     let expense: Expense
     
     var body: some View {

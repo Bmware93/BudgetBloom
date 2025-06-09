@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-func getWeeklyExpenseSumIntent(modelContext: ModelContext, for date: Date) -> TransactionGroup {
+func getWeeklyExpenseSum(modelContext: ModelContext, for date: Date) -> TransactionGroup {
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium

@@ -57,7 +57,6 @@ struct ContentView: View {
         return groupedExpenses
     }
     
-    
     var body: some View {
         NavigationStack {
             List {
@@ -103,9 +102,17 @@ struct ContentView: View {
                     ToolbarItem {
                         Button("Add Expense", systemImage: "plus") {
                             isItemSheetShowing.toggle()
+                            }
+                    }
+                    ToolbarItem {
+                        Menu("Share", systemImage:"square.and.arrow.up") {
+                            Button("All Transactions") {
+                                CSVExportManager.exportFromSwiftUI(expenses: expenses)
+                            }
                         }
                     }
                 }
+              
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -113,7 +120,6 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .animation(.spring)
-                        
                 }
             }
             .overlay {

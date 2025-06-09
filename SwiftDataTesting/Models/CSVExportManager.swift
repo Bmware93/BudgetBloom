@@ -24,6 +24,17 @@ class CSVExportManager {
         presentShareSheet(fileURL: fileUrl, from: viewController)
     }
     
+    static func exportFromSwiftUI(expenses: [Expense]) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootViewController = windowScene.windows.first?.rootViewController else {
+            print("Could not find root view controller")
+            return
+        }
+        Task {
+            await exportCSV(expenses: expenses, from: rootViewController)
+        }
+    }
+    
     static func createTempFile(Content content: String, fileName: String) -> URL? {
         let tempDirectory = FileManager.default.temporaryDirectory
         let fileURL = tempDirectory.appendingPathComponent(fileName)

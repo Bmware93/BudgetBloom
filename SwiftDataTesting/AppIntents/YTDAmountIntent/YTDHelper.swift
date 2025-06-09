@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-func getYTDExpenseSumIntent(modelContext: ModelContext, for date: Date) -> TransactionGroup {
+func getYTDExpenseSum(modelContext: ModelContext, for date: Date) -> TransactionGroup {
     var result: TransactionGroup = [:]
     
     let dateFormatter = DateFormatter()
