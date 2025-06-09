@@ -57,7 +57,6 @@ struct ContentView: View {
         return groupedExpenses
     }
     
-    
     var body: some View {
         NavigationStack {
             List {
@@ -106,7 +105,10 @@ struct ContentView: View {
                             }
                     }
                     ToolbarItem {
-                        Button("Share", systemImage: "square.and.arrow.up") {
+                        Menu("Share", systemImage:"square.and.arrow.up") {
+                            Button("All Transactions") {
+                                CSVExportManager.exportFromSwiftUI(expenses: expenses)
+                            }
                         }
                     }
                 }
