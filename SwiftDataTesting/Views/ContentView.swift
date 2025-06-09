@@ -103,9 +103,14 @@ struct ContentView: View {
                     ToolbarItem {
                         Button("Add Expense", systemImage: "plus") {
                             isItemSheetShowing.toggle()
+                            }
+                    }
+                    ToolbarItem {
+                        Button("Share", systemImage: "square.and.arrow.up") {
                         }
                     }
                 }
+              
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -113,7 +118,6 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .animation(.spring)
-                        
                 }
             }
             .overlay {

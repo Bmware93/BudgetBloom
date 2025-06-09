@@ -21,7 +21,7 @@ struct MonthlySpendIntent: AppIntent {
         dateFormatter.dateFormat = "MMMM"
         let currentMonth = dateFormatter.string(from: currentDate)
         
-        let expenseData = getMonthlyExpenseSumIntent(modelContext: modelContainer.mainContext, for: currentDate)
+        let expenseData = getMonthlyExpenseSum(modelContext: modelContainer.mainContext, for: currentDate)
         guard let firstEntry = expenseData.elements.first else {
                     return .result(
                       value: 0.00,

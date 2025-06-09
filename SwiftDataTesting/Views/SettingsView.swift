@@ -25,7 +25,7 @@ struct SettingsView: View {
                                 exportExpenses(expenses)
                             }
                             Button("Current Month only") {
-                                let currentMonthExpenses = transactionGroupForCurrentMonth(expenses: expenses, for: Date()).elements.first
+                                let currentMonthExpenses = getMonthlyExpenseSum(expenses: expenses, for: Date()).elements.first
                                 exportExpenses(currentMonthExpenses?.value.expenses ?? [])
                                 
                             }
@@ -43,16 +43,16 @@ struct SettingsView: View {
 }
 
 private func exportExpenses(_ expensesToExport: [Expense]) {
-     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let rootViewController = windowScene.windows.first?.rootViewController else {
-         print("Could not find root view controller")
-         return
-     }
-     
-     Task {
-         await CSVExportManager.exportCSV(expenses: expensesToExport, from: rootViewController)
-     }
- }
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let rootViewController = windowScene.windows.first?.rootViewController else {
+        print("Could not find root view controller")
+        return
+    }
+    
+    Task {
+        await CSVExportManager.exportCSV(expenses: expensesToExport, from: rootViewController)
+    }
+}
 
 #Preview {
     SettingsView()

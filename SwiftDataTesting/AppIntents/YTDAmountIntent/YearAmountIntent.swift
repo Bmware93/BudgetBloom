@@ -21,7 +21,7 @@ struct YearAmountIntent: AppIntent {
         dateFormatter.dateFormat = "MMMM yyyy"
         let currentMonthAndYear = dateFormatter.string(from: currentDate)
         
-        let expenseData = getYTDExpenseSumIntent(modelContext: modelContainer.mainContext, for: currentDate)
+        let expenseData = getYTDExpenseSum(modelContext: modelContainer.mainContext, for: currentDate)
         
         let totalSum = expenseData.values.reduce(0.0) {$0 + $1.sum }
         

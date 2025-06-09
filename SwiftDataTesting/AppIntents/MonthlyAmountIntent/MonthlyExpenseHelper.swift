@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-func getMonthlyExpenseSumIntent(modelContext: ModelContext, for date: Date) -> TransactionGroup {
+func getMonthlyExpenseSum(modelContext: ModelContext, for date: Date) -> TransactionGroup {
     var result: TransactionGroup = [:]
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
