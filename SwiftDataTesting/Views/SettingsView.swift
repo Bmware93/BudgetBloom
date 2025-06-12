@@ -35,27 +35,17 @@ struct SettingsView: View {
                                 CSVExportManager.exportFromSwiftUI(expenses: ytdExpenses.flatMap(\.expenses))
                             }
                         }
+                        .disabled(expenses.isEmpty)
                     }
                     
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Menu")
+            
+            
         }
     }
 }
-
-// private func exportExpenses(_ expensesToExport: [Expense]) {
-//    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//          let rootViewController = windowScene.windows.first?.rootViewController else {
-//        print("Could not find root view controller")
-//        return
-//    }
-//    
-//    Task {
-//        await CSVExportManager.exportCSV(expenses: expensesToExport, from: rootViewController)
-//    }
-//}
-
 
 
 #Preview {
