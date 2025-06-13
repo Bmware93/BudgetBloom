@@ -12,6 +12,7 @@
 		1A0448E02B68284200E19BFE /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0448DF2B68284200E19BFE /* ChartsView.swift */; };
 		1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0448E12B682CB100E19BFE /* SettingsView.swift */; };
 		1A1348332DFC7A9F003DD9AA /* AppStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1348322DFC7A9F003DD9AA /* AppStoreManager.swift */; };
+		1A1348372DFCA185003DD9AA /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1348362DFCA185003DD9AA /* FeedbackManager.swift */; };
 		1A65610E2BF2B578000559E0 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65610D2BF2B578000559E0 /* CategoryData.swift */; };
 		1A88F1472D760A4800973353 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A88F1462D760A4800973353 /* Intents.framework */; };
 		1A88F1492D760A5B00973353 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A88F1482D760A5B00973353 /* IntentsUI.framework */; };
@@ -72,6 +73,7 @@
 		1A0448DF2B68284200E19BFE /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		1A0448E12B682CB100E19BFE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1A1348322DFC7A9F003DD9AA /* AppStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreManager.swift; sourceTree = "<group>"; };
+		1A1348362DFCA185003DD9AA /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		1A65610D2BF2B578000559E0 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		1A88F1462D760A4800973353 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Intents.framework; sourceTree = DEVELOPER_DIR; };
 		1A88F1482D760A5B00973353 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/IntentsUI.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,6 +163,7 @@
 				1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */,
 				1AB20B8C2DF2248F0066CB80 /* CSVExportManager.swift */,
 				1A1348322DFC7A9F003DD9AA /* AppStoreManager.swift */,
+				1A1348362DFCA185003DD9AA /* FeedbackManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				1ADD52122B471175008F9C22 /* ExpenseCellView.swift in Sources */,
 				1ADD52142B47126E008F9C22 /* AddExpenseSheet.swift in Sources */,
 				1A0448E02B68284200E19BFE /* ChartsView.swift in Sources */,
+				1A1348372DFCA185003DD9AA /* FeedbackManager.swift in Sources */,
 				1ADD52102B44BA23008F9C22 /* previewContainer.swift in Sources */,
 				1AB20B8D2DF2248F0066CB80 /* CSVExportManager.swift in Sources */,
 				1A0448E22B682CB100E19BFE /* SettingsView.swift in Sources */,

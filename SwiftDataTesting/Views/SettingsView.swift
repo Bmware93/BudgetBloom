@@ -67,11 +67,11 @@ struct SettingsView: View {
                             }
                         }
                         Button {
-                           AppStoreManager.shared.requestReview()
+                            AppStoreManager.shared.requestReview()
                         } label: {
                             VStack(alignment: .leading) {
                                 Label("Leave a Review", systemImage: "hand.thumbsup")
-            
+                                
                                 HStack {
                                     Text("Help others discover this app!")
                                         .font(.footnote)
