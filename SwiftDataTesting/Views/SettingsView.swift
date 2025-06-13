@@ -66,11 +66,12 @@ struct SettingsView: View {
                                 .padding(.leading, 46)
                             }
                         }
-                        NavigationLink {
-                            
+                        Button {
+                           AppStoreManager.shared.requestReview()
                         } label: {
                             VStack(alignment: .leading) {
                                 Label("Leave a Review", systemImage: "hand.thumbsup")
+            
                                 HStack {
                                     Text("Help others discover this app!")
                                         .font(.footnote)
@@ -78,6 +79,7 @@ struct SettingsView: View {
                                 .padding(.leading, 46)
                             }
                         }
+                        //.foregroundStyle(.primary)
                     }
                     Section(header: Text(LocalizedStringResource("Help"))) {
                         NavigationLink {
