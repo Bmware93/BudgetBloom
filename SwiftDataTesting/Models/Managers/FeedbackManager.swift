@@ -66,8 +66,8 @@ class FeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
         
         private func getDeviceInfo() -> String {
             let device = UIDevice.current
-            let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-            let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+            let appVersion = Bundle.main.appVersion ?? "Unknown"
+            let buildNumber = Bundle.main.buildNumber ?? "Unknown"
             let osVersion = device.systemVersion
             let deviceModel = device.model
             
@@ -79,3 +79,37 @@ class FeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
         }
 
       }
+extension FeedbackManager {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        switch result {
+        case .cancelled:
+            print("Mail cancelled")
+        case .saved:
+            print("Mail saved")
+        case .sent:
+            print("Mail sent")
+        case .failed:
+            print("Mail failed: \(error?.localizedDescription ?? "Unknown error")")
+        @unknown default:
+            print("Unknown mail result")
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension Bundle {
+    var displayName: String? {
+        object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+        object(forInfoDictionaryKey: "CFBundleName") as? String
+    }
+    
+    var appVersion: String? {
+        object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
+    var buildNumber: String? {
+        object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
+}

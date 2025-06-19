@@ -37,8 +37,8 @@ struct SettingsView: View {
                         }
                         .disabled(expenses.isEmpty)
                         
-                        NavigationLink {
-                            
+                        Button {
+                            shareApp()
                         } label: {
                             VStack(alignment: .leading) {
                                 Label("Share", systemImage: "paperplane")
@@ -82,8 +82,8 @@ struct SettingsView: View {
                         //.foregroundStyle(.primary)
                     }
                     Section(header: Text(LocalizedStringResource("Help"))) {
-                        NavigationLink {
-                            
+                        Button {
+                            sendFeedback()
                         } label: {
                             VStack(alignment: .leading) {
                                 Label("Send Feedback", systemImage: "envelope")
@@ -102,6 +102,23 @@ struct SettingsView: View {
             .navigationTitle("Menu")
         }
     }
+}
+
+private func sendFeedback() {
+    guard let rootViewController = UIApplication.shared.rootViewController else {
+        return
+    }
+    let topViewController = rootViewController.topMostViewController()
+    FeedbackManager.shared.sendFeedback(from: topViewController)
+}
+
+private func shareApp() {
+    guard let rootViewController = UIApplication.shared.rootViewController else {
+        return
+    }
+    
+    let topViewController = rootViewController.topMostViewController()
+    AppStoreManager.shared.shareApp(from: topViewController)
 }
 
 
