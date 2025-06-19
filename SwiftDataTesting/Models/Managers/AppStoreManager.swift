@@ -11,6 +11,7 @@ import UIKit
 class AppStoreManager {
     static let shared = AppStoreManager()
     private let appID = "6737521957"
+    private let appName = Bundle.main.displayName ?? "BudgetBloom"
     
     private init() {}
     
@@ -25,14 +26,18 @@ class AppStoreManager {
         UIApplication.shared.open(url)
     }
     
-    func shareApp() {
+    func shareApp(from viewController: UIViewController, sourceView: UIView? = nil) {
         let appStoreURL = "https://apps.apple.com/app/id\(appID)"
         
-        guard let url = URL(string: appStoreURL) else {
-            print("Invalid App Store URL")
-            return
-        }
+        let shareText = "Check out \(appName)! I've been using it and think you'd like it too."
+        let itemsToShare: [Any] = [shareText, appStoreURL]
         
-        UIApplication.shared.open(url)
+        let activityViewController = UIActivityViewController(
+            activityItems: itemsToShare,
+            applicationActivities: nil
+        )
+        
+        viewController.present(activityViewController, animated: true)
+    
     }
 }
