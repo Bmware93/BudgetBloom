@@ -12,11 +12,11 @@ extension Product {
     var tipDescription: String {
         switch id {
         case let id where id.contains("small"):
-            return "Small Tip"
+            return "Sprinkler"
         case let id where id.contains("medium"):
-            return "Medium Tip"
+            return "Garden hose"
         case let id where id.contains("large"):
-            return "Large Tip"
+            return "Thunderstandstorm"
         default:
             return "Tip"
         }
@@ -25,11 +25,11 @@ extension Product {
     var tipEmoji: String {
         switch id {
         case let id where id.contains("small"):
-            return "💧"
-        case let id where id.contains("medium"):
             return "💦"
-        case let id where id.contains("large"):
+        case let id where id.contains("medium"):
             return "🌊"
+        case let id where id.contains("large"):
+            return "🌦️"
         default:
             return "💝"
         }

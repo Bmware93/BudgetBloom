@@ -8,6 +8,7 @@
 import Foundation
 import StoreKit
 
+@MainActor
 class TipJarManager: ObservableObject {
     static let shared = TipJarManager()
     
@@ -62,11 +63,9 @@ class TipJarManager: ObservableObject {
                 }
                 
             case .userCancelled:
-                // User cancelled the purchase
                 print("User cancelled purchase")
                 
             case .pending:
-                // Purchase is pending (awaiting approval)
                 print("Purchase pending approval")
                 
             @unknown default:
