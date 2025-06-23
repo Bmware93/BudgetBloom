@@ -54,7 +54,7 @@ struct SettingsView: View {
                     }
                     Section(header: Text(LocalizedStringResource("Support"))) {
                         NavigationLink {
-                            
+                            TipJarView()
                         } label: {
                             VStack(alignment:.leading) {
                                 Label("Tip Jar", systemImage: "giftcard")
