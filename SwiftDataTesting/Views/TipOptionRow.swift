@@ -46,6 +46,7 @@ struct TipOptionRow: View {
             .disabled(isPurchasing)
         }
         .padding()
+        .frame(width: 368, height: 75)
         .background(Color(.systemGray6))
         .cornerRadius(12)
     }

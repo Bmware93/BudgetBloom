@@ -92,7 +92,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            .navigationTitle(LocalizedStringKey(appName))
+            //.navigationTitle(LocalizedStringKey(appName))
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
@@ -103,13 +103,6 @@ struct ContentView: View {
                         Button("Add Expense", systemImage: "plus") {
                             isItemSheetShowing.toggle()
                             }
-                    }
-                    ToolbarItem {
-                        Menu("Share", systemImage:"square.and.arrow.up") {
-                            Button("All Transactions") {
-                                CSVExportManager.exportFromSwiftUI(expenses: expenses)
-                            }
-                        }
                     }
                 }
               

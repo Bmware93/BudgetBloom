@@ -68,6 +68,13 @@ enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
     case personal = "Personal Care"
     case pet = "Pet Care"
     case charity = "Giving/Charity"
+    case saving = "Savings"
+    case education = "Education"
+    case gifts = "Gifts"
+    case maintenance = "Home Maintenance"
+    case insurance = "Insurance"
+    case business = "Business"
+    case investments = "Investments"
     case misc = "Misc"
     case undefined = "Undefined"
     

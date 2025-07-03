@@ -66,6 +66,7 @@ struct SettingsView: View {
                                 .padding(.leading, 46)
                             }
                         }
+                        .foregroundStyle(.accent)
                         Button {
                             AppStoreManager.shared.requestReview()
                         } label: {
