@@ -29,7 +29,7 @@ extension Product {
         case let id where id.contains("medium"):
             return "🌊"
         case let id where id.contains("large"):
-            return "🌦️"
+            return "🌩️"
         default:
             return "💝"
         }

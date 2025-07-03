@@ -59,8 +59,8 @@ struct ChartsView: View {
         }
         
         var description: Text {
-           switch currentGraphTimeFrame {
-           case .day:
+            switch currentGraphTimeFrame {
+            case .day:
                 return Text("Looks like your wallet’s enjoying a break! Add your expenses to start cultivating today’s spending insights.")
             case .week:
                 return Text("Log some expenses to see how your spending shapes up over the days.")
@@ -143,75 +143,75 @@ struct ChartsView: View {
                     
                 } else {
                     
-                        List {
+                    List {
+                        
+                        let groupedExpenses = groupedExpenses
+                        
+                        HStack {
+                            //MARK: PICKER FOR CHARTS
+                            ChartsPicker(barGraphPicker: $currentGraphTimeFrame)
                             
-                            let groupedExpenses = groupedExpenses
+                            Spacer()
                             
-                            HStack {
-                                //MARK: PICKER FOR CHARTS
-                                ChartsPicker(barGraphPicker: $currentGraphTimeFrame)
-                                
-                                Spacer()
-                                
-                                //MARK: TOTAL SPENT LABEL FOR TOP OF BAR CHART
-                                totalSpentLabel(for: groupedExpenses)
-                            }
-                            .padding(.bottom, 25)
-                            
-                            //MARK: Bar Chart starts here
-                            if groupedExpenses.isEmpty {
-                                contentUnavailablemessage()
-                                    .offset(y: -25)
-                            } else {
-                                BarChartView(groupedExpenses: groupedExpenses)
-                                    .frame(minHeight: 350)
-                            }
-                            
-                            if !groupedExpenses.isEmpty {
-                                DisclosureGroup("Spending Insights") {
-                                    VStack {
-                                        //MARK: Donut Chart starts here
-                                        DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
-                                            .clipped(antialiased: false)
-                                            .frame(minWidth: 300, minHeight: 300)
-                                        
-                                        
-                                        Section {
-                                            GroupBox {
-                                                ForEach(donutChartData) { categorySelected in
-                                                    HStack {
-                                                        Circle()
-                                                            .frame(width: 10, height: 10)
-                                                            .foregroundStyle(color(for: categorySelected.category))
-                                                        
-                                                        Text(categorySelected.category.rawValue)
-                                                        
-                                                        Spacer()
-                                                        
-                                                        VStack(alignment: .leading) {
-                                                            Text(currencyFormat(value:categorySelected.total))
-                                                        }
+                            //MARK: TOTAL SPENT LABEL FOR TOP OF BAR CHART
+                            totalSpentLabel(for: groupedExpenses)
+                        }
+                        .padding(.bottom, 25)
+                        
+                        //MARK: Bar Chart starts here
+                        if groupedExpenses.isEmpty {
+                            contentUnavailablemessage()
+                                .offset(y: -25)
+                        } else {
+                            BarChartView(groupedExpenses: groupedExpenses)
+                                .frame(minHeight: 350)
+                        }
+                        
+                        if !groupedExpenses.isEmpty {
+                            DisclosureGroup("Spending Insights") {
+                                VStack {
+                                    //MARK: Donut Chart starts here
+                                    DonutChartView(categoryTotals: donutChartData, selectedCategory: $selectedCategory, selectedCount: $selectedCount)
+                                        .clipped(antialiased: false)
+                                        .frame(minWidth: 300, minHeight: 300)
+                                    
+                                    
+                                    Section {
+                                        GroupBox {
+                                            ForEach(donutChartData) { categorySelected in
+                                                HStack {
+                                                    Circle()
+                                                        .frame(width: 10, height: 10)
+                                                        .foregroundStyle(color(for: categorySelected.category))
+                                                    
+                                                    Text(categorySelected.category.rawValue)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    VStack(alignment: .leading) {
+                                                        Text(currencyFormat(value:categorySelected.total))
                                                     }
-                                                    
-                                                    
                                                 }
                                                 
+                                                
                                             }
-                                            .padding(.bottom)
-                                        } header: {
-                                            Text("Top Spending Categories")
-                                                .font(.headline)
-                                                .fontWeight(.light)
+                                            
                                         }
-                                        
+                                        .padding(.bottom)
+                                    } header: {
+                                        Text("Top Spending Categories")
+                                            .font(.headline)
+                                            .fontWeight(.light)
                                     }
-                                    .padding(.top, 25)
                                     
                                 }
-                                .tint(.accentColor)
+                                .padding(.top, 25)
+                                
                             }
-                               
+                            .tint(.accentColor)
                         }
+                        
+                    }
                     
                 }
                 

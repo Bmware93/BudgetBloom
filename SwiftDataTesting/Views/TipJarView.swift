@@ -17,6 +17,7 @@ struct TipJarView: View {
     
     var body: some View {
         NavigationView {
+            ScrollView {
             VStack(spacing: 20) {
                 
                 // Header starts
@@ -39,7 +40,6 @@ struct TipJarView: View {
                 
                 Spacer()
                 
-             
                 if tipJarManager.isLoading {
                     ProgressView("Loading tip options...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -59,6 +59,7 @@ struct TipJarView: View {
                                 }
                             }
                             .buttonStyle(.bordered)
+                            .buttonBorderShape(.roundedRectangle(radius: 8))
                         }
                     }
                     .padding()
@@ -74,7 +75,7 @@ struct TipJarView: View {
                             }
                         }
                     }
-        
+                    
                 }
                 
                 Spacer()
@@ -87,6 +88,7 @@ struct TipJarView: View {
                     .padding(.horizontal)
                     .padding(.bottom)
             }
+        }
             .navigationTitle("Tip Jar")
             .navigationBarTitleDisplayMode(.inline)
             .alert("Thank You! 🫶🏾", isPresented: $showingThankYouAlert) {
@@ -108,11 +110,11 @@ struct TipJarView: View {
     
     private func purchaseProduct(_ product: Product) async {
         isPurchasing = true
-        await tipJarManager.purchase(product)
+        let success = await tipJarManager.purchase(product)
         isPurchasing = false
         
         // Show thank you alert if purchase was successful
-        if tipJarManager.errorMessage == nil {
+        if success {
             showingThankYouAlert = true
         }
     }

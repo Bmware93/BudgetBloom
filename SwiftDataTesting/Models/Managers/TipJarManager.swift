@@ -40,7 +40,7 @@ class TipJarManager: ObservableObject {
         
         isLoading = false
     }
-    func purchase(_ product: Product) async {
+    func purchase(_ product: Product) async -> Bool {
         do {
             let result = try await product.purchase()
             
@@ -51,29 +51,35 @@ class TipJarManager: ObservableObject {
                 case .verified(let transaction):
                     // Transaction is verified, finish it
                     await transaction.finish()
+                    return true
                     
                     // Show thank you message
-                    await showThankYouAlert()
+                    //await showThankYouAlert()
                     
                 case .unverified(let transaction, let error):
                     // Transaction failed verification
                     print("Transaction failed verification: \(error)")
                     errorMessage = "Purchase verification failed"
                     await transaction.finish()
+                    return false
                 }
                 
             case .userCancelled:
                 print("User cancelled purchase")
+                return false
                 
             case .pending:
                 print("Purchase pending approval")
+                return false
                 
             @unknown default:
                 print("Unknown purchase result")
+                return false
             }
         } catch {
             errorMessage = "Purchase failed: \(error.localizedDescription)"
             print("Purchase failed: \(error)")
+            return false 
         }
     }
     
@@ -89,11 +95,7 @@ class TipJarManager: ObservableObject {
             }
         }
     }
-    
-    private func showThankYouAlert() async {
-        // To be handled in the UI
-    }
-    
+
     func formatPrice(for product: Product) -> String {
         return product.displayPrice
     }

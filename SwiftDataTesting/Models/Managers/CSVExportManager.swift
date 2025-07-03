@@ -62,7 +62,6 @@ class CSVExportManager {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         viewController.present(alert, animated: true)
     }
-
 }
 
 
