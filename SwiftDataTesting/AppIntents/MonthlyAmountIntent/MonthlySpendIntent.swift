@@ -25,7 +25,7 @@ struct MonthlySpendIntent: AppIntent {
         guard let firstEntry = expenseData.elements.first else {
                     return .result(
                       value: 0.00,
-                      dialog: "Looks like you haven’t made any purchases today."
+                      dialog: "There are no recorded expenses for this month."
                     )
                 }
 

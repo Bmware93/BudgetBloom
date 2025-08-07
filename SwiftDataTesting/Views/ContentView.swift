@@ -12,8 +12,9 @@ import SwiftData
 struct ContentView: View {
     //injecting context into the content view so it will have access to the database
     @Environment(\.modelContext) var context
-    
-    //fetches the saved data from the context 
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
+    @State private var scale = 1.0
+    //fetches the saved data from the context
     //expense array is reveresed so that the most recent expense is showing first
     @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
     var appName: String = "BudgetBloom"
@@ -92,7 +93,7 @@ struct ContentView: View {
                 .listSectionSeparator(.hidden, edges: .bottom)
             }
             .listStyle(.plain)
-            //.navigationTitle(LocalizedStringKey(appName))
+            .navigationTitle(LocalizedStringKey(appName))
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
@@ -112,7 +113,8 @@ struct ContentView: View {
                     Image("BrandIcon")
                         .resizable()
                         .scaledToFit()
-                        .animation(.spring)
+                        .scaleEffect(scale)
+                        .animation(reduceMotion ? nil : .spring)
                 }
             }
             .overlay {

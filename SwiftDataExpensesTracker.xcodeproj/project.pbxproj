@@ -588,7 +588,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -603,7 +603,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -623,7 +623,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftDataTesting/SwiftDataTesting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataTesting/Preview Content\"";
 				DEVELOPMENT_TEAM = KY5FDC9N4H;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -638,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = morganware.benia.SwiftDataTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
