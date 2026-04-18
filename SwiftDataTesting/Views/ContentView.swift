@@ -60,39 +60,24 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                let groupedExpenses = groupExpensesByMonth()
-                
-                ForEach(groupedExpenses.keys, id: \.self) { month in
-                    if let group = groupedExpenses[month] {
-                        Section {
-                            ForEach(group.expenses) { expense in
-                                ExpenseCellView(expense: expense)
-                                    .onTapGesture {
-                                        expenseToEdit = expense
-                                    }
-                                    .accessibilityAddTraits(.isButton)
-                            }
-                            .onDelete { indexset in
-                                for index in indexset {
-                                    context.delete(group.expenses[index])
-                                }
-                            }
-                        } header: {
-                            Text(month)
-                        } footer: {
-                            HStack {
-                                Spacer()
-                                Text("Total \(currencyFormat(value: group.sum))")
-                                    .font(.footnote).bold()
-                                    .foregroundStyle(.accent)
-                            }
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    let groupedExpenses = groupExpensesByMonth()
+                    
+                    ForEach(groupedExpenses.keys, id: \.self) { month in
+                        if let group = groupedExpenses[month] {
+                            CollapsibleMonthSection(
+                                month: month,
+                                expenses: group.expenses,
+                                totalAmount: group.sum,
+                                expenseToEdit: $expenseToEdit,
+                                context: context
+                            )
                         }
                     }
                 }
-                .listSectionSeparator(.hidden, edges: .bottom)
+                .padding(.top, 8)
             }
-            .listStyle(.plain)
             .navigationTitle(LocalizedStringKey(appName))
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")

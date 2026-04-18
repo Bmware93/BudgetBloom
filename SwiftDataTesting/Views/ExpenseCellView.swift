@@ -50,23 +50,49 @@ struct ExpenseCellView: View {
     private var categoryColor: Color {
         switch expense.category {
         case .food, .groceries:
-            return Color.purple
+            return .bbDarkPurple
         case .transportation, .travel:
-            return Color.blue
+            return .bbDarkGreen
         case .entertainment:
-            return Color.orange
+            return .bloomPink
         case .health:
-            return Color.red
+            return .bbLPurple
         case .clothing:
-            return Color.pink
+            return .bbLGreen
         case .housing, .utilities:
-            return Color.green
+            return .bbDarkGreen
         case .education:
-            return Color.indigo
+            return .bbDarkPurple
         case .business:
-            return Color.teal
-        default:
-            return Color.purple
+            return .bbLGreen
+        case .subscription:
+            return .bloomPink
+        case .personal:
+            return .bbLPurple
+        case .pet:
+            return .bbLGreen
+        case .charity:
+            return .bloomPink
+        case .saving:
+            return .bbDarkGreen
+        case .gifts:
+            return .bbLPurple
+        case .maintenance:
+            return .bbDarkGreen
+        case .insurance:
+            return .bbDarkPurple
+        case .investments:
+            return .bbLGreen
+        case .debt:
+            return .bbLPurple
+        case .childcare:
+            return .bloomPink
+        case .toiletries:
+            return .bbLPurple
+        case .misc:
+            return .bbDarkPurple
+        case .undefined:
+            return .bbDarkPurple
         }
     }
     

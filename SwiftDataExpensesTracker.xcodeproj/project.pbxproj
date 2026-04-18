@@ -20,6 +20,7 @@
 		1A9670632C078256007B1107 /* DonutChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670622C078256007B1107 /* DonutChartView.swift */; };
 		1A9670652C079DD8007B1107 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670642C079DD8007B1107 /* BarChartView.swift */; };
 		1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9670662C07BEB0007B1107 /* ChartsPicker.swift */; };
+		1A9689B42F9342170097005F /* CollapsibleMonthSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9689B32F9342170097005F /* CollapsibleMonthSection.swift */; };
 		1AB20B8B2DF213C30066CB80 /* CSVGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */; };
 		1AD741122D2C35BC0060C400 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */; };
 		1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */; };
@@ -81,6 +82,7 @@
 		1A9670622C078256007B1107 /* DonutChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChartView.swift; sourceTree = "<group>"; };
 		1A9670642C079DD8007B1107 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		1A9670662C07BEB0007B1107 /* ChartsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPicker.swift; sourceTree = "<group>"; };
+		1A9689B32F9342170097005F /* CollapsibleMonthSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleMonthSection.swift; sourceTree = "<group>"; };
 		1AB20B8A2DF213C30066CB80 /* CSVGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVGenerator.swift; sourceTree = "<group>"; };
 		1AD741112D2C35BC0060C400 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		1AD741152D2D7D1D0060C400 /* BarChartFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartFunctions.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				1A13483D2E087962003DD9AA /* TipJarView.swift */,
 				1A1348452E088FE0003DD9AA /* TipOptionRow.swift */,
 				1A9670612C078219007B1107 /* Charts */,
+				1A9689B32F9342170097005F /* CollapsibleMonthSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				1A13483E2E087962003DD9AA /* TipJarView.swift in Sources */,
 				1A1348462E088FE0003DD9AA /* TipOptionRow.swift in Sources */,
 				1AD741162D2D7D1D0060C400 /* BarChartFunctions.swift in Sources */,
+				1A9689B42F9342170097005F /* CollapsibleMonthSection.swift in Sources */,
 				1A9670632C078256007B1107 /* DonutChartView.swift in Sources */,
 				1A9670672C07BEB0007B1107 /* ChartsPicker.swift in Sources */,
 				1A0448DE2B6826DD00E19BFE /* AppTabView.swift in Sources */,
