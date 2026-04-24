@@ -1,19 +1,105 @@
-## Spendit
+<p align="center">
+  <img src="./Group_Copy_2_3x.png" alt="BudgetBloom Logo" width="120" />
+</p>
 
-## Introduction
-Spendit: Expense Tracker is a minimalist app designed to help users monitor their spending without the complexity often found in traditional finance apps. Built using Swift and SwiftUI, this app offers a user-friendly interface and efficient performance, leveraging SwiftData for data management as well as SwiftCharts for data visualization.
+# BudgetBloom — Spending Tracker
+
+A minimal, privacy-first expense tracker for iPhone. Built to give users clarity on their spending without the noise of traditional budgeting apps.
+
+[![App Store](https://img.shields.io/badge/Download_on_the-App_Store-black?style=flat&logo=apple)](https://apps.apple.com/us/app/budgetbloom-spending-tracker/id6737521957)
+![Platform](https://img.shields.io/badge/Platform-iOS_17%2B-blue)
+![Swift](https://img.shields.io/badge/Swift-5.9-orange?logo=swift)
+![License](https://img.shields.io/badge/License-Proprietary-lightgrey)
+
+---
+
+## Overview
+
+BudgetBloom is a lightweight expense tracker designed for people who want to understand their spending without being overwhelmed. All data stays on-device. No accounts, no servers, no ads.
+
+---
 
 ## Features
-- **Simple User Interface**: Clean, distraction-free interface designed for ease of use.
-- **Real-Time Expense Tracking**: Add and view expenses quickly and efficiently.
-- **Category Management**: Organize expenses into categories for better financial management.
-- **Reporting**: View summaries of your spending patterns over different time frames.
 
-## Screenshots
-<img width="508" alt="Screenshot 2024-07-03 at 1 08 34 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/5ff2d40f-1a82-4848-9ae3-948c4de90950">
-<img width="452" alt="Screenshot 2024-07-03 at 1 11 29 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/6529be11-4ea4-4ff6-97ea-ede939ea31e8">
-<img width="472" alt="Screenshot 2024-07-03 at 1 08 51 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/39016e90-7a81-4481-b601-735c545bc7e1">
-<img width="473" alt="Screenshot 2024-07-03 at 1 09 20 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/e9831d49-5b1c-4f2a-a7b9-7ee51c1d0629">
-<img width="484" alt="Screenshot 2024-07-03 at 1 10 13 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/3302d80b-0783-4969-8045-d56a16f9a56b">
-<img width="513" alt="Screenshot 2024-07-03 at 1 10 34 PM" src="https://github.com/Bmware93/SwiftDataExpensesTracker/assets/113613765/042db652-288b-4b0a-a80a-108e9b9eaaeb">
+- **Spending at a Glance** — View expenses by day, week, month, or year
+- **Visual Insights** — Donut charts built with Swift Charts for quick category breakdowns
+- **Siri Integration** — Query spending totals via App Intents (daily, weekly, monthly, YTD)
+- **CSV Export** — Export all spending data for backup or analysis
+- **Dark Mode** — Full dark mode support
+- **Privacy First** — All data stored locally on-device; nothing collected or transmitted
+- **Tip Jar** — Optional one-time tips via StoreKit to support development
+- **Accessibility** — Supports Reduce Motion (disables chart animations), Dynamic Type, and Dark Interface
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI & Charts | SwiftUI, Swift Charts |
+| Persistence | SwiftData |
+| Sync | CloudKit |
+| Siri / Shortcuts | App Intents |
+| In-App Purchases | StoreKit 2 |
+| Accessibility | Reduce Motion, Dynamic Type, Dark Interface |
+| Dependencies | [Swift Collections](https://github.com/apple/swift-collections) |
+
+---
+
+## Requirements
+
+- iOS 17.0+
+- Xcode 15+
+- Swift 5.9+
+- An Apple Developer account (for CloudKit entitlements)
+
+---
+
+## Installation
+
+1. Clone the repo
+   ```bash
+   git clone https://github.com/your-username/BudgetBloom.git
+   ```
+2. Open `BudgetBloom.xcodeproj` in Xcode
+3. Resolve Swift Package dependencies (Swift Collections will be fetched automatically)
+4. Set your development team under **Signing & Capabilities**
+5. Build and run on a simulator or device
+
+> **Note:** CloudKit sync requires a physical device and an active iCloud account. It will not work on the simulator.
+
+---
+
+## Siri Commands
+
+BudgetBloom supports the following App Intents phrases:
+
+```
+"What's my spending today in BudgetBloom?"
+"What's my spending this week in BudgetBloom?"
+"What's my spending this month in BudgetBloom?"
+"What's my year to date spending in BudgetBloom?"
+```
+
+---
+
+## Privacy
+
+BudgetBloom does not collect any user data. All financial data is stored locally via SwiftData and optionally synced across a user's own devices via CloudKit. No analytics, no tracking, no third-party data sharing.
+
+See the full [Privacy Policy](https://bmware93.github.io/BudgetBloom/).
+
+---
+
+## App Store
+
+[Download BudgetBloom on the App Store](https://apps.apple.com/us/app/budgetbloom-spending-tracker/id6737521957)
+
+---
+
+## Developer
+
+Built by **Benia Morgan-Ware** / WareNex Technologies LLC
+
+Have feedback or a feature request? Use the in-app feedback option or open an issue.
 
