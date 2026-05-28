@@ -20,7 +20,7 @@ struct AddExpenseSheet: View {
     @State private var amountString: String = "0.00"
     @State private var hasStartedEditingAmount: Bool = false
     @FocusState private var isAmountFieldFocused: Bool
-    @State private var spendingCategory:SpendingCategory = .undefined
+    @State private var spendingCategory:ExpenseCategory = .undefined
     @State private var expenseNotes: String = ""
     
     //Disabled add expense button until all data is entered
@@ -59,7 +59,7 @@ struct AddExpenseSheet: View {
                     }
                     
                 Picker("Category", selection: $spendingCategory) {
-                    ForEach(SpendingCategory.allCases, id: \.self) { option in
+                    ForEach(ExpenseCategory.allCases, id: \.self) { option in
                         Text(option.rawValue)
                     }
                 }

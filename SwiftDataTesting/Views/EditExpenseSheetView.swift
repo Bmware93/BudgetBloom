@@ -23,7 +23,7 @@ struct EditExpenseSheetView: View {
                 TextField("Value", value: $expense.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     .keyboardType(.decimalPad)
                 Picker("Category", selection: $expense.category){
-                    ForEach(SpendingCategory.allCases, id: \.self) { option in
+                    ForEach(ExpenseCategory.allCases, id: \.self) { option in
                         Text(option.rawValue)
                         
                     }

@@ -87,7 +87,7 @@ struct CollapsibleMonthSection: View {
                     insertion: .opacity.combined(with: .scale(scale: 0.95, anchor: .top)),
                     removal: .opacity.combined(with: .scale(scale: 0.95, anchor: .top))
                 ))
-                .clipped()
+                .clipped() 
             }
         }
         .padding(.horizontal, 16)

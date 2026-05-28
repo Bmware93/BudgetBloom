@@ -86,7 +86,7 @@ struct ChartsView: View {
         }
     }
     
-    func color(for category: SpendingCategory) -> Color {
+    func color(for category: ExpenseCategory) -> Color {
         guard let index = donutChartData.firstIndex(where: { $0.category == category }),
               index < chartColors.count else {
             return .gray // Default color for categories not in the top 4
@@ -94,12 +94,12 @@ struct ChartsView: View {
         return chartColors[index]
     }
     
-    var categoryTotals: [SpendingCategory: Double] {
+    var categoryTotals: [ExpenseCategory: Double] {
         Dictionary(grouping: expenses, by: {$0.category})
             .mapValues{$0.reduce(0) {$0 + $1.amount }}
     }
     
-    var expensesFromTopTotal: [SpendingCategory: [Expense]] {
+    var expensesFromTopTotal: [ExpenseCategory: [Expense]] {
         Dictionary(grouping: expenses, by: {$0.category})
     }
     
@@ -192,8 +192,7 @@ struct ChartsView: View {
                                                         Text(currencyFormat(value:categorySelected.total))
                                                     }
                                                 }
-                                                
-                                                
+                    
                                             }
                                             
                                         }
