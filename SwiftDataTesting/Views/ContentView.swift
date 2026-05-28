@@ -12,8 +12,9 @@ import SwiftData
 struct ContentView: View {
     //injecting context into the content view so it will have access to the database
     @Environment(\.modelContext) var context
-    
-    //fetches the saved data from the context 
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
+    @State private var scale = 1.0
+    //fetches the saved data from the context
     //expense array is reveresed so that the most recent expense is showing first
     @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
     var appName: String = "BudgetBloom"
@@ -59,40 +60,25 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                let groupedExpenses = groupExpensesByMonth()
-                
-                ForEach(groupedExpenses.keys, id: \.self) { month in
-                    if let group = groupedExpenses[month] {
-                        Section {
-                            ForEach(group.expenses) { expense in
-                                ExpenseCellView(expense: expense)
-                                    .onTapGesture {
-                                        expenseToEdit = expense
-                                    }
-                                    .accessibilityAddTraits(.isButton)
-                            }
-                            .onDelete { indexset in
-                                for index in indexset {
-                                    context.delete(group.expenses[index])
-                                }
-                            }
-                        } header: {
-                            Text(month)
-                        } footer: {
-                            HStack {
-                                Spacer()
-                                Text("Total \(currencyFormat(value: group.sum))")
-                                    .font(.footnote).bold()
-                                    .foregroundStyle(.accent)
-                            }
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    let groupedExpenses = groupExpensesByMonth()
+                    
+                    ForEach(groupedExpenses.keys, id: \.self) { month in
+                        if let group = groupedExpenses[month] {
+                            CollapsibleMonthSection(
+                                month: month,
+                                expenses: group.expenses,
+                                totalAmount: group.sum,
+                                expenseToEdit: $expenseToEdit,
+                                context: context
+                            )
                         }
                     }
                 }
-                .listSectionSeparator(.hidden, edges: .bottom)
+                .padding(.top, 8)
             }
-            .listStyle(.plain)
-            //.navigationTitle(LocalizedStringKey(appName))
+            .navigationTitle(LocalizedStringKey(appName))
             .modifier(NavigationBarModifier(backgroundColor: .systemBackground, foregroundColor: .accent, tintColor: nil, withSeparator: false))
             .searchable(text: $searchText, prompt: "Search Expenses")
             .sheet(isPresented: $isItemSheetShowing, content: AddExpenseSheet.init)
@@ -112,7 +98,8 @@ struct ContentView: View {
                     Image("BrandIcon")
                         .resizable()
                         .scaledToFit()
-                        .animation(.spring)
+                        .scaleEffect(scale)
+                        .animation(reduceMotion ? nil : .spring)
                 }
             }
             .overlay {

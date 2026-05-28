@@ -20,29 +20,34 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
     var name: String = ""
     var date: Date = Date()
     var amount: Double = 0.00
-    var category: SpendingCategory = SpendingCategory.undefined
+    var category: ExpenseCategory = ExpenseCategory.undefined
     var expenseDescription: String = ""
      
     //Computed Properties
-    var dateParsed: Date {
-        date.description.dateParsed()
-    }
+    // Note: This property seems unused and has an undefined method
+    // Consider removing or implementing properly
+    // var dateParsed: Date { date }
     
     var month: String {
      date.formatted(.dateTime.year().month(.wide))
         
     }
-     //Short month is the month abbreviated plus the year
+     //Short month is the month abbreviated plus the year  
      var shortMonth: String {
-        let newDate = date.formatted(.dateTime.year().month(.wide))
-          
-        let abbrevMonth = newDate.prefix(3)
-        //let year = newDate.suffix(4)
-          
-          return String(abbrevMonth)
+         date.formatted(.dateTime.month(.abbreviated).year())
      }
      
-     init(name: String = "", date: Date = Date(), amount: Double = 0.00, category: SpendingCategory = .undefined, expenseDescription: String = "") {
+     // Validation computed property - good for demonstrating business logic
+     var isValid: Bool {
+         !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && amount > 0
+     }
+     
+     // Additional useful computed properties for analytics
+     var yearMonth: String {
+         date.formatted(.dateTime.year().month(.wide))
+     }
+     
+     init(name: String = "", date: Date = Date(), amount: Double = 0.00, category: ExpenseCategory = .undefined, expenseDescription: String = "") {
          self.name = name
          self.date = date
          self.amount = amount
@@ -51,7 +56,7 @@ typealias TransactionGroup = OrderedDictionary<String, (expenses: [Expense], sum
      }
 }
 
-enum SpendingCategory:String, CaseIterable,Identifiable, Codable {
+enum ExpenseCategory:String, CaseIterable,Identifiable, Codable {
     case housing = "Housing"
     case toiletries = "Toiletries"
     case transportation = "Transportation"

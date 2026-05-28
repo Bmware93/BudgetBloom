@@ -29,11 +29,11 @@ struct TipOptionRow: View {
             
             Spacer()
             
-            Button(action: {
+            Button {
                 Task {
                     await onPurchase()
                 }
-            }) {
+            } label: {
                 if isPurchasing {
                     ProgressView()
                         .scaleEffect(0.8)

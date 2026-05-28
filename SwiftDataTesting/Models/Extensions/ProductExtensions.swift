@@ -16,7 +16,7 @@ extension Product {
         case let id where id.contains("medium"):
             return "Garden hose"
         case let id where id.contains("large"):
-            return "Thunderstandstorm"
+            return "Thunderstorm"
         default:
             return "Tip"
         }
