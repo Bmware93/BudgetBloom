@@ -13,6 +13,10 @@ struct AddExpenseSheet: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     
+    // Natural language input
+    @State private var nlInput: String = ""
+    @State private var currentParsedResult: ParsedExpenseInput? = nil
+    
     //@State private var accountId: String = ""
     @State private var name: String = ""
     @State private var date: Date = .now
@@ -28,9 +32,111 @@ struct AddExpenseSheet: View {
          !name.isEmpty && amount > 0
     }
     
+    // Parse natural language input and populate form fields
+    private func parseAndPopulateFields(_ input: String) {
+        guard !input.isEmpty else { 
+            currentParsedResult = nil
+            return 
+        }
+        
+        let parsedResult = parseExpenseInput(input)
+        
+        // Store the parsed result for the preview card
+        currentParsedResult = parsedResult
+        
+        // Update amount if parsed successfully
+        if let parsedAmount = parsedResult.amount {
+            amount = parsedAmount
+            amountString = String(format: "%.2f", parsedAmount)
+        }
+        
+        // Update name/merchant if parsed successfully
+        if let parsedMerchant = parsedResult.merchant {
+            name = parsedMerchant
+        }
+        
+        // Update category if parsed successfully
+        if let parsedCategory = parsedResult.category {
+            // Find matching ExpenseCategory enum case
+            if let matchingCategory = ExpenseCategory.allCases.first(where: { $0.rawValue == parsedCategory }) {
+                spendingCategory = matchingCategory
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
+                // Natural Language Input Section
+                Section {
+                    TextField("Add expense... (e.g., $25 groceries at Meijer)", text: $nlInput)
+                        .textFieldStyle(.roundedBorder)
+                        .submitLabel(.done)
+                        .onChange(of: nlInput) { _, newValue in
+                            parseAndPopulateFields(newValue)
+                        }
+                    
+                    Text("Try natural language like \"$42 dinner at Olive Garden\" or \"15 coffee\"")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    // Preview card for parsed results
+                    if !nlInput.isEmpty {
+                        if let parsed = currentParsedResult,
+                           (parsed.amount != nil || parsed.merchant != nil || parsed.category != nil) {
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    if let amount = parsed.amount {
+                                        Text("Amount: ")
+                                            .foregroundColor(.secondary) +
+                                        Text(currencyFormat(value: amount))
+                                            .fontWeight(.medium)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    if let category = parsed.category {
+                                        Text("Category: ")
+                                            .foregroundColor(.secondary) +
+                                        Text(category)
+                                            .fontWeight(.medium)
+                                    }
+                                }
+                                
+                                if let merchant = parsed.merchant {
+                                    HStack {
+                                        Text("Merchant: ")
+                                            .foregroundColor(.secondary) +
+                                        Text(merchant)
+                                            .fontWeight(.medium)
+                                        
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                        } else if nlInput.count >= 3 {
+                            // Show subtle hint for parsing failures (only if input is long enough)
+                            HStack {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.orange)
+                                    .font(.caption)
+                                
+                                Text("Couldn't parse input. Try formats like \"$25 lunch at Chipotle\" or fill fields manually")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 6)
+                            .background(Color(.systemYellow).opacity(0.1))
+                            .cornerRadius(6)
+                        }
+                    }
+                }
+                
                 TextField("Expense Name", text: $name)
                     .submitLabel(.continue)
                 DatePicker("Date", selection: $date, displayedComponents: .date)
