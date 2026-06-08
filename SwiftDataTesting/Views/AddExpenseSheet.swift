@@ -137,39 +137,44 @@ struct AddExpenseSheet: View {
                     }
                 }
                 
-                TextField("Expense Name", text: $name)
-                    .submitLabel(.continue)
-                DatePicker("Date", selection: $date, displayedComponents: .date)
-                TextField("Amount", text: $amountString, prompt: Text(currencyFormat(value: amount)))
-                    .keyboardType(.decimalPad)
-                    .submitLabel(.continue)
-                    .focused($isAmountFieldFocused)
-                    .onChange(of: isAmountFieldFocused) {
-                        if isAmountFieldFocused && !hasStartedEditingAmount {
-                            amountString = ""
-                            hasStartedEditingAmount = true
-                        }
-                    }
-                    .onAppear {
-                        if amount >= 0 {
-                            amountString = String(format: currencyFormat(value: amount))
-                        }
-                    }
-                    .onDisappear {
-                        // Clean the amountString by removing non-numeric characters except the decimal
-                                let cleanedAmount = amountString
-                                    .filter { "0123456789.".contains($0) }
-                                
-                                // Convert to Double after cleaning
-                                amount = Double(cleanedAmount) ?? 0
-                    }
+                // Manual Entry Section - Always visible for corrections
+                Section("Expense Details") {
+                    TextField("Expense Name", text: $name)
+                        .submitLabel(.continue)
                     
-                Picker("Category", selection: $spendingCategory) {
-                    ForEach(ExpenseCategory.allCases, id: \.self) { option in
-                        Text(option.rawValue)
+                    DatePicker("Date", selection: $date, displayedComponents: .date)
+                    
+                    TextField("Amount", text: $amountString, prompt: Text(currencyFormat(value: amount)))
+                        .keyboardType(.decimalPad)
+                        .submitLabel(.continue)
+                        .focused($isAmountFieldFocused)
+                        .onChange(of: isAmountFieldFocused) {
+                            if isAmountFieldFocused && !hasStartedEditingAmount {
+                                amountString = ""
+                                hasStartedEditingAmount = true
+                            }
+                        }
+                        .onAppear {
+                            if amount >= 0 {
+                                amountString = String(format: currencyFormat(value: amount))
+                            }
+                        }
+                        .onDisappear {
+                            // Clean the amountString by removing non-numeric characters except the decimal
+                                    let cleanedAmount = amountString
+                                        .filter { "0123456789.".contains($0) }
+                                    
+                                    // Convert to Double after cleaning
+                                    amount = Double(cleanedAmount) ?? 0
+                        }
+                        
+                    Picker("Category", selection: $spendingCategory) {
+                        ForEach(ExpenseCategory.allCases, id: \.self) { option in
+                            Text(option.rawValue)
+                        }
                     }
+                    .pickerStyle(.navigationLink)
                 }
-                .pickerStyle(.navigationLink)
                 
                 Section("Notes") {
                     TextEditor(text: $expenseNotes)
