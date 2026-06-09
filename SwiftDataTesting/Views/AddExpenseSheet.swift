@@ -176,6 +176,62 @@ struct AddExpenseSheet: View {
         }
     }
     
+    // Category-specific accent colors
+    private func categoryAccentColor(for category: ExpenseCategory) -> Color {
+        switch category {
+        case .food:
+            return .orange
+        case .entertainment:
+            return .purple
+        case .transportation:
+            return .blue
+        case .clothing:
+            return .green
+        case .health:
+            return .red
+        case .travel:
+            return .pink
+        case .utilities:
+            return .gray
+        case .education:
+            return .indigo
+        case .housing:
+            return .brown
+        case .toiletries:
+            return .cyan
+        case .subscription:
+            return .purple
+        case .childcare:
+            return .yellow
+        case .debt:
+            return .red
+        case .groceries:
+            return .green
+        case .personal:
+            return .pink
+        case .pet:
+            return .brown
+        case .charity:
+            return .mint
+        case .saving:
+            return .green
+        case .gifts:
+            return .pink
+        case .maintenance:
+            return .orange
+        case .insurance:
+            return .blue
+        case .business:
+            return .indigo
+        case .investments:
+            return .green
+        case .misc:
+            return .gray
+        case .undefined:
+            return .secondary
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -219,10 +275,8 @@ struct AddExpenseSheet: View {
                                 HStack(spacing: 12) {
                                     // Green amount pill
                                     HStack(spacing: 4) {
-                                        Text("$")
-                                            .font(.system(size: 14, weight: .medium))
-                                            .foregroundColor(.green)
-                                        Text(String(format: "%.2f", amount))
+                                       
+                                        Text(currencyFormat(value: amount))
                                             .font(.system(size: 14, weight: .medium))
                                             .foregroundColor(.green)
                                     }
@@ -243,7 +297,7 @@ struct AddExpenseSheet: View {
                                         }
                                         .padding(.horizontal, 12)
                                         .padding(.vertical, 8)
-                                        .background(Color.pink)
+                                        .background(categoryAccentColor(for: spendingCategory))
                                         .clipShape(Capsule())
                                     }
                                     
@@ -304,15 +358,6 @@ struct AddExpenseSheet: View {
                             .submitLabel(.continue)
                     }
                     
-                    // Date field with icon
-                    HStack {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.secondary)
-                            .frame(width: 20)
-                        
-                        DatePicker("Date", selection: $date, displayedComponents: .date)
-                    }
-                    
                     // Amount field with icon
                     HStack {
                         Image(systemName: "creditcard")
@@ -356,10 +401,20 @@ struct AddExpenseSheet: View {
                             }
                         }
                         .pickerStyle(.navigationLink)
+                        .foregroundColor(categoryAccentColor(for: spendingCategory))
+                    }
+                    
+                    // Date field with icon
+                    HStack {
+                        Image(systemName: "calendar")
+                            .foregroundColor(.secondary)
+                            .frame(width: 20)
+                        
+                        DatePicker("Date", selection: $date, displayedComponents: .date)
                     }
                 } header: {
                     HStack {
-                        Text("Details")
+                        Text("DETAILS")
                         Label("auto-filled", systemImage: "sparkles")
                     }
                 }
